@@ -10,35 +10,28 @@ static const UINT16 DELAY = 1000;
 static const UINT16 CPU_FREQ = 1000;
 
 
-UINT16 read_timer() {
-
-    UINT16 timer_value = HWREG(TCNT1L);
-	timer_value |= HWREG(TCNT1H);
-
-    return (timer_value);
-}
-
-void write_timer(int value) {
-	HWREG(TCNT1H) = ((value & 0xF0) >> 8);
-    HWREG(TCNT1L) = (value  & 0x0F);
+ISR(TIMER1_OVF_vect)
+{
+  static UINT8 scaler;
 
 }
 
-void reset_timer() {
-	HWREG(TCNT1H) = 0;
-    HWREG(TCNT1L) = 0;
+void delay_int() {
+;
+/* reset counter */
+/* load compare register */
+/* enable timer interrupt */
+/* wait for interrupt flag */
 }
 
 void delay(int milliSeconds) {
 
+    /* holds the 16 bit value from the timer */
 	volatile UINT16 timer_value = 0;
+
 	/* 1/20th of a second for 1MHz clock CPU clock */
 	volatile UINT16 compare = 49999;
 
-  
-	/* normall mode */
-	HWREG(TCCR1A) &= (UINT8) ~(WGM11 | WGM10);
-	HWREG(TCCR1B) &= (UINT8) ~(WGM13 | WGM12);
 	/* no prescale */
 	HWREG(TCCR1B) |= CS10;
 
@@ -46,36 +39,46 @@ void delay(int milliSeconds) {
 	HWREG(TCNT1H) = 0;
     HWREG(TCNT1L) = 0;
 
-
+    /* read the timer value and exit when match is reached */
 	while( 1  ) {
 	    timer_value = HWREG(TCNT1L);
 		timer_value |= (HWREG(TCNT1H) << 8);
 		if (timer_value >= compare) return;
     }
-
 }
+
 int main()
 {
-    int i;
-	unsigned char j;
-	int delay_multiplier = 1;
+    UINT16 i;
+	UINT8  j;
+
+	/* loop limit */
+	int delay_multiplier = 20;
+
+	/* set POTRB for output */
     HWREG(DDRB) = 0xff; 
+	/* set PORTD for input */
 	HWREG(DDRD) = 0x00; 
 	    
 
 	while(1) {
-	                    
+	                  
+		/* cycle through all the LEDs */  
         for( j = 0;j<8;j++) {
 
-				
+            /* turn LED on */				
             HWREG(PORTB) = (UINT8)~(1<<j);
 	    	/* the delay provides 1/20th of a second delay */
 		    /* calling it 10 times should result in .5 second delay */
     		for(i=0;i<delay_multiplier;i++) delay(60);
         
-	        HWREG(PORTB) = 0xff;
+		    /* turn LED off */
+	        HWREG(PORTB) |= (UINT8)(1<<j);
 		    for(i=0;i<delay_multiplier;i++) delay(60);
+
+			/* check for button press */
 		    if ((UINT8)~HWREG(PIND) & (1<<j)) break;
+
 		}
     }
 }
