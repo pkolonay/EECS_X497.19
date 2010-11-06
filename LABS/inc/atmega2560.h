@@ -10,6 +10,19 @@
 #ifndef __atmega2560_H__
 #define __atmega2560_H__
 
+
+/* sei – enables interrupts */
+#define sei() __asm__ __volatile__ ("sei" ::) 
+/* cli – disables interrupts */
+#define cli() __asm__ __volatile__ ("cli" ::) 
+/* base 0 instead of base 1 */
+/* vectors in AVR are hardcoded to a function by name */
+extern void __vector_23 (void) __attribute__ ((interrupt)); 
+/* interrupt is disabled at initialization */
+extern void __vector_25 (void) __attribute__ ((signal));
+
+
+
 /*****************************************************************************/
 /*                                                                           */
 /* Macro for hardware register access.                                       */
@@ -373,9 +386,10 @@
 #define FOC0A     (1<<7)  /* W/O */ /* Force Output Compare A */
 #define FOC0B     (1<<6)  /* W/O */ /* Force Output Compare B */
 #define WGM02     (1<<3)  /* R/W */
-#define CS02      (1<<2)  /* R/W */
-#define CS01      (1<<1)  /* R/W */
-#define CS00      (1<<0)  /* R/W */
+#define CS02      (1<<2)  /* R/W */ /* Clock Select           */
+#define CS01      (1<<1)  /* R/W */ /* Clock Select           */
+#define CS00      (1<<0)  /* R/W */ /* Clock Select           */
+
 
 #define TCNT0       0x46 /*  Timer/Counter0 (8 Bit) - R/W                                                   */
 #define OCR0A       0x47 /*  Timer/Counter0 Output Compare Register A - R/W                                 */
