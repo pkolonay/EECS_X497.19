@@ -10,6 +10,9 @@
 #ifndef __atmega2560_H__
 #define __atmega2560_H__
 
+#define UINT16 unsigned int
+#define UINT8  unsigned char
+
 
 /* sei – enables interrupts */
 #define sei() __asm__ __volatile__ ("sei" ::) 
