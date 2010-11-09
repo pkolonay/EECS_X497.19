@@ -1,8 +1,24 @@
+/*****************************************************************************/
+/*                                                                           */
+/* Filename: lab3b.c                                                         */
+/* Description: Implementation of a delay routine using the atmega2560       */
+/*              Timer0 on the STK600 platform. This particular version uses  */
+/*              an interrupt based approach to determine when the timer has  */
+/*              reached the delay time. This is a re-implementation of the   */
+/*              lab3 program and as such the main code is the same.The delay */
+/*              is used in the main routine between LED on/off toggles.      */
+/*              Button presses are also read through PORTD and LEDs are      */
+/*              only toggled up to the current button being pressed. All     */
+/*              LEDs are toggled if no button is being pressed.              */  
+/*                                                                           */
+/*              This file was created as part of the Fall 2010 EECS_X497.19  */
+/*              class Lab3.                                                  */ 
+/*                                                                           */
+/* Date:   11-7-2010                                                         */
+/* Author: Paul Kolonay                                                      */
+/*****************************************************************************/
 #include "..\inc\atmega2560.h"
-#include "..\inc\hw_timr.h"
-
-#define UINT16 unsigned int
-#define UINT8 unsigned char
+#include "..\inc\hw_timer.h"
 
 /* Timer Eqns: 
  *   Resolution
@@ -24,42 +40,36 @@
 /* delay in milliseconds */
 static const UINT8 DELAY = 100;
 
-/* set to the frequency of the cpu (khz)*/
-static const UINT16 CPU_FREQ = 1000;
-
-/* used by ISR to indicate timout*/
+/* flag used by ISR to indicate timout to main function */
 volatile UINT8 timeout = 0;
-volatile UINT8 WD_timeout = 0;
-
-
-volatile UINT8 bad_interrupt = 0;
 
 void timer_init(UINT8 delay) { 
 
+    /* global interrupt disable */
     cli();
 
     /* reset timeout flag */
     timeout = 0;
 
-   /* set pre-scaler to F_CPU/1024 */
-   HWREG(TCCR0B) |= (UINT8)(CS02|CS00);
+    /* set pre-scaler to F_CPU/1024 */
+    HWREG(TCCR0B) |= (UINT8)(CS02|CS00);
     
-/* Program the timer with the value you want 
-   which is (256-the number of counts) into TCNT0. */ 
-   HWREG(TCNT0) = 256-delay; 
+    /* Program the timer with the value you want 
+    which is (256-the number of counts) into TCNT0. */ 
+    HWREG(TCNT0) = 256-delay; 
 
-   /* Enable Overflow Interrupt for Counter 0 */
-   HWREG(TIMSK0) = TOIE0; 
+    /* Enable Overflow Interrupt for Counter 0 */
+    HWREG(TIMSK0) = TOIE0; 
 
-   /* Enable Global Interrupts */ 
-   sei();
+    /* Enable Global Interrupts */ 
+    sei();
 
-   }
+}
 
 void delay(int ms) {
 
     /* set up timer */
-	timer_init(50);
+	timer_init(ms);
 
     /* wait for interrupt flag */
 	while (!timeout) {
@@ -71,18 +81,8 @@ void delay(int ms) {
 
 void timer_interrupt() {
 
-	static volatile UINT16 timer_interrupt_counter;
- 
-
-    timer_interrupt_counter++;
-
-    if ( timer_interrupt_counter > 10 ) {
 	/* set some flag variable */
-        timeout = 1;
-		timer_interrupt_counter = 0;
-    }
-
-
+    timeout = 1;
 
 }
 
@@ -100,8 +100,7 @@ int main()
 {
 	UINT8  j;
 
-    bad_interrupt = 0;
-	HWREG(TCCR0A) = 0x0;
+
 
 	/* set PORTB for output */
     HWREG(DDRB) = 0xff; 
@@ -109,7 +108,7 @@ int main()
 	HWREG(DDRD) = 0x00; 
 	    
 
-
+    /* turn off the LEDs */
     HWREG(PORTB) = 0xff;
 
 	while(1) {
@@ -119,11 +118,11 @@ int main()
 
             /* toggle LED  */				
             HWREG(PORTB) ^= (1<<j);
-			delay(200);
+			delay(DELAY);
         
 		    /* toggle LED  */
 	        HWREG(PORTB) ^= (1<<j);
-		    delay(60);
+		    delay(DELAY);
 
 			/* check for button press */
 		    if ((UINT8)~HWREG(PIND) & (1<<j)) break;
