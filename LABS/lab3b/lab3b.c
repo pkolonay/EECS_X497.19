@@ -38,10 +38,10 @@
  */
 
 /* delay in milliseconds */
-static const UINT8 DELAY = 100;
+const UINT8 DELAY = 100;
 
 /* flag used by ISR to indicate timout to main function */
-volatile UINT8 timeout = 0;
+volatile UINT8 timeout;
 
 void timer_init(UINT8 delay) { 
 
@@ -52,7 +52,7 @@ void timer_init(UINT8 delay) {
     timeout = 0;
 
     /* set pre-scaler to F_CPU/1024 */
-    HWREG(TCCR0B) |= (UINT8)(CS02|CS00);
+    HWREG(TCCR0B) |= TC0_CK_1024;
     
     /* Program the timer with the value you want 
     which is (256-the number of counts) into TCNT0. */ 
@@ -66,6 +66,8 @@ void timer_init(UINT8 delay) {
 
 }
 
+/* This function simply sets up the timer and loops until */
+/* the timers rolls over.                                 */
 void delay(int ms) {
 
     /* set up timer */
@@ -87,7 +89,7 @@ void timer_interrupt() {
 }
 
 /* in you port.c code */
-/* timer 0 overflow */
+/* timer 0 overflow interrupt service routine */
 void __vector_23 (void) 
 { 
 	/* set some flag variable */
@@ -98,6 +100,7 @@ void __vector_23 (void)
 
 int main()
 {
+    /* used as loop variable for incrementing through PINDs/LEDs */
 	UINT8  j;
 
 
