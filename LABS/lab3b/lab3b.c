@@ -123,9 +123,9 @@ int main()
             HWREG(PORTB) ^= (1<<j);
 			delay(DELAY);
         
-		    /* toggle LED  */
-	        HWREG(PORTB) ^= (1<<j);
-		    delay(DELAY);
+            /* toggle LED  */				
+            HWREG(PORTB) ^= (1<<j);
+			delay(DELAY);
 
 			/* check for button press */
 		    if ((UINT8)~HWREG(PIND) & (1<<j)) break;
