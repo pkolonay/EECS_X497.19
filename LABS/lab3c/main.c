@@ -16,16 +16,13 @@ int main() {
     while (1) {
         for ( i = 0; i < NUMBEROFLEDS; i++) {
 
-	        led_on(i);
+	        board_led_on(i);
 
-		    delay_mSec();
-		    delay_mSec();
-		    delay_mSec();
 		    delay_mSec();
 
 
 
-	        led_off(i);
+	        board_led_off(i);
 
 		    delay_mSec();
         }

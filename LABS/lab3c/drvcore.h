@@ -59,7 +59,9 @@ typedef struct
 
 #define ADDR_MULTIPLIER 1
 
-UINT8 read_pin(UINT8 port, UINT8 pin);
+UINT8 read_pin(UINT16 port, UINT8 pin);
+void write_pin(UINT16 port, UINT8 pin, UINT8 value);
+
 void delay_mSec();
 
 #endif /* drvcore */

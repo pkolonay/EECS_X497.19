@@ -1,4 +1,4 @@
-#include "drvcore.h"
+#include "drvapi.h"
 
 void drvinit() {
 ;
@@ -23,14 +23,23 @@ void gpio_pin_on()
 }
 
 /* platform */
-void led_on(UINT8 pinid)
+void board_led_on(UINT8 pinid)
 {
-    write_pin(PORTB,pinid,0);
+    write_pin(PORTB,pinid,LED_ON);
 
 }
 
-void led_off(UINT8 pinid)
+void board_led_off(UINT8 pinid)
 {
-    write_pin(PORTB,pinid,1);
+    write_pin(PORTB,pinid,LED_OFF);
+
+}
+
+void serial_send() {
+
+}
+
+
+void serial_recv() {
 
 }

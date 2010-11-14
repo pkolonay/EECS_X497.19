@@ -107,7 +107,7 @@ void init_port(UINT8 port_id) {
 
 }
 
-void write_pin(UINT8 port, UINT8 pin, UINT8 value) {
+void write_pin(UINT16 port, UINT8 pin, UINT8 value) {
 
 	/* set port for output */
 	HWREG(port-1) |= 1<<pin; 
@@ -120,7 +120,7 @@ void write_pin(UINT8 port, UINT8 pin, UINT8 value) {
 }
 
 
-UINT8 read_pin(UINT8 port, UINT8 pin) {
+UINT8 read_pin(UINT16 port, UINT8 pin) {
 
 	/* set port for input */
 	HWREG(port-1) &= (UINT8)~pin; 
