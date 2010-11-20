@@ -18,12 +18,22 @@
 #define sei() __asm__ __volatile__ ("sei" ::) 
 /* cli – disables interrupts */
 #define cli() __asm__ __volatile__ ("cli" ::) 
+
 /* base 0 instead of base 1 */
 /* vectors in AVR are hardcoded to a function by name */
-extern void __vector_23 (void) __attribute__ ((interrupt)); 
 /* interrupt is disabled at initialization */
+
+/* Timer/Counter0 Overflow */
+extern void __vector_23 (void) __attribute__ ((interrupt)); 
+
+/* USART0 Rx Complete */
 extern void __vector_25 (void) __attribute__ ((signal));
 
+/* USART0 Data Register Empty */
+extern void __vector_26 (void) __attribute__ ((signal));
+
+/* USART0 Tx Complete */
+extern void __vector_27 (void) __attribute__ ((signal));
 
 
 /*****************************************************************************/
@@ -341,6 +351,11 @@ extern void __vector_25 (void) __attribute__ ((signal));
 #define GPIOR0_1   (1<<1)    /* R/W */
 #define GPIOR0_0   (1<<0)    /* R/W */
 
+/*****************************************************************************/
+/*                                                                           */
+/* EEPROM Registers                                                          */
+/*                                                                           */
+/*****************************************************************************/
 #define EECR        0x3F /* -        |-        |EEPM1    |EEPM0    |EERIE    |EEMPE    |EEPE     |EERE      */
 #define EEPM1     (1<<5)    /* R/W */
 #define EEPM0     (1<<4)    /* R/W */
@@ -351,7 +366,8 @@ extern void __vector_25 (void) __attribute__ ((signal));
 
 #define EEDR        0x40 /* EEPROM Data Register                                                            */
 #define EEARL       0x41 /* EEPROM Address Register Low Byte                                                */
-#define EEARH       0x42 /* EEPROM Address Register High Byte                                               */
+#define EEARH       0x42 /* EEPROM Address Register High Byte    
+                                           */
 /*****************************************************************************/
 /*                                                                           */
 /* General Timer/Counter Control Register                                    */

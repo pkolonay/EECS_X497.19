@@ -3,6 +3,18 @@
 #define __drvcore_H__
 
 #include "..\inc\atmega2560.h"
+#include "drvreg.h"
+
+/* CPU frequency */
+#define F_CPU 8000000 /* 8MHz */
+
+/* Control-Z is used to control capture of serial port to EEPROM */
+#define RECORDING_CONTROL_CHAR 0x1A
+/* Control-Y is used to trigger playback of EEPROM */
+#define PLAYBACK_CHAR 0x19
+
+#define TRUE  1
+#define FALSE 0
 
 
 typedef struct 
@@ -49,19 +61,86 @@ typedef struct
 
 typedef struct 
 {
-    UINT8 		baseaddr; /* base address of the device */
-    UINT8		errors;
-    DRVGPIODIR 	dir;	  /* port direction */
-    DRVGPIOPORT pin;	  /* port output    */
-    DRVGPIOPIN  data;     /* port input     */
-} DRVCTRL, * PDRVCTRL;
+    UINT8 	baseaddr; /* base address of the device */
+    UINT8	errors;
+    UINT8 	dir;	  /* port direction */
+    UINT8   pin;	  /* port output    */
+    UINT8   data;     /* port input     */
+} DRVGPIO, * PDRVGPIO;
+
+typedef struct 
+{
+    DRVGPIO gpio; 
+}  DRVCTRL, * PDRVCTRL;
+
+
+typedef struct
+{
+    UINT8    recv_complete_ie;  /* Recv complete interrupt enable */
+	UINT8    xmit_complete_ie;  /* Xmit complete interrupt enable */
+	UINT8    data_reg_empty_ie; /* Data Register Empty Interrupt Enable */
+	UINT8    recv_enable;       /* Enable USART transmitter */
+	UINT8    xmit_enable;       /* Enable USART transmitter */
+	/* Number of data bits: 0:5-bit,1:6:bit,2:7-bit,3:8-bit,7:9-bit */
+    UINT8    number_data_bits;   
+	UINT8    RXB8;  /* Receive data bit 8 */
+	UINT8    TXB8;  /* Xmit data bit 8 */
+	/* Mode select:  0:Asynch, 1:Synch, 2:Reserved, 3:Master SPI */
+	UINT8    mode; 
+	/* Parity:       0:Disabled, 1:Reserved, 2:Even, 3:Odd */
+	UINT8    parity;
+	/* Stop bits 0:1-bit, 1:2-bits */
+	UINT8    stop_bits; 
+	/* Baud rate: */
+	UINT16   baud_rate;
+} DRVUSARTCTRL, * PDRVUSARTCTRL;
+
+
+typedef struct {
+    UINT8    status;
+} DRVUSARTSTAT, * PDRVUSARTSTAT;
+
+typedef struct {
+    UINT8    data;
+} DRVUSARTDATA, * PDRVUSARTDATA;
+
+
+typedef struct
+{
+    UINT16          baseaddr;
+    DRVUSARTSTAT    status;
+	DRVUSARTCTRL    control;
+	DRVUSARTDATA    data;
+
+
+} DRVUSART, * PDRVUSART;
 
 
 #define ADDR_MULTIPLIER 1
 
 UINT8 read_pin(UINT16 port, UINT8 pin);
 void write_pin(UINT16 port, UINT8 pin, UINT8 value);
+void toggle_pin(UINT16 port, UINT8 pin);
+
+void drvWriteEeprom(UINT16 addr, UINT8 data);
 
 void delay_mSec();
+
+void timer_init(UINT8);
+
+/**
+  * Used to set a bit in a in a given byte at a given address.
+  */
+void drvSetBit(UINT16,UINT8);
+
+/**
+  * Used to clear a bit in a in a given byte at a given address.
+  */
+void drvClearBit(UINT16,UINT8);
+
+/**
+  * Used to test a bit in a in a given byte at a given address.
+  */
+UINT8 drvTestBit(UINT16, UINT16, UINT8);
 
 #endif /* drvcore */

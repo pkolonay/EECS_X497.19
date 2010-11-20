@@ -7,6 +7,7 @@
 
 #define LED_OFF 1
 #define LED_ON  0
+#define LEDS    DRV_PORTB
 
 #endif
 
@@ -26,3 +27,8 @@ void drvinit();
 
 void delay_mSec();
 
+void init_timer();
+
+void init_usart0();
+
+void init_gpio(UINT8);

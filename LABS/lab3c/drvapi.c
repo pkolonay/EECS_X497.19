@@ -5,8 +5,9 @@ void drvinit() {
 }
 
 /* initialize gpio for specific port */
-void gpio_init(PDRVCTRL gpio, UINT8 portid) {
-	gpio->baseaddr = portid;
+void gpio_init(PDRVCTRL ctrl, UINT8 portid) {
+    DRVGPIO gpio = ctrl->gpio;
+	gpio.baseaddr = portid;
 
 }
 
@@ -35,11 +36,37 @@ void board_led_off(UINT8 pinid)
 
 }
 
-void serial_send() {
+DRVUSART serial_port;
+void serial_init(UINT16 baud, UINT8 stop_bits, UINT8 data_bits, UINT8 parity) {
+
+    serial_port.baseaddr = USART0_BASEADDR;
+    drv_usart_init(serial_port, baud, stop_bits, data_bits, parity);
 
 }
 
 
-void serial_recv() {
+void serial_write() {
+
 
 }
+
+
+void serial_read() {
+
+}
+
+void init_timer() {
+
+    timer_init(100);
+
+}
+/*
+COnfigure a period task. This would set up a timer to 
+trigger an interrupt and call function.
+
+void configurePeriodicTask(UINT8 msec,function)
+{
+
+
+}
+*/
