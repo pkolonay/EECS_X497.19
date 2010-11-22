@@ -35,6 +35,8 @@ extern void __vector_26 (void) __attribute__ ((signal));
 /* USART0 Tx Complete */
 extern void __vector_27 (void) __attribute__ ((signal));
 
+/* Took this directly from the WinAVR eeprom.h file */
+#define EEMEM __attribute__((section(".eeprom")))
 
 /*****************************************************************************/
 /*                                                                           */

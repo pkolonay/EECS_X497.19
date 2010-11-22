@@ -24,6 +24,7 @@ int main() {
 
     init_usart0();
 
+    init_eeprom();
     
     while (1) {
 	;

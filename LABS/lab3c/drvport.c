@@ -3,7 +3,8 @@
 #include "drvcore.h"
 
 UINT8 hit_it = 0;
-UINT16 current_eeprom_address;
+volatile UINT16 next_eeprom_address;
+volatile UINT8 number_of_bytes_used_in_eeprom;
 
 /* wrapper for writing register */
 void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
@@ -126,6 +127,7 @@ void __vector_25 (void)
 { 
     static UINT8 record_to_eeprom;
     volatile UINT8 data_received;
+	volatile UINT8 i;
 
     /* Set the Data Register Empty flag */
     data_received = drvReadReg(USART0_BASEADDR,USART_UDR_OFFSET);
@@ -136,16 +138,14 @@ void __vector_25 (void)
         else
 		    record_to_eeprom = FALSE;
     } else if (data_received == PLAYBACK_CHAR)  {
-	    /* playback the contents of the EEPROM */
-		;
-	} else 
-	    if (record_to_eeprom)
+			for(i = 1;i < next_eeprom_address;i++)
+	            drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,drvReadEeprom(i));
+	} else if (record_to_eeprom) {
 	        drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,data_received);
 
-/*            drvWriteEeprom(current_eeprom_address, data_received);*/
+            drvWriteEeprom(next_eeprom_address, data_received);
+    }
 
-    /* echo */    
-    drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,data_received);
 
 	sei();
 }
@@ -267,7 +267,6 @@ void init_gpio(UINT16 port) {
 /* do we have to manage a buffer here in case the eeprom is not ready? */
 void drvWriteEeprom(UINT16 addr, UINT8 data)
 {
-    volatile UINT8 eeprom_control_reg;
 
     /* Wait for completion of previous write */
     /*while(EECR & (1<<EEPE))*/
@@ -276,7 +275,7 @@ void drvWriteEeprom(UINT16 addr, UINT8 data)
 
     /* Set up address and Data Registers */
     /*EEAR = uiAddress;*/
-    drvWriteReg(EEPROM_BASE,EEPROM_ADDR_HI_OFFSET,((addr&0xFF00)>>8));
+    drvWriteReg(EEPROM_BASE,EEPROM_ADDR_HI_OFFSET,addr>>8);
     drvWriteReg(EEPROM_BASE,EEPROM_ADDR_LO_OFFSET,(UINT8)(addr&0xFF));
 
     /*EEDR = ucData;*/
@@ -284,13 +283,13 @@ void drvWriteEeprom(UINT16 addr, UINT8 data)
 
     /* Write logical one to EEMPE */
     /*EECR |= (1<<EEMPE);*/
-    eeprom_control_reg = drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) | EEPROM_MSTR_PRG_EN;
-    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,eeprom_control_reg);
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_MSTR_PRG_EN);
 
     /* Start eeprom write by setting EEPE */
     /*EECR |= (1<<EEPE);*/
-    eeprom_control_reg = drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) | EEPROM_PRG_EN;
-    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,eeprom_control_reg);
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_PRG_EN);
+    
+	next_eeprom_address++;
 }
 
 UINT8 drvReadEeprom(UINT16 addr) {
@@ -302,13 +301,13 @@ UINT8 drvReadEeprom(UINT16 addr) {
     ;
     /* Set up address register */
     /*EEAR = uiAddress;*/
-    drvWriteReg(EEPROM_BASE,EEPROM_ADDR_HI_OFFSET,addr);
+    drvWriteReg(EEPROM_BASE,EEPROM_ADDR_HI_OFFSET,addr>>8);
     drvWriteReg(EEPROM_BASE,EEPROM_ADDR_LO_OFFSET,(UINT8)(addr&0xFF));
 
     /* Start eeprom read by writing EERE */
     /*EECR |= (1<<EERE);*/
-    eeprom_control_reg = drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) | EEPROM_READ_EN;
-    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,eeprom_control_reg);
+    /*eeprom_control_reg = drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) | EEPROM_READ_EN;*/
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_READ_EN);
 
     /* Return data from Data Register */
     return drvReadReg(EEPROM_BASE,EEPROM_DATA_OFFSET);
@@ -336,4 +335,18 @@ UINT8 drvTestBit(UINT16 addr, UINT16 offset, UINT8 position) {
     volatile UINT8 value;
     value = (UINT8)~drvReadReg(addr,offset) & (1<<position);
     return( value >> position);
+}
+
+/**
+  * Get the number of bytes currently written to eprom and 
+  * set pointer to next address available for writing.
+  */
+UINT16 init_eeprom() {
+
+
+    number_of_bytes_used_in_eeprom = drvReadEeprom(0);
+	if ( number_of_bytes_used_in_eeprom == 0xFF ) 
+        number_of_bytes_used_in_eeprom = 0;
+	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
+
 }

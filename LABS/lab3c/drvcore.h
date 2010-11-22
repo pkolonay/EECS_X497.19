@@ -5,6 +5,7 @@
 #include "..\inc\atmega2560.h"
 #include "drvreg.h"
 
+
 /* CPU frequency */
 #define F_CPU 8000000 /* 8MHz */
 
@@ -123,6 +124,7 @@ void write_pin(UINT16 port, UINT8 pin, UINT8 value);
 void toggle_pin(UINT16 port, UINT8 pin);
 
 void drvWriteEeprom(UINT16 addr, UINT8 data);
+UINT8 drvReadEeprom(UINT16 addr);
 
 void delay_mSec();
 
