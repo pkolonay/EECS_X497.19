@@ -36,14 +36,6 @@ void board_led_off(UINT8 pinid)
 
 }
 
-DRVUSART serial_port;
-void serial_init(UINT16 baud, UINT8 stop_bits, UINT8 data_bits, UINT8 parity) {
-
-    serial_port.baseaddr = USART0_BASEADDR;
-    drv_usart_init(serial_port, baud, stop_bits, data_bits, parity);
-
-}
-
 
 void serial_write() {
 

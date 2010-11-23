@@ -13,6 +13,13 @@
 #define RECORDING_CONTROL_CHAR 0x1A
 /* Control-Y is used to trigger playback of EEPROM */
 #define PLAYBACK_CHAR 0x19
+/* Control-n dump the number of bytes in the eprom */
+#define DUMP_NUMBER_OF_BYTES_CHAR 0x0E
+
+/* Use the first locatino in eeprom to hold a count of the number
+   of locations that have been written.
+   */
+#define EEPROM_DATA_COUNT_ADDR 0
 
 #define TRUE  1
 #define FALSE 0
@@ -145,4 +152,11 @@ void drvClearBit(UINT16,UINT8);
   */
 UINT8 drvTestBit(UINT16, UINT16, UINT8);
 
+void drvUSARTSend(UINT8 data);
+
+void drvUpdateEepromDataCount();
+
+void drv_usart_init(DRVUSART serial_port, UINT16 baseaddr, UINT16 baudrate, UINT8 stop_bits, UINT8 date_bits, UINT8 partiy);
+
+void myitoa(UINT8 [],UINT16);
 #endif /* drvcore */

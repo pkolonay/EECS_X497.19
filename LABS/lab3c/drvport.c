@@ -128,6 +128,7 @@ void __vector_25 (void)
     static UINT8 record_to_eeprom;
     volatile UINT8 data_received;
 	volatile UINT8 i;
+	volatile UINT8 myascii[4];
 
     /* Set the Data Register Empty flag */
     data_received = drvReadReg(USART0_BASEADDR,USART_UDR_OFFSET);
@@ -139,11 +140,16 @@ void __vector_25 (void)
 		    record_to_eeprom = FALSE;
     } else if (data_received == PLAYBACK_CHAR)  {
 			for(i = 1;i < next_eeprom_address;i++)
-	            drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,drvReadEeprom(i));
+	            drvUSARTSend(drvReadEeprom(i));
+	} else if (data_received == DUMP_NUMBER_OF_BYTES_CHAR) {
+	            myitoa(myascii,drvReadEeprom(0));
+	            for (i=0;i<sizeof(myascii);i++) 
+	                drvUSARTSend(myascii[i]);
 	} else if (record_to_eeprom) {
 	        drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,data_received);
 
             drvWriteEeprom(next_eeprom_address, data_received);
+			drvUpdateEepromDataCount();
     }
 
 
@@ -173,7 +179,7 @@ DRVCTRL example;
 /* set direction */
 void init_port(UINT8 port_id) {
 
-	DRVGPIO gpio = example.gpio;
+	;
 
 
 }
@@ -211,20 +217,6 @@ UINT8 read_pin(UINT16 port, UINT8 pin) {
 }
 	    
 
-DRVUSART serial_port;
-void drv_usart_init(DRVUSART serial_port, UINT16 baseaddr, UINT16 baudrate, UINT8 stop_bits, UINT8 date_bits, UINT8 partiy)
-{
-
-    serial_port.baseaddr = baseaddr;
-    DRVUSARTCTRL ctrl = serial_port.control;
-	ctrl.baud_rate = baudrate;
-
-
-
-}
-
-/*((F_CPU + UART_BAUD_RATE * 8L) / (UART_BAUD_RATE * 16L) - 1)*/
-
 void init_usart0() 
 {
 
@@ -246,6 +238,8 @@ void init_usart0()
     drvWriteReg(USART0_BASEADDR,USART_UBRRL_OFFSET,(UINT8)(val&0xFF));
 
 	for (pointer=0;pointer < 12;pointer++) {
+	    drvUSARTSend(string[pointer]);
+		/*
 	    empty = drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET);
 		empty &= USART_DATA_REG_EMPTY;
         while(empty != USART_DATA_REG_EMPTY) {
@@ -253,15 +247,13 @@ void init_usart0()
 		    empty &= USART_DATA_REG_EMPTY;
         }
 	    drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,string[pointer]);
-
+		*/
     }
 }
 
 void init_gpio(UINT16 port) {
  drvWriteReg(DRV_PORTB,DRV_GPIO_PORT_OFFSET , 0xFF);
  drvWriteReg(DRV_PORTD,DRV_GPIO_PORT_OFFSET , 0x00);
-
-
 }
 
 /* do we have to manage a buffer here in case the eeprom is not ready? */
@@ -289,12 +281,9 @@ void drvWriteEeprom(UINT16 addr, UINT8 data)
     /*EECR |= (1<<EEPE);*/
     drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_PRG_EN);
     
-	next_eeprom_address++;
 }
 
 UINT8 drvReadEeprom(UINT16 addr) {
-
-    volatile UINT8 eeprom_control_reg;
 
     /* Wait for completion of previous write */
     while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & (EEPROM_PRG_EN))
@@ -315,6 +304,12 @@ UINT8 drvReadEeprom(UINT16 addr) {
 
 }
 
+void drvUpdateEepromDataCount() {
+
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, next_eeprom_address);
+	next_eeprom_address++;
+
+}
 /**
   * Used to set a bit in a in a given byte at a given address.
   */
@@ -333,7 +328,9 @@ void drvClearBit(UINT16 addr,UINT8 position){;}
   */
 UINT8 drvTestBit(UINT16 addr, UINT16 offset, UINT8 position) {
     volatile UINT8 value;
+
     value = (UINT8)~drvReadReg(addr,offset) & (1<<position);
+
     return( value >> position);
 }
 
@@ -341,7 +338,7 @@ UINT8 drvTestBit(UINT16 addr, UINT16 offset, UINT8 position) {
   * Get the number of bytes currently written to eprom and 
   * set pointer to next address available for writing.
   */
-UINT16 init_eeprom() {
+void init_eeprom() {
 
 
     number_of_bytes_used_in_eeprom = drvReadEeprom(0);
@@ -349,4 +346,17 @@ UINT16 init_eeprom() {
         number_of_bytes_used_in_eeprom = 0;
 	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
 
+}
+ 
+void drvUSARTSend(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) != USART_DATA_REG_EMPTY) {
+;    }
+	drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,data);
+
+}
+
+void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value) {
+    /* write hi then low */
+    drvWriteReg(base,offset+1,value>>8);
+    drvWriteReg(base,offset,(UINT8)(value&0xFF));
 }

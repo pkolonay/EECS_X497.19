@@ -32,3 +32,5 @@ void init_timer();
 void init_usart0();
 
 void init_gpio(UINT8);
+
+void init_eeprom();
