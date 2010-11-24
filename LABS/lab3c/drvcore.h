@@ -15,6 +15,8 @@
 #define PLAYBACK_CHAR 0x19
 /* Control-n dump the number of bytes in the eprom */
 #define DUMP_NUMBER_OF_BYTES_CHAR 0x0E
+/* Add this to a digit to map into ascii range */
+#define MAP_DIGIT_TO_ASCII 0x30
 
 /* Use the first locatino in eeprom to hold a count of the number
    of locations that have been written.
@@ -158,5 +160,7 @@ void drvUpdateEepromDataCount();
 
 void drv_usart_init(DRVUSART serial_port, UINT16 baseaddr, UINT16 baudrate, UINT8 stop_bits, UINT8 date_bits, UINT8 partiy);
 
-void myitoa(UINT8 [],UINT16);
+void myitoa(UINT8 myascii[],UINT16 length, UINT16 value);
+
+void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value);
 #endif /* drvcore */

@@ -5,6 +5,7 @@
 UINT8 hit_it = 0;
 volatile UINT16 next_eeprom_address;
 volatile UINT8 number_of_bytes_used_in_eeprom;
+volatile UINT8 capture_state = 1;
 
 /* wrapper for writing register */
 void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
@@ -128,23 +129,38 @@ void __vector_25 (void)
     static UINT8 record_to_eeprom;
     volatile UINT8 data_received;
 	volatile UINT8 i;
-	volatile UINT8 myascii[4];
+	volatile UINT8 myascii[5];
+	volatile UINT16 number_of_bytes_in_eeprom;
 
     /* Set the Data Register Empty flag */
     data_received = drvReadReg(USART0_BASEADDR,USART_UDR_OFFSET);
 	if (data_received == RECORDING_CONTROL_CHAR) {
 	    /* if currently recording then stop else start recording */
-	    if(!record_to_eeprom)
+	    if(!record_to_eeprom) {
+			/* reset character count */
+			drvResetEepromDataCount();
 	        record_to_eeprom = TRUE;
-        else
+        } else {
 		    record_to_eeprom = FALSE;
+        }
+
     } else if (data_received == PLAYBACK_CHAR)  {
 			for(i = 1;i < next_eeprom_address;i++)
 	            drvUSARTSend(drvReadEeprom(i));
 	} else if (data_received == DUMP_NUMBER_OF_BYTES_CHAR) {
-	            myitoa(myascii,drvReadEeprom(0));
-	            for (i=0;i<sizeof(myascii);i++) 
-	                drvUSARTSend(myascii[i]);
+	            /* initialize array */
+	            for (i=0;i<sizeof(myascii);i++) myascii[i]='\0';
+				/* read the write count from eeprom and convert to ascii */
+				number_of_bytes_in_eeprom = drvReadEeprom(0);
+				if (number_of_bytes_in_eeprom >= 0)	{			
+	                myitoa((UINT8 *)myascii,sizeof(myascii)-1,number_of_bytes_in_eeprom);
+				    /* send out the serial port */
+                    drvUSARTWriteString(myascii,sizeof(myascii));                   
+                } else {
+				    drvUSARTSend('0');
+                } 
+				drvUSARTSend('\r');
+				drvUSARTSend('\n');
 	} else if (record_to_eeprom) {
 	        drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,data_received);
 
@@ -220,7 +236,7 @@ UINT8 read_pin(UINT16 port, UINT8 pin) {
 void init_usart0() 
 {
 
-    volatile UINT8 string[] = "hello world";
+    volatile UINT8 string[] = "hello world\r\n";
     volatile UINT8 val = 0;
 	volatile UINT8 pointer;
 	volatile UINT8 empty;
@@ -234,21 +250,9 @@ void init_usart0()
     /* F_CPU=1MHz Baud Rate 9600 */
 	val = ((F_CPU + 9600 * 8L) / (9600 * 16L) - 1);
 
-    drvWriteReg(USART0_BASEADDR,USART_UBRRH_OFFSET,(UINT8)(val>>8));
-    drvWriteReg(USART0_BASEADDR,USART_UBRRL_OFFSET,(UINT8)(val&0xFF));
+   	drvWriteUint16Reg(USART0_BASEADDR,USART_UBRR_OFFSET,val);
 
-	for (pointer=0;pointer < 12;pointer++) {
-	    drvUSARTSend(string[pointer]);
-		/*
-	    empty = drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET);
-		empty &= USART_DATA_REG_EMPTY;
-        while(empty != USART_DATA_REG_EMPTY) {
-			empty = drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET);
-		    empty &= USART_DATA_REG_EMPTY;
-        }
-	    drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,string[pointer]);
-		*/
-    }
+	drvUSARTWriteString(string, sizeof(string));
 }
 
 void init_gpio(UINT16 port) {
@@ -267,8 +271,11 @@ void drvWriteEeprom(UINT16 addr, UINT8 data)
 
     /* Set up address and Data Registers */
     /*EEAR = uiAddress;*/
+	drvWriteUint16Reg(EEPROM_BASE,EEPROM_ADDR_OFFSET,addr);
+	/*
     drvWriteReg(EEPROM_BASE,EEPROM_ADDR_HI_OFFSET,addr>>8);
     drvWriteReg(EEPROM_BASE,EEPROM_ADDR_LO_OFFSET,(UINT8)(addr&0xFF));
+	*/
 
     /*EEDR = ucData;*/
     drvWriteReg(EEPROM_BASE,EEPROM_DATA_OFFSET,data);
@@ -290,9 +297,7 @@ UINT8 drvReadEeprom(UINT16 addr) {
     ;
     /* Set up address register */
     /*EEAR = uiAddress;*/
-    drvWriteReg(EEPROM_BASE,EEPROM_ADDR_HI_OFFSET,addr>>8);
-    drvWriteReg(EEPROM_BASE,EEPROM_ADDR_LO_OFFSET,(UINT8)(addr&0xFF));
-
+	drvWriteUint16Reg(EEPROM_BASE,EEPROM_ADDR_OFFSET,addr);
     /* Start eeprom read by writing EERE */
     /*EECR |= (1<<EERE);*/
     /*eeprom_control_reg = drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) | EEPROM_READ_EN;*/
@@ -308,7 +313,13 @@ void drvUpdateEepromDataCount() {
 
     drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, next_eeprom_address);
 	next_eeprom_address++;
+}
 
+void drvResetEepromDataCount() {
+
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, 0);
+	number_of_bytes_used_in_eeprom = 0;
+	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
 }
 /**
   * Used to set a bit in a in a given byte at a given address.
@@ -345,6 +356,14 @@ void init_eeprom() {
 	if ( number_of_bytes_used_in_eeprom == 0xFF ) 
         number_of_bytes_used_in_eeprom = 0;
 	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
+
+}
+
+void drvUSARTWriteString(UINT8 * data,UINT8 length)
+{
+    volatile UINT8 i=0;
+	while(data[i] != '\0')
+	    drvUSARTSend(data[i++]);
 
 }
  

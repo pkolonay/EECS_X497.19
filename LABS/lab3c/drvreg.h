@@ -64,9 +64,12 @@
 #define EEPROM_PRG_EN             1<<1 
 #define EEPROM_READ_EN            1<<0
 
+
 #define EEPROM_DATA_OFFSET        1
+
 #define EEPROM_ADDR_LO_OFFSET     2
 #define EEPROM_ADDR_HI_OFFSET     3
+#define EEPROM_ADDR_OFFSET        EEPROM_ADDR_LO_OFFSET
 
 
 
