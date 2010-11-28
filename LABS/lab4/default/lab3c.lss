@@ -3,29 +3,29 @@ lab3c.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000022  00800200  00000830  000008c4  2**0
+  0 .data         00000022  00800200  0000099a  00000a2e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000830  00000000  00000000  00000094  2**1
+  1 .text         0000099a  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000007  00800222  00800222  000008e6  2**0
+  2 .bss          0000010b  00800222  00800222  00000a50  2**0
                   ALLOC
-  3 .debug_aranges 00000080  00000000  00000000  000008e6  2**0
+  3 .debug_aranges 00000080  00000000  00000000  00000a50  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_pubnames 000002dc  00000000  00000000  00000966  2**0
+  4 .debug_pubnames 000003af  00000000  00000000  00000ad0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000d6b  00000000  00000000  00000c42  2**0
+  5 .debug_info   000013f7  00000000  00000000  00000e7f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000466  00000000  00000000  000019ad  2**0
+  6 .debug_abbrev 00000677  00000000  00000000  00002276  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000089c  00000000  00000000  00001e13  2**0
+  7 .debug_line   00000c04  00000000  00000000  000028ed  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000260  00000000  00000000  000026b0  2**2
+  8 .debug_frame  00000270  00000000  00000000  000034f4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000354  00000000  00000000  00002910  2**0
+  9 .debug_str    0000042e  00000000  00000000  00003764  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000047e  00000000  00000000  00002c64  2**0
+ 10 .debug_loc    000004b7  00000000  00000000  00003b92  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000048  00000000  00000000  000030e2  2**0
+ 11 .debug_ranges 00000060  00000000  00000000  00004049  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -54,9 +54,9 @@ Disassembly of section .text:
   50:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
   54:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
   58:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
-  5c:	0c 94 b7 03 	jmp	0x76e	; 0x76e <__vector_23>
+  5c:	0c 94 6a 04 	jmp	0x8d4	; 0x8d4 <__vector_23>
   60:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
-  64:	0c 94 91 02 	jmp	0x522	; 0x522 <__vector_25>
+  64:	0c 94 76 02 	jmp	0x4ec	; 0x4ec <__vector_25>
   68:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
   6c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
   70:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
@@ -103,8 +103,8 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	e0 e3       	ldi	r30, 0x30	; 48
-  fc:	f8 e0       	ldi	r31, 0x08	; 8
+  fa:	ea e9       	ldi	r30, 0x9A	; 154
+  fc:	f9 e0       	ldi	r31, 0x09	; 9
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
  102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
@@ -115,7 +115,7 @@ Disassembly of section .text:
  10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
 
 0000010e <__do_clear_bss>:
- 10e:	12 e0       	ldi	r17, 0x02	; 2
+ 10e:	13 e0       	ldi	r17, 0x03	; 3
  110:	a2 e2       	ldi	r26, 0x22	; 34
  112:	b2 e0       	ldi	r27, 0x02	; 2
  114:	01 c0       	rjmp	.+2      	; 0x118 <.do_clear_bss_start>
@@ -124,11 +124,11 @@ Disassembly of section .text:
  116:	1d 92       	st	X+, r1
 
 00000118 <.do_clear_bss_start>:
- 118:	a9 32       	cpi	r26, 0x29	; 41
+ 118:	ad 32       	cpi	r26, 0x2D	; 45
  11a:	b1 07       	cpc	r27, r17
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
- 11e:	0e 94 e1 03 	call	0x7c2	; 0x7c2 <main>
- 122:	0c 94 16 04 	jmp	0x82c	; 0x82c <_exit>
+ 11e:	0e 94 94 04 	call	0x928	; 0x928 <main>
+ 122:	0c 94 cb 04 	jmp	0x996	; 0x996 <_exit>
 
 00000126 <__bad_interrupt>:
  126:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -183,7 +183,7 @@ void init_timer() {
 
     timer_init(100);
  134:	84 e6       	ldi	r24, 0x64	; 100
- 136:	0e 94 71 01 	call	0x2e2	; 0x2e2 <timer_init>
+ 136:	0e 94 5f 02 	call	0x4be	; 0x4be <timer_init>
 
 }
  13a:	08 95       	ret
@@ -197,10 +197,10 @@ void board_led_off(UINT8 pinid)
 {
  13c:	68 2f       	mov	r22, r24
     write_pin(PORTB,pinid,LED_OFF);
- 13e:	85 e2       	ldi	r24, 0x25	; 37
+ 13e:	85 b1       	in	r24, 0x05	; 5
  140:	90 e0       	ldi	r25, 0x00	; 0
  142:	41 e0       	ldi	r20, 0x01	; 1
- 144:	0e 94 a5 01 	call	0x34a	; 0x34a <write_pin>
+ 144:	0e 94 05 03 	call	0x60a	; 0x60a <write_pin>
 
 }
  148:	08 95       	ret
@@ -214,10 +214,10 @@ void board_led_on(UINT8 pinid)
 {
  14a:	68 2f       	mov	r22, r24
     write_pin(PORTB,pinid,LED_ON);
- 14c:	85 e2       	ldi	r24, 0x25	; 37
+ 14c:	85 b1       	in	r24, 0x05	; 5
  14e:	90 e0       	ldi	r25, 0x00	; 0
  150:	40 e0       	ldi	r20, 0x00	; 0
- 152:	0e 94 a5 01 	call	0x34a	; 0x34a <write_pin>
+ 152:	0e 94 05 03 	call	0x60a	; 0x60a <write_pin>
 
 }
  156:	08 95       	ret
@@ -234,7 +234,7 @@ void gpio_write_pin(PDRVCTRL gpio, UINT8 portid, UINT8 pinid, UINT8 value) {
  15a:	90 e0       	ldi	r25, 0x00	; 0
  15c:	64 2f       	mov	r22, r20
  15e:	42 2f       	mov	r20, r18
- 160:	0e 94 a5 01 	call	0x34a	; 0x34a <write_pin>
+ 160:	0e 94 05 03 	call	0x60a	; 0x60a <write_pin>
 }
  164:	08 95       	ret
 
@@ -249,7 +249,7 @@ UINT8 gpio_read_pin(PDRVCTRL gpio, UINT8 portid, UINT8 pinid) {
     return(read_pin(portid,pinid));
  168:	90 e0       	ldi	r25, 0x00	; 0
  16a:	64 2f       	mov	r22, r20
- 16c:	0e 94 be 01 	call	0x37c	; 0x37c <read_pin>
+ 16c:	0e 94 2a 03 	call	0x654	; 0x654 <read_pin>
 }
  170:	08 95       	ret
 
@@ -347,7 +347,7 @@ void myitoa(UINT8 myascii[],UINT16 length, UINT16 value) {
  1f4:	f8 01       	movw	r30, r16
  1f6:	e2 0f       	add	r30, r18
  1f8:	f1 1d       	adc	r31, r1
- 1fa:	0e 94 02 04 	call	0x804	; 0x804 <__udivmodhi4>
+ 1fa:	0e 94 b7 04 	call	0x96e	; 0x96e <__udivmodhi4>
  1fe:	60 5d       	subi	r22, 0xD0	; 208
  200:	60 83       	st	Z, r22
 	    divisor = divisor%dividend;
@@ -355,7 +355,7 @@ void myitoa(UINT8 myascii[],UINT16 length, UINT16 value) {
  204:	9c 81       	ldd	r25, Y+4	; 0x04
  206:	6d 81       	ldd	r22, Y+5	; 0x05
  208:	7e 81       	ldd	r23, Y+6	; 0x06
- 20a:	0e 94 02 04 	call	0x804	; 0x804 <__udivmodhi4>
+ 20a:	0e 94 b7 04 	call	0x96e	; 0x96e <__udivmodhi4>
  20e:	9c 83       	std	Y+4, r25	; 0x04
  210:	8b 83       	std	Y+3, r24	; 0x03
 
@@ -423,1351 +423,1545 @@ void drvSetBit(UINT16 addr, UINT8 position)
 void drvClearBit(UINT16 addr,UINT8 position){;}
  258:	08 95       	ret
 
-0000025a <drvWriteUint16Reg>:
+0000025a <process>:
+    drvWriteReg(base,offset+1,value>>8);
+    drvWriteReg(base,offset,(UINT8)(value&0xFF));
+}
+
+
+void process() {
+ 25a:	9f 92       	push	r9
+ 25c:	af 92       	push	r10
+ 25e:	bf 92       	push	r11
+ 260:	cf 92       	push	r12
+ 262:	df 92       	push	r13
+ 264:	ef 92       	push	r14
+ 266:	ff 92       	push	r15
+ 268:	0f 93       	push	r16
+ 26a:	1f 93       	push	r17
+ 26c:	df 93       	push	r29
+ 26e:	cf 93       	push	r28
+ 270:	cd b7       	in	r28, 0x3d	; 61
+ 272:	de b7       	in	r29, 0x3e	; 62
+ 274:	2c 97       	sbiw	r28, 0x0c	; 12
+ 276:	0f b6       	in	r0, 0x3f	; 63
+ 278:	f8 94       	cli
+ 27a:	de bf       	out	0x3e, r29	; 62
+ 27c:	0f be       	out	0x3f, r0	; 63
+ 27e:	cd bf       	out	0x3d, r28	; 61
+		 *
+		 *  \param[out] Buffer  Pointer to a ring buffer structure to initialize
+		 */
+		static inline void RingBuffer_InitBuffer(RingBuff_t* const Buffer)
+		{
+			ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 280:	2f b7       	in	r18, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 282:	f8 94       	cli
+			{
+				Buffer->In  = Buffer->Buffer;
+ 284:	89 e2       	ldi	r24, 0x29	; 41
+ 286:	92 e0       	ldi	r25, 0x02	; 2
+ 288:	90 93 29 03 	sts	0x0329, r25
+ 28c:	80 93 28 03 	sts	0x0328, r24
+				Buffer->Out = Buffer->Buffer;
+ 290:	90 93 2b 03 	sts	0x032B, r25
+ 294:	80 93 2a 03 	sts	0x032A, r24
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 298:	2f bf       	out	0x3f, r18	; 63
+		 *
+		 *  \return Boolean true if the buffer contains no free space, false otherwise
+		 */		 
+		static inline bool RingBuffer_IsEmpty(RingBuff_t* const Buffer)
+		{
+			return (RingBuffer_GetCount(Buffer) == 0);
+ 29a:	99 24       	eor	r9, r9
+ 29c:	93 94       	inc	r9
+				myascii[0]='\0';
+				/* read the write count from eeprom and convert to ascii */
+				number_of_bytes_in_eeprom = drvReadEeprom(EEPROM_DATA_COUNT_ADDR)<<8;
+				number_of_bytes_in_eeprom |= drvReadEeprom(EEPROM_DATA_COUNT_ADDR+1);
+				if (number_of_bytes_in_eeprom >= 0)	{			
+	                myitoa((UINT8 *)myascii,sizeof(myascii)-1,number_of_bytes_in_eeprom);
+ 29e:	e8 e0       	ldi	r30, 0x08	; 8
+ 2a0:	ce 2e       	mov	r12, r30
+ 2a2:	d1 2c       	mov	r13, r1
+ 2a4:	cc 0e       	add	r12, r28
+ 2a6:	dd 1e       	adc	r13, r29
+		static inline RingBuff_Data_t RingBuffer_Remove(RingBuff_t* const Buffer)
+		{
+			RingBuff_Data_t Data = *Buffer->Out;
+			
+			if (++Buffer->Out == &Buffer->Buffer[BUFFER_SIZE])
+			  Buffer->Out = Buffer->Buffer;
+ 2a8:	5c 01       	movw	r10, r24
+		 */
+		static inline RingBuff_Count_t RingBuffer_GetCount(RingBuff_t* const Buffer)
+		{
+			RingBuff_Count_t Count;
+			
+			ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 2aa:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 2ac:	f8 94       	cli
+			{
+				Count = Buffer->Count;
+ 2ae:	90 91 2c 03 	lds	r25, 0x032C
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 2b2:	8f bf       	out	0x3f, r24	; 63
+		 *
+		 *  \return Boolean true if the buffer contains no free space, false otherwise
+		 */		 
+		static inline bool RingBuffer_IsEmpty(RingBuff_t* const Buffer)
+		{
+			return (RingBuffer_GetCount(Buffer) == 0);
+ 2b4:	80 e0       	ldi	r24, 0x00	; 0
+ 2b6:	99 23       	and	r25, r25
+ 2b8:	09 f4       	brne	.+2      	; 0x2bc <process+0x62>
+ 2ba:	81 e0       	ldi	r24, 0x01	; 1
+    
+	/* Initialize the ring buffer for serial comm */
+	RingBuffer_InitBuffer(&rbuff);
+
+    while(1) {
+	    isEmpty = RingBuffer_IsEmpty(&rbuff);
+ 2bc:	8b 83       	std	Y+3, r24	; 0x03
+	    if(isEmpty == false) {
+ 2be:	8b 81       	ldd	r24, Y+3	; 0x03
+ 2c0:	88 23       	and	r24, r24
+ 2c2:	99 f7       	brne	.-26     	; 0x2aa <process+0x50>
+		 *
+		 *  \return Next data element stored in the buffer
+		 */
+		static inline RingBuff_Data_t RingBuffer_Remove(RingBuff_t* const Buffer)
+		{
+			RingBuff_Data_t Data = *Buffer->Out;
+ 2c4:	e0 91 2a 03 	lds	r30, 0x032A
+ 2c8:	f0 91 2b 03 	lds	r31, 0x032B
+ 2cc:	e0 81       	ld	r30, Z
+			
+			if (++Buffer->Out == &Buffer->Buffer[BUFFER_SIZE])
+ 2ce:	80 91 2a 03 	lds	r24, 0x032A
+ 2d2:	90 91 2b 03 	lds	r25, 0x032B
+ 2d6:	01 96       	adiw	r24, 0x01	; 1
+ 2d8:	90 93 2b 03 	sts	0x032B, r25
+ 2dc:	80 93 2a 03 	sts	0x032A, r24
+ 2e0:	80 91 2a 03 	lds	r24, 0x032A
+ 2e4:	90 91 2b 03 	lds	r25, 0x032B
+ 2e8:	88 52       	subi	r24, 0x28	; 40
+ 2ea:	93 40       	sbci	r25, 0x03	; 3
+ 2ec:	21 f4       	brne	.+8      	; 0x2f6 <process+0x9c>
+			  Buffer->Out = Buffer->Buffer;
+ 2ee:	b0 92 2b 03 	sts	0x032B, r11
+ 2f2:	a0 92 2a 03 	sts	0x032A, r10
+
+			ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 2f6:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 2f8:	f8 94       	cli
+			{
+				Buffer->Count--;
+ 2fa:	90 91 2c 03 	lds	r25, 0x032C
+ 2fe:	91 50       	subi	r25, 0x01	; 1
+ 300:	90 93 2c 03 	sts	0x032C, r25
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 304:	8f bf       	out	0x3f, r24	; 63
+		    data_received = RingBuffer_Remove(&rbuff);
+ 306:	ea 83       	std	Y+2, r30	; 0x02
+            if (data_received == RECORDING_CONTROL_CHAR) {
+ 308:	8a 81       	ldd	r24, Y+2	; 0x02
+ 30a:	8a 31       	cpi	r24, 0x1A	; 26
+ 30c:	61 f4       	brne	.+24     	; 0x326 <process+0xcc>
+	            /* if currently recording then stop else start recording */
+	            if(!record_to_eeprom) {
+ 30e:	80 91 22 02 	lds	r24, 0x0222
+ 312:	88 23       	and	r24, r24
+ 314:	29 f4       	brne	.+10     	; 0x320 <process+0xc6>
+			        /* reset character count */
+			        drvResetEepromDataCount();
+ 316:	0e 94 b0 03 	call	0x760	; 0x760 <drvResetEepromDataCount>
+	                record_to_eeprom = TRUE;
+ 31a:	90 92 22 02 	sts	0x0222, r9
+ 31e:	7b c0       	rjmp	.+246    	; 0x416 <process+0x1bc>
+                } else {
+		            record_to_eeprom = FALSE;
+ 320:	10 92 22 02 	sts	0x0222, r1
+ 324:	78 c0       	rjmp	.+240    	; 0x416 <process+0x1bc>
+                }
+            } else if (data_received == PLAYBACK_CHAR)  {
+ 326:	8a 81       	ldd	r24, Y+2	; 0x02
+ 328:	89 31       	cpi	r24, 0x19	; 25
+ 32a:	a9 f4       	brne	.+42     	; 0x356 <process+0xfc>
+			    for(i = 1;i < next_eeprom_address;i++)
+ 32c:	99 82       	std	Y+1, r9	; 0x01
+ 32e:	09 c0       	rjmp	.+18     	; 0x342 <process+0xe8>
+	                drvUSARTPutChar(drvReadEeprom(i));
+ 330:	89 81       	ldd	r24, Y+1	; 0x01
+ 332:	90 e0       	ldi	r25, 0x00	; 0
+ 334:	0e 94 43 03 	call	0x686	; 0x686 <drvReadEeprom>
+ 338:	0e 94 d7 02 	call	0x5ae	; 0x5ae <drvUSARTPutChar>
+	                record_to_eeprom = TRUE;
+                } else {
+		            record_to_eeprom = FALSE;
+                }
+            } else if (data_received == PLAYBACK_CHAR)  {
+			    for(i = 1;i < next_eeprom_address;i++)
+ 33c:	89 81       	ldd	r24, Y+1	; 0x01
+ 33e:	8f 5f       	subi	r24, 0xFF	; 255
+ 340:	89 83       	std	Y+1, r24	; 0x01
+ 342:	89 81       	ldd	r24, Y+1	; 0x01
+ 344:	20 91 27 02 	lds	r18, 0x0227
+ 348:	30 91 28 02 	lds	r19, 0x0228
+ 34c:	90 e0       	ldi	r25, 0x00	; 0
+ 34e:	82 17       	cp	r24, r18
+ 350:	93 07       	cpc	r25, r19
+ 352:	70 f3       	brcs	.-36     	; 0x330 <process+0xd6>
+ 354:	60 c0       	rjmp	.+192    	; 0x416 <process+0x1bc>
+	                drvUSARTPutChar(drvReadEeprom(i));
+            } else if (data_received == DUMP_NUMBER_OF_BYTES_CHAR) {
+ 356:	8a 81       	ldd	r24, Y+2	; 0x02
+ 358:	8e 30       	cpi	r24, 0x0E	; 14
+ 35a:	69 f5       	brne	.+90     	; 0x3b6 <process+0x15c>
+	            /* initialize array */
+	            drvUSARTWriteString((UINT8 *)BYTES_STORED_STRING,sizeof(BYTES_STORED_STRING));
+ 35c:	80 e0       	ldi	r24, 0x00	; 0
+ 35e:	92 e0       	ldi	r25, 0x02	; 2
+ 360:	6f e0       	ldi	r22, 0x0F	; 15
+ 362:	0e 94 c4 02 	call	0x588	; 0x588 <drvUSARTWriteString>
+				/* initialize string */
+				myascii[0]='\0';
+ 366:	18 86       	std	Y+8, r1	; 0x08
+				/* read the write count from eeprom and convert to ascii */
+				number_of_bytes_in_eeprom = drvReadEeprom(EEPROM_DATA_COUNT_ADDR)<<8;
+ 368:	80 e0       	ldi	r24, 0x00	; 0
+ 36a:	90 e0       	ldi	r25, 0x00	; 0
+ 36c:	0e 94 43 03 	call	0x686	; 0x686 <drvReadEeprom>
+ 370:	f8 2e       	mov	r15, r24
+ 372:	ee 24       	eor	r14, r14
+ 374:	fd 82       	std	Y+5, r15	; 0x05
+ 376:	ec 82       	std	Y+4, r14	; 0x04
+				number_of_bytes_in_eeprom |= drvReadEeprom(EEPROM_DATA_COUNT_ADDR+1);
+ 378:	0c 81       	ldd	r16, Y+4	; 0x04
+ 37a:	1d 81       	ldd	r17, Y+5	; 0x05
+ 37c:	81 e0       	ldi	r24, 0x01	; 1
+ 37e:	90 e0       	ldi	r25, 0x00	; 0
+ 380:	0e 94 43 03 	call	0x686	; 0x686 <drvReadEeprom>
+ 384:	90 e0       	ldi	r25, 0x00	; 0
+ 386:	80 2b       	or	r24, r16
+ 388:	91 2b       	or	r25, r17
+ 38a:	9d 83       	std	Y+5, r25	; 0x05
+ 38c:	8c 83       	std	Y+4, r24	; 0x04
+				if (number_of_bytes_in_eeprom >= 0)	{			
+ 38e:	8c 81       	ldd	r24, Y+4	; 0x04
+ 390:	9d 81       	ldd	r25, Y+5	; 0x05
+	                myitoa((UINT8 *)myascii,sizeof(myascii)-1,number_of_bytes_in_eeprom);
+ 392:	4c 81       	ldd	r20, Y+4	; 0x04
+ 394:	5d 81       	ldd	r21, Y+5	; 0x05
+ 396:	c6 01       	movw	r24, r12
+ 398:	64 e0       	ldi	r22, 0x04	; 4
+ 39a:	70 e0       	ldi	r23, 0x00	; 0
+ 39c:	0e 94 b9 00 	call	0x172	; 0x172 <myitoa>
+				    /* send out the serial port */
+					myascii[4] = '\0';
+ 3a0:	1c 86       	std	Y+12, r1	; 0x0c
+                    drvUSARTWriteString((UINT8 *)myascii,sizeof(myascii));                   
+ 3a2:	c6 01       	movw	r24, r12
+ 3a4:	65 e0       	ldi	r22, 0x05	; 5
+ 3a6:	0e 94 c4 02 	call	0x588	; 0x588 <drvUSARTWriteString>
+                } else {
+				    drvUSARTPutChar('0');
+                } 
+		    	drvUSARTWriteString((UINT8 *)CR_LF_STRING,sizeof(CR_LF_STRING));
+ 3aa:	8f e0       	ldi	r24, 0x0F	; 15
+ 3ac:	92 e0       	ldi	r25, 0x02	; 2
+ 3ae:	63 e0       	ldi	r22, 0x03	; 3
+ 3b0:	0e 94 c4 02 	call	0x588	; 0x588 <drvUSARTWriteString>
+ 3b4:	30 c0       	rjmp	.+96     	; 0x416 <process+0x1bc>
+	        } else if (record_to_eeprom) {
+ 3b6:	80 91 22 02 	lds	r24, 0x0222
+ 3ba:	88 23       	and	r24, r24
+ 3bc:	49 f1       	breq	.+82     	; 0x410 <process+0x1b6>
+                drvWriteEeprom(next_eeprom_address, data_received);
+ 3be:	80 91 27 02 	lds	r24, 0x0227
+ 3c2:	90 91 28 02 	lds	r25, 0x0228
+ 3c6:	6a 81       	ldd	r22, Y+2	; 0x02
+ 3c8:	0e 94 8d 03 	call	0x71a	; 0x71a <drvWriteEeprom>
+			    drvUpdateEepromDataCount();
+ 3cc:	0e 94 c5 03 	call	0x78a	; 0x78a <drvUpdateEepromDataCount>
+	            drvUSARTPutChar(data_received);
+ 3d0:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3d2:	0e 94 d7 02 	call	0x5ae	; 0x5ae <drvUSARTPutChar>
+	            if (data_received == CR_CHAR) {
+ 3d6:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3d8:	8d 30       	cpi	r24, 0x0D	; 13
+ 3da:	59 f4       	brne	.+22     	; 0x3f2 <process+0x198>
+				    drvWriteEeprom(next_eeprom_address, LF_CHAR);
+ 3dc:	80 91 27 02 	lds	r24, 0x0227
+ 3e0:	90 91 28 02 	lds	r25, 0x0228
+ 3e4:	6a e0       	ldi	r22, 0x0A	; 10
+ 3e6:	0e 94 8d 03 	call	0x71a	; 0x71a <drvWriteEeprom>
+			        drvUpdateEepromDataCount();
+ 3ea:	0e 94 c5 03 	call	0x78a	; 0x78a <drvUpdateEepromDataCount>
+		            drvUSARTPutChar(LF_CHAR);
+ 3ee:	8a e0       	ldi	r24, 0x0A	; 10
+ 3f0:	10 c0       	rjmp	.+32     	; 0x412 <process+0x1b8>
+                } else if (data_received == BACKSPACE_CHAR) {
+ 3f2:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3f4:	88 30       	cpi	r24, 0x08	; 8
+ 3f6:	79 f4       	brne	.+30     	; 0x416 <process+0x1bc>
+			        drvUpdateEepromDataCount(-1);
+ 3f8:	8f ef       	ldi	r24, 0xFF	; 255
+ 3fa:	9f ef       	ldi	r25, 0xFF	; 255
+ 3fc:	0e 94 c5 03 	call	0x78a	; 0x78a <drvUpdateEepromDataCount>
+                    drvWriteEeprom(next_eeprom_address, data_received);
+ 400:	80 91 27 02 	lds	r24, 0x0227
+ 404:	90 91 28 02 	lds	r25, 0x0228
+ 408:	6a 81       	ldd	r22, Y+2	; 0x02
+ 40a:	0e 94 8d 03 	call	0x71a	; 0x71a <drvWriteEeprom>
+ 40e:	03 c0       	rjmp	.+6      	; 0x416 <process+0x1bc>
+	            }
+            } else 
+	            drvUSARTPutChar(data_received);
+ 410:	8a 81       	ldd	r24, Y+2	; 0x02
+ 412:	0e 94 d7 02 	call	0x5ae	; 0x5ae <drvUSARTPutChar>
+
+            for(j=0;j<10000;j++);
+ 416:	1f 82       	std	Y+7, r1	; 0x07
+ 418:	1e 82       	std	Y+6, r1	; 0x06
+ 41a:	05 c0       	rjmp	.+10     	; 0x426 <process+0x1cc>
+ 41c:	8e 81       	ldd	r24, Y+6	; 0x06
+ 41e:	9f 81       	ldd	r25, Y+7	; 0x07
+ 420:	01 96       	adiw	r24, 0x01	; 1
+ 422:	9f 83       	std	Y+7, r25	; 0x07
+ 424:	8e 83       	std	Y+6, r24	; 0x06
+ 426:	8e 81       	ldd	r24, Y+6	; 0x06
+ 428:	9f 81       	ldd	r25, Y+7	; 0x07
+ 42a:	80 51       	subi	r24, 0x10	; 16
+ 42c:	97 42       	sbci	r25, 0x27	; 39
+ 42e:	08 f0       	brcs	.+2      	; 0x432 <process+0x1d8>
+ 430:	3c cf       	rjmp	.-392    	; 0x2aa <process+0x50>
+ 432:	f4 cf       	rjmp	.-24     	; 0x41c <process+0x1c2>
+
+00000434 <drvWriteUint16Reg>:
 
     return( value >> position);
 }
 
 
 void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value) {
- 25a:	df 92       	push	r13
- 25c:	ef 92       	push	r14
- 25e:	ff 92       	push	r15
- 260:	0f 93       	push	r16
- 262:	1f 93       	push	r17
- 264:	8c 01       	movw	r16, r24
- 266:	7b 01       	movw	r14, r22
- 268:	d4 2e       	mov	r13, r20
- 26a:	45 2f       	mov	r20, r21
+ 434:	df 92       	push	r13
+ 436:	ef 92       	push	r14
+ 438:	ff 92       	push	r15
+ 43a:	0f 93       	push	r16
+ 43c:	1f 93       	push	r17
+ 43e:	8c 01       	movw	r16, r24
+ 440:	7b 01       	movw	r14, r22
+ 442:	d4 2e       	mov	r13, r20
+ 444:	45 2f       	mov	r20, r21
     /* write hi then low */
     drvWriteReg(base,offset+1,value>>8);
- 26c:	6f 5f       	subi	r22, 0xFF	; 255
- 26e:	7f 4f       	sbci	r23, 0xFF	; 255
- 270:	50 e0       	ldi	r21, 0x00	; 0
- 272:	0e 94 67 01 	call	0x2ce	; 0x2ce <drvWriteReg>
+ 446:	6f 5f       	subi	r22, 0xFF	; 255
+ 448:	7f 4f       	sbci	r23, 0xFF	; 255
+ 44a:	0e 94 52 02 	call	0x4a4	; 0x4a4 <drvWriteReg>
     drvWriteReg(base,offset,(UINT8)(value&0xFF));
- 276:	c8 01       	movw	r24, r16
- 278:	b7 01       	movw	r22, r14
- 27a:	4d 2d       	mov	r20, r13
- 27c:	50 e0       	ldi	r21, 0x00	; 0
- 27e:	0e 94 67 01 	call	0x2ce	; 0x2ce <drvWriteReg>
+ 44e:	c8 01       	movw	r24, r16
+ 450:	b7 01       	movw	r22, r14
+ 452:	4d 2d       	mov	r20, r13
+ 454:	0e 94 52 02 	call	0x4a4	; 0x4a4 <drvWriteReg>
 }
- 282:	1f 91       	pop	r17
- 284:	0f 91       	pop	r16
- 286:	ff 90       	pop	r15
- 288:	ef 90       	pop	r14
- 28a:	df 90       	pop	r13
- 28c:	08 95       	ret
+ 458:	1f 91       	pop	r17
+ 45a:	0f 91       	pop	r16
+ 45c:	ff 90       	pop	r15
+ 45e:	ef 90       	pop	r14
+ 460:	df 90       	pop	r13
+ 462:	08 95       	ret
 
-0000028e <drvTestBit>:
+00000464 <drvTestBit>:
 
 
 /**
   * Used to test a bit in a in a given byte at a given address.
   */
 UINT8 drvTestBit(UINT16 addr, UINT16 offset, UINT8 position) {
- 28e:	1f 93       	push	r17
- 290:	df 93       	push	r29
- 292:	cf 93       	push	r28
- 294:	0f 92       	push	r0
- 296:	cd b7       	in	r28, 0x3d	; 61
- 298:	de b7       	in	r29, 0x3e	; 62
- 29a:	14 2f       	mov	r17, r20
+ 464:	1f 93       	push	r17
+ 466:	df 93       	push	r29
+ 468:	cf 93       	push	r28
+ 46a:	0f 92       	push	r0
+ 46c:	cd b7       	in	r28, 0x3d	; 61
+ 46e:	de b7       	in	r29, 0x3e	; 62
+ 470:	14 2f       	mov	r17, r20
     volatile UINT8 value;
 
     value = (UINT8)~drvReadReg(addr,offset) & (1<<position);
- 29c:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <drvReadReg>
- 2a0:	21 e0       	ldi	r18, 0x01	; 1
- 2a2:	30 e0       	ldi	r19, 0x00	; 0
- 2a4:	01 2e       	mov	r0, r17
- 2a6:	02 c0       	rjmp	.+4      	; 0x2ac <drvTestBit+0x1e>
- 2a8:	22 0f       	add	r18, r18
- 2aa:	33 1f       	adc	r19, r19
- 2ac:	0a 94       	dec	r0
- 2ae:	e2 f7       	brpl	.-8      	; 0x2a8 <drvTestBit+0x1a>
- 2b0:	80 95       	com	r24
- 2b2:	82 23       	and	r24, r18
- 2b4:	89 83       	std	Y+1, r24	; 0x01
+ 472:	0e 94 59 02 	call	0x4b2	; 0x4b2 <drvReadReg>
+ 476:	21 e0       	ldi	r18, 0x01	; 1
+ 478:	30 e0       	ldi	r19, 0x00	; 0
+ 47a:	01 2e       	mov	r0, r17
+ 47c:	02 c0       	rjmp	.+4      	; 0x482 <drvTestBit+0x1e>
+ 47e:	22 0f       	add	r18, r18
+ 480:	33 1f       	adc	r19, r19
+ 482:	0a 94       	dec	r0
+ 484:	e2 f7       	brpl	.-8      	; 0x47e <drvTestBit+0x1a>
+ 486:	80 95       	com	r24
+ 488:	82 23       	and	r24, r18
+ 48a:	89 83       	std	Y+1, r24	; 0x01
 
     return( value >> position);
- 2b6:	89 81       	ldd	r24, Y+1	; 0x01
- 2b8:	90 e0       	ldi	r25, 0x00	; 0
- 2ba:	02 c0       	rjmp	.+4      	; 0x2c0 <drvTestBit+0x32>
- 2bc:	95 95       	asr	r25
- 2be:	87 95       	ror	r24
- 2c0:	1a 95       	dec	r17
- 2c2:	e2 f7       	brpl	.-8      	; 0x2bc <drvTestBit+0x2e>
+ 48c:	89 81       	ldd	r24, Y+1	; 0x01
+ 48e:	90 e0       	ldi	r25, 0x00	; 0
+ 490:	02 c0       	rjmp	.+4      	; 0x496 <drvTestBit+0x32>
+ 492:	95 95       	asr	r25
+ 494:	87 95       	ror	r24
+ 496:	1a 95       	dec	r17
+ 498:	e2 f7       	brpl	.-8      	; 0x492 <drvTestBit+0x2e>
 }
- 2c4:	0f 90       	pop	r0
- 2c6:	cf 91       	pop	r28
- 2c8:	df 91       	pop	r29
- 2ca:	1f 91       	pop	r17
- 2cc:	08 95       	ret
+ 49a:	0f 90       	pop	r0
+ 49c:	cf 91       	pop	r28
+ 49e:	df 91       	pop	r29
+ 4a0:	1f 91       	pop	r17
+ 4a2:	08 95       	ret
 
-000002ce <drvWriteReg>:
+000004a4 <drvWriteReg>:
 /* delay in milliseconds */
 const UINT8 DELAY = 100;
 
 /* wrapper for writing register */
 void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
 {
- 2ce:	fb 01       	movw	r30, r22
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 2d0:	e8 0f       	add	r30, r24
- 2d2:	f9 1f       	adc	r31, r25
- 2d4:	40 83       	st	Z, r20
+ 4a4:	fb 01       	movw	r30, r22
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 4a6:	e8 0f       	add	r30, r24
+ 4a8:	f9 1f       	adc	r31, r25
+ 4aa:	50 e0       	ldi	r21, 0x00	; 0
+ 4ac:	51 83       	std	Z+1, r21	; 0x01
+ 4ae:	40 83       	st	Z, r20
 }
- 2d6:	08 95       	ret
+ 4b0:	08 95       	ret
 
-000002d8 <drvReadReg>:
+000004b2 <drvReadReg>:
 
 /* wrapper for writing register */
 UINT8 drvReadReg(UINT16 base, UINT16 offset)
 {
- 2d8:	fb 01       	movw	r30, r22
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 2da:	e8 0f       	add	r30, r24
- 2dc:	f9 1f       	adc	r31, r25
- 2de:	80 81       	ld	r24, Z
+ 4b2:	fb 01       	movw	r30, r22
+	return *((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER)));
+ 4b4:	e8 0f       	add	r30, r24
+ 4b6:	f9 1f       	adc	r31, r25
+ 4b8:	80 81       	ld	r24, Z
+ 4ba:	91 81       	ldd	r25, Z+1	; 0x01
 }
- 2e0:	08 95       	ret
+ 4bc:	08 95       	ret
 
-000002e2 <timer_init>:
+000004be <timer_init>:
 
 
 void timer_init(UINT8 delay) { 
 
     /* global interrupt disable */
     cli();
- 2e2:	f8 94       	cli
+ 4be:	f8 94       	cli
 
     /* set pre-scaler to F_CPU/1024 */
     HWREG(TCCR0B) |= TC0_CK_1024;
- 2e4:	95 b5       	in	r25, 0x25	; 37
- 2e6:	95 60       	ori	r25, 0x05	; 5
- 2e8:	95 bd       	out	0x25, r25	; 37
+ 4c0:	e5 b5       	in	r30, 0x25	; 37
+ 4c2:	f0 e0       	ldi	r31, 0x00	; 0
+ 4c4:	20 81       	ld	r18, Z
+ 4c6:	31 81       	ldd	r19, Z+1	; 0x01
+ 4c8:	22 60       	ori	r18, 0x02	; 2
+ 4ca:	31 83       	std	Z+1, r19	; 0x01
+ 4cc:	20 83       	st	Z, r18
     
     /* Program the timer with the value you want 
     which is (256-the number of counts) into TCNT0. */ 
     HWREG(TCNT0) = 256-delay; 
- 2ea:	81 95       	neg	r24
- 2ec:	86 bd       	out	0x26, r24	; 38
+ 4ce:	e6 b5       	in	r30, 0x26	; 38
+ 4d0:	f0 e0       	ldi	r31, 0x00	; 0
+ 4d2:	20 e0       	ldi	r18, 0x00	; 0
+ 4d4:	31 e0       	ldi	r19, 0x01	; 1
+ 4d6:	28 1b       	sub	r18, r24
+ 4d8:	31 09       	sbc	r19, r1
+ 4da:	31 83       	std	Z+1, r19	; 0x01
+ 4dc:	20 83       	st	Z, r18
 
     /* Enable Overflow Interrupt for Counter 0 */
     HWREG(TIMSK0) = TOIE0; 
- 2ee:	81 e0       	ldi	r24, 0x01	; 1
- 2f0:	80 93 6e 00 	sts	0x006E, r24
+ 4de:	e0 91 6e 00 	lds	r30, 0x006E
+ 4e2:	f0 e0       	ldi	r31, 0x00	; 0
+ 4e4:	11 82       	std	Z+1, r1	; 0x01
+ 4e6:	10 82       	st	Z, r1
 
     /* Enable Global Interrupts */ 
     sei();
- 2f4:	78 94       	sei
+ 4e8:	78 94       	sei
 
 }
- 2f6:	08 95       	ret
+ 4ea:	08 95       	ret
 
-000002f8 <drvUSARTWriteString>:
-    /* send I'm alive message */
-	drvUSARTWriteString((UINT8 *)string, sizeof(string));
-}
-
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
- 2f8:	fc 01       	movw	r30, r24
- 2fa:	07 c0       	rjmp	.+14     	; 0x30a <drvUSARTWriteString+0x12>
-}
-
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
-{
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 2fc:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 300:	85 ff       	sbrs	r24, 5
- 302:	fc cf       	rjmp	.-8      	; 0x2fc <drvUSARTWriteString+0x4>
-}
-
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
- 304:	31 96       	adiw	r30, 0x01	; 1
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 306:	90 93 c6 00 	sts	0x00C6, r25
-	drvUSARTWriteString((UINT8 *)string, sizeof(string));
-}
-
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
-	while(*data != '\0')
- 30a:	90 81       	ld	r25, Z
- 30c:	99 23       	and	r25, r25
- 30e:	b1 f7       	brne	.-20     	; 0x2fc <drvUSARTWriteString+0x4>
-	    drvUSARTPutChar(*data++);
-}
- 310:	08 95       	ret
-
-00000312 <drvUSARTPutChar>:
- 
-void drvUSARTPutChar(UINT8 data) {
- 312:	98 2f       	mov	r25, r24
-}
-
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
-{
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 314:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 318:	85 ff       	sbrs	r24, 5
- 31a:	fc cf       	rjmp	.-8      	; 0x314 <drvUSARTPutChar+0x2>
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 31c:	90 93 c6 00 	sts	0x00C6, r25
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
-	        != USART_DATA_REG_EMPTY) { ; }
-	drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,data);
-
-}
- 320:	08 95       	ret
-
-00000322 <init_gpio>:
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 322:	8f ef       	ldi	r24, 0xFF	; 255
- 324:	85 b9       	out	0x05, r24	; 5
-void init_gpio(UINT16 port) {
- /* set portb for output to LEDs */
- drvWriteReg(DRV_PORTB,DRV_GPIO_PORT_OFFSET , 0xFF);
- /* set portd for input from switches */
- drvWriteReg(DRV_PORTD,DRV_GPIO_PORT_OFFSET , 0x00);
-}
- 326:	1b b8       	out	0x0b, r1	; 11
- 328:	08 95       	ret
-
-0000032a <toggle_pin>:
-
-
-void toggle_pin(UINT16 port, UINT8 pin) {
- 32a:	dc 01       	movw	r26, r24
-
-	/* set port for output */
-	HWREG(port-1) |= 1<<pin; 
- 32c:	fc 01       	movw	r30, r24
- 32e:	22 91       	ld	r18, -Z
- 330:	81 e0       	ldi	r24, 0x01	; 1
- 332:	90 e0       	ldi	r25, 0x00	; 0
- 334:	02 c0       	rjmp	.+4      	; 0x33a <toggle_pin+0x10>
- 336:	88 0f       	add	r24, r24
- 338:	99 1f       	adc	r25, r25
- 33a:	6a 95       	dec	r22
- 33c:	e2 f7       	brpl	.-8      	; 0x336 <toggle_pin+0xc>
- 33e:	28 2b       	or	r18, r24
- 340:	20 83       	st	Z, r18
-
-
-	HWREG(port) ^= 1<<pin;
- 342:	2c 91       	ld	r18, X
- 344:	82 27       	eor	r24, r18
- 346:	8c 93       	st	X, r24
-}
- 348:	08 95       	ret
-
-0000034a <write_pin>:
-
-
-void write_pin(UINT16 port, UINT8 pin, UINT8 value) {
- 34a:	dc 01       	movw	r26, r24
-
-	/* set port for output */
-	HWREG(port-1) |= 1<<pin; 
- 34c:	fc 01       	movw	r30, r24
- 34e:	82 91       	ld	r24, -Z
- 350:	21 e0       	ldi	r18, 0x01	; 1
- 352:	30 e0       	ldi	r19, 0x00	; 0
- 354:	02 c0       	rjmp	.+4      	; 0x35a <write_pin+0x10>
- 356:	22 0f       	add	r18, r18
- 358:	33 1f       	adc	r19, r19
- 35a:	6a 95       	dec	r22
- 35c:	e2 f7       	brpl	.-8      	; 0x356 <write_pin+0xc>
- 35e:	92 2f       	mov	r25, r18
- 360:	82 2b       	or	r24, r18
- 362:	80 83       	st	Z, r24
-
-    if (value)
- 364:	44 23       	and	r20, r20
- 366:	21 f0       	breq	.+8      	; 0x370 <write_pin+0x26>
-	/* output to port */
-        HWREG(port) |= (1<<pin); 
- 368:	8c 91       	ld	r24, X
- 36a:	98 2b       	or	r25, r24
- 36c:	9c 93       	st	X, r25
- 36e:	08 95       	ret
-    else
-	    HWREG(port) &= (UINT8)~(1<<pin);
- 370:	9c 91       	ld	r25, X
- 372:	82 2f       	mov	r24, r18
- 374:	80 95       	com	r24
- 376:	89 23       	and	r24, r25
- 378:	8c 93       	st	X, r24
- 37a:	08 95       	ret
-
-0000037c <read_pin>:
-}
-
-
-UINT8 read_pin(UINT16 port, UINT8 pin) {
- 37c:	dc 01       	movw	r26, r24
-
-	/* set port for input */
-	HWREG(port-1) &= (UINT8)~pin; 
- 37e:	fc 01       	movw	r30, r24
- 380:	82 91       	ld	r24, -Z
- 382:	96 2f       	mov	r25, r22
- 384:	90 95       	com	r25
- 386:	89 23       	and	r24, r25
- 388:	80 83       	st	Z, r24
-
-	return(HWREG(port-2) &= pin);
- 38a:	12 97       	sbiw	r26, 0x02	; 2
- 38c:	8c 91       	ld	r24, X
- 38e:	86 23       	and	r24, r22
- 390:	8c 93       	st	X, r24
- 392:	8c 91       	ld	r24, X
-
-}
- 394:	08 95       	ret
-
-00000396 <drvReadEeprom>:
-    /*EECR |= (1<<EEPE);*/
-    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_PRG_EN);
-    
-}
-
-UINT8 drvReadEeprom(UINT16 addr) {
- 396:	ac 01       	movw	r20, r24
-
-    /* Wait for completion of previous write */
-    while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & (EEPROM_PRG_EN))
- 398:	f9 99       	sbic	0x1f, 1	; 31
- 39a:	fe cf       	rjmp	.-4      	; 0x398 <drvReadEeprom+0x2>
-    ;
-    /* Set up address register */
-    /*EEAR = uiAddress;*/
-	drvWriteUint16Reg(EEPROM_BASE,EEPROM_ADDR_OFFSET,addr);
- 39c:	8f e3       	ldi	r24, 0x3F	; 63
- 39e:	90 e0       	ldi	r25, 0x00	; 0
- 3a0:	62 e0       	ldi	r22, 0x02	; 2
- 3a2:	70 e0       	ldi	r23, 0x00	; 0
- 3a4:	0e 94 2d 01 	call	0x25a	; 0x25a <drvWriteUint16Reg>
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 3a8:	81 e0       	ldi	r24, 0x01	; 1
- 3aa:	8f bb       	out	0x1f, r24	; 31
-}
-
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
-{
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 3ac:	80 b5       	in	r24, 0x20	; 32
-    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_READ_EN);
-
-    /* Return data from Data Register */
-    return drvReadReg(EEPROM_BASE,EEPROM_DATA_OFFSET);
-
-}
- 3ae:	08 95       	ret
-
-000003b0 <init_eeprom>:
-
-/**
-  * Get the number of bytes currently written to eprom and 
-  * set pointer to next address available for writing.
-  */
-void init_eeprom() {
- 3b0:	0f 93       	push	r16
- 3b2:	1f 93       	push	r17
-
-    number_of_bytes_used_in_eeprom = (drvReadEeprom(EEPROM_DATA_COUNT_ADDR)<<8);
- 3b4:	80 e0       	ldi	r24, 0x00	; 0
- 3b6:	90 e0       	ldi	r25, 0x00	; 0
- 3b8:	0e 94 cb 01 	call	0x396	; 0x396 <drvReadEeprom>
- 3bc:	38 2f       	mov	r19, r24
- 3be:	20 e0       	ldi	r18, 0x00	; 0
- 3c0:	30 93 26 02 	sts	0x0226, r19
- 3c4:	20 93 25 02 	sts	0x0225, r18
-    number_of_bytes_used_in_eeprom |= drvReadEeprom(EEPROM_DATA_COUNT_ADDR+1);
- 3c8:	00 91 25 02 	lds	r16, 0x0225
- 3cc:	10 91 26 02 	lds	r17, 0x0226
- 3d0:	81 e0       	ldi	r24, 0x01	; 1
- 3d2:	90 e0       	ldi	r25, 0x00	; 0
- 3d4:	0e 94 cb 01 	call	0x396	; 0x396 <drvReadEeprom>
- 3d8:	90 e0       	ldi	r25, 0x00	; 0
- 3da:	80 2b       	or	r24, r16
- 3dc:	91 2b       	or	r25, r17
- 3de:	90 93 26 02 	sts	0x0226, r25
- 3e2:	80 93 25 02 	sts	0x0225, r24
-	if ( number_of_bytes_used_in_eeprom == 0xFF ) 
- 3e6:	80 91 25 02 	lds	r24, 0x0225
- 3ea:	90 91 26 02 	lds	r25, 0x0226
- 3ee:	8f 3f       	cpi	r24, 0xFF	; 255
- 3f0:	91 05       	cpc	r25, r1
- 3f2:	21 f4       	brne	.+8      	; 0x3fc <init_eeprom+0x4c>
-        number_of_bytes_used_in_eeprom = 0;
- 3f4:	10 92 26 02 	sts	0x0226, r1
- 3f8:	10 92 25 02 	sts	0x0225, r1
-	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
- 3fc:	80 91 25 02 	lds	r24, 0x0225
- 400:	90 91 26 02 	lds	r25, 0x0226
- 404:	01 96       	adiw	r24, 0x01	; 1
- 406:	90 93 28 02 	sts	0x0228, r25
- 40a:	80 93 27 02 	sts	0x0227, r24
-
-}
- 40e:	1f 91       	pop	r17
- 410:	0f 91       	pop	r16
- 412:	08 95       	ret
-
-00000414 <drvWriteEeprom>:
-
-
-/* do we have to manage a buffer here in case the eeprom is not ready? */
-void drvWriteEeprom(UINT16 addr, UINT8 data)
-{
- 414:	1f 93       	push	r17
- 416:	ac 01       	movw	r20, r24
- 418:	16 2f       	mov	r17, r22
-    /* Wait for completion of previous write */
-    /*while(EECR & (1<<EEPE))*/
-    while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & (EEPROM_PRG_EN))
- 41a:	f9 99       	sbic	0x1f, 1	; 31
- 41c:	fe cf       	rjmp	.-4      	; 0x41a <drvWriteEeprom+0x6>
-    ;
-
-    /* Set up address and Data Registers */
-    /*EEAR = uiAddress;*/
-	drvWriteUint16Reg(EEPROM_BASE,EEPROM_ADDR_OFFSET,addr);
- 41e:	8f e3       	ldi	r24, 0x3F	; 63
- 420:	90 e0       	ldi	r25, 0x00	; 0
- 422:	62 e0       	ldi	r22, 0x02	; 2
- 424:	70 e0       	ldi	r23, 0x00	; 0
- 426:	0e 94 2d 01 	call	0x25a	; 0x25a <drvWriteUint16Reg>
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 42a:	10 bd       	out	0x20, r17	; 32
-
-    /* Start eeprom write by setting EEPE */
-    /*EECR |= (1<<EEPE);*/
-    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_PRG_EN);
-    
-}
- 42c:	84 e0       	ldi	r24, 0x04	; 4
- 42e:	8f bb       	out	0x1f, r24	; 31
- 430:	82 e0       	ldi	r24, 0x02	; 2
- 432:	8f bb       	out	0x1f, r24	; 31
- 434:	1f 91       	pop	r17
- 436:	08 95       	ret
-
-00000438 <drvResetEepromDataCount>:
-	next_eeprom_address++;
-}
-
-void drvResetEepromDataCount() {
-
-    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, 0);
- 438:	80 e0       	ldi	r24, 0x00	; 0
- 43a:	90 e0       	ldi	r25, 0x00	; 0
- 43c:	60 e0       	ldi	r22, 0x00	; 0
- 43e:	0e 94 0a 02 	call	0x414	; 0x414 <drvWriteEeprom>
-    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR+1, 0);
- 442:	81 e0       	ldi	r24, 0x01	; 1
- 444:	90 e0       	ldi	r25, 0x00	; 0
- 446:	60 e0       	ldi	r22, 0x00	; 0
- 448:	0e 94 0a 02 	call	0x414	; 0x414 <drvWriteEeprom>
-
-	number_of_bytes_used_in_eeprom = 0;
- 44c:	10 92 26 02 	sts	0x0226, r1
- 450:	10 92 25 02 	sts	0x0225, r1
-	next_eeprom_address = EEPROM_DATA_START_ADDR;
- 454:	82 e0       	ldi	r24, 0x02	; 2
- 456:	90 e0       	ldi	r25, 0x00	; 0
- 458:	90 93 28 02 	sts	0x0228, r25
- 45c:	80 93 27 02 	sts	0x0227, r24
-}
- 460:	08 95       	ret
-
-00000462 <drvUpdateEepromDataCount>:
-
-}
-
-void drvUpdateEepromDataCount() {
-
-    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, (next_eeprom_address>>8));
- 462:	20 91 27 02 	lds	r18, 0x0227
- 466:	30 91 28 02 	lds	r19, 0x0228
- 46a:	80 e0       	ldi	r24, 0x00	; 0
- 46c:	90 e0       	ldi	r25, 0x00	; 0
- 46e:	63 2f       	mov	r22, r19
- 470:	0e 94 0a 02 	call	0x414	; 0x414 <drvWriteEeprom>
-    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR+1, (next_eeprom_address&0xFF));
- 474:	60 91 27 02 	lds	r22, 0x0227
- 478:	70 91 28 02 	lds	r23, 0x0228
- 47c:	81 e0       	ldi	r24, 0x01	; 1
- 47e:	90 e0       	ldi	r25, 0x00	; 0
- 480:	0e 94 0a 02 	call	0x414	; 0x414 <drvWriteEeprom>
-	next_eeprom_address++;
- 484:	80 91 27 02 	lds	r24, 0x0227
- 488:	90 91 28 02 	lds	r25, 0x0228
- 48c:	01 96       	adiw	r24, 0x01	; 1
- 48e:	90 93 28 02 	sts	0x0228, r25
- 492:	80 93 27 02 	sts	0x0227, r24
-}
- 496:	08 95       	ret
-
-00000498 <init_usart0>:
-
-	sei();
-}
-
-void init_usart0() 
-{
- 498:	df 93       	push	r29
- 49a:	cf 93       	push	r28
- 49c:	cd b7       	in	r28, 0x3d	; 61
- 49e:	de b7       	in	r29, 0x3e	; 62
- 4a0:	2f 97       	sbiw	r28, 0x0f	; 15
- 4a2:	0f b6       	in	r0, 0x3f	; 63
- 4a4:	f8 94       	cli
- 4a6:	de bf       	out	0x3e, r29	; 62
- 4a8:	0f be       	out	0x3f, r0	; 63
- 4aa:	cd bf       	out	0x3d, r28	; 61
-
-    volatile UINT8 string[] = "Hello World\r\n";
- 4ac:	de 01       	movw	r26, r28
- 4ae:	12 96       	adiw	r26, 0x02	; 2
- 4b0:	e0 e0       	ldi	r30, 0x00	; 0
- 4b2:	f2 e0       	ldi	r31, 0x02	; 2
- 4b4:	8e e0       	ldi	r24, 0x0E	; 14
- 4b6:	01 90       	ld	r0, Z+
- 4b8:	0d 92       	st	X+, r0
- 4ba:	81 50       	subi	r24, 0x01	; 1
- 4bc:	e1 f7       	brne	.-8      	; 0x4b6 <init_usart0+0x1e>
-    volatile UINT8 val = 0;
- 4be:	19 82       	std	Y+1, r1	; 0x01
-
-	val = USART_RX_EN | USART_TX_EN | USART_RX_COMP_IE;
- 4c0:	88 e9       	ldi	r24, 0x98	; 152
- 4c2:	89 83       	std	Y+1, r24	; 0x01
-    drvWriteReg(USART0_BASEADDR,USART_UCSRB_OFFSET,val);
- 4c4:	89 81       	ldd	r24, Y+1	; 0x01
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 4c6:	80 93 c1 00 	sts	0x00C1, r24
-    volatile UINT8 val = 0;
-
-	val = USART_RX_EN | USART_TX_EN | USART_RX_COMP_IE;
-    drvWriteReg(USART0_BASEADDR,USART_UCSRB_OFFSET,val);
-
-	val = USART_8_DATA_BITS;
- 4ca:	86 e0       	ldi	r24, 0x06	; 6
- 4cc:	89 83       	std	Y+1, r24	; 0x01
-    drvWriteReg(USART0_BASEADDR,USART_UCSRC_OFFSET,val);
- 4ce:	89 81       	ldd	r24, Y+1	; 0x01
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 4d0:	80 93 c2 00 	sts	0x00C2, r24
-
-	val = USART_8_DATA_BITS;
-    drvWriteReg(USART0_BASEADDR,USART_UCSRC_OFFSET,val);
-
-    /* calculate baud rate based on cpu frequency */
-	val = ((F_CPU + 9600 * 8L) / (9600 * 16L) - 1);
- 4d4:	83 e3       	ldi	r24, 0x33	; 51
- 4d6:	89 83       	std	Y+1, r24	; 0x01
-
-    /* write baud rate register */
-   	drvWriteUint16Reg(USART0_BASEADDR,USART_UBRR_OFFSET,val);
- 4d8:	49 81       	ldd	r20, Y+1	; 0x01
- 4da:	80 ec       	ldi	r24, 0xC0	; 192
- 4dc:	90 e0       	ldi	r25, 0x00	; 0
- 4de:	64 e0       	ldi	r22, 0x04	; 4
- 4e0:	70 e0       	ldi	r23, 0x00	; 0
- 4e2:	50 e0       	ldi	r21, 0x00	; 0
- 4e4:	0e 94 2d 01 	call	0x25a	; 0x25a <drvWriteUint16Reg>
- 4e8:	20 e0       	ldi	r18, 0x00	; 0
- 4ea:	30 e0       	ldi	r19, 0x00	; 0
-	drvUSARTWriteString((UINT8 *)string, sizeof(string));
-}
-
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
-	while(*data != '\0')
- 4ec:	ae 01       	movw	r20, r28
- 4ee:	4e 5f       	subi	r20, 0xFE	; 254
- 4f0:	5f 4f       	sbci	r21, 0xFF	; 255
- 4f2:	08 c0       	rjmp	.+16     	; 0x504 <init_usart0+0x6c>
-}
-
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
-{
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 4f4:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 4f8:	85 ff       	sbrs	r24, 5
- 4fa:	fc cf       	rjmp	.-8      	; 0x4f4 <init_usart0+0x5c>
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 4fc:	e0 93 c6 00 	sts	0x00C6, r30
- 500:	2f 5f       	subi	r18, 0xFF	; 255
- 502:	3f 4f       	sbci	r19, 0xFF	; 255
-	drvUSARTWriteString((UINT8 *)string, sizeof(string));
-}
-
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
-	while(*data != '\0')
- 504:	fa 01       	movw	r30, r20
- 506:	e2 0f       	add	r30, r18
- 508:	f3 1f       	adc	r31, r19
- 50a:	e0 81       	ld	r30, Z
- 50c:	ee 23       	and	r30, r30
- 50e:	91 f7       	brne	.-28     	; 0x4f4 <init_usart0+0x5c>
-    /* write baud rate register */
-   	drvWriteUint16Reg(USART0_BASEADDR,USART_UBRR_OFFSET,val);
-
-    /* send I'm alive message */
-	drvUSARTWriteString((UINT8 *)string, sizeof(string));
-}
- 510:	2f 96       	adiw	r28, 0x0f	; 15
- 512:	0f b6       	in	r0, 0x3f	; 63
- 514:	f8 94       	cli
- 516:	de bf       	out	0x3e, r29	; 62
- 518:	0f be       	out	0x3f, r0	; 63
- 51a:	cd bf       	out	0x3d, r28	; 61
- 51c:	cf 91       	pop	r28
- 51e:	df 91       	pop	r29
- 520:	08 95       	ret
-
-00000522 <__vector_25>:
+000004ec <__vector_25>:
  * USART0 RX Complete ISR 
  * Read the USART data register.
  * If ctl-Z set record to eeprom flag
  */
 void __vector_25 (void) 
 { 
- 522:	1f 92       	push	r1
- 524:	0f 92       	push	r0
- 526:	0f b6       	in	r0, 0x3f	; 63
- 528:	0f 92       	push	r0
- 52a:	0b b6       	in	r0, 0x3b	; 59
- 52c:	0f 92       	push	r0
- 52e:	11 24       	eor	r1, r1
- 530:	0f 93       	push	r16
- 532:	1f 93       	push	r17
- 534:	2f 93       	push	r18
- 536:	3f 93       	push	r19
- 538:	4f 93       	push	r20
- 53a:	5f 93       	push	r21
- 53c:	6f 93       	push	r22
- 53e:	7f 93       	push	r23
- 540:	8f 93       	push	r24
- 542:	9f 93       	push	r25
- 544:	af 93       	push	r26
- 546:	bf 93       	push	r27
- 548:	ef 93       	push	r30
- 54a:	ff 93       	push	r31
- 54c:	df 93       	push	r29
- 54e:	cf 93       	push	r28
- 550:	cd b7       	in	r28, 0x3d	; 61
- 552:	de b7       	in	r29, 0x3e	; 62
- 554:	29 97       	sbiw	r28, 0x09	; 9
- 556:	de bf       	out	0x3e, r29	; 62
- 558:	cd bf       	out	0x3d, r28	; 61
+ 4ec:	1f 92       	push	r1
+ 4ee:	0f 92       	push	r0
+ 4f0:	0f b6       	in	r0, 0x3f	; 63
+ 4f2:	0f 92       	push	r0
+ 4f4:	0b b6       	in	r0, 0x3b	; 59
+ 4f6:	0f 92       	push	r0
+ 4f8:	11 24       	eor	r1, r1
+ 4fa:	8f 93       	push	r24
+ 4fc:	9f 93       	push	r25
+ 4fe:	ef 93       	push	r30
+ 500:	ff 93       	push	r31
+ 502:	df 93       	push	r29
+ 504:	cf 93       	push	r28
+ 506:	0f 92       	push	r0
+ 508:	cd b7       	in	r28, 0x3d	; 61
+ 50a:	de b7       	in	r29, 0x3e	; 62
 }
 
 /* wrapper for writing register */
 UINT8 drvReadReg(UINT16 base, UINT16 offset)
 {
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 55a:	80 91 c6 00 	lds	r24, 0x00C6
-	/* for a 4 digit ascii string to output the number of bytes in the eeprom */
-	volatile UINT8 myascii[5]; 
-	volatile UINT16 number_of_bytes_in_eeprom;
+	return *((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER)));
+ 50c:	80 91 c6 00 	lds	r24, 0x00C6
+ 510:	90 91 c7 00 	lds	r25, 0x00C7
+void __vector_25 (void) 
+{ 
+    volatile UINT8 data_received;
 
     /* Set the Data Register Empty flag */
     data_received = drvReadReg(USART0_BASEADDR,USART_UDR_OFFSET);
- 55e:	89 83       	std	Y+1, r24	; 0x01
-	if (data_received == RECORDING_CONTROL_CHAR) {
- 560:	89 81       	ldd	r24, Y+1	; 0x01
- 562:	8a 31       	cpi	r24, 0x1A	; 26
- 564:	69 f4       	brne	.+26     	; 0x580 <__vector_25+0x5e>
-	    /* if currently recording then stop else start recording */
-	    if(!record_to_eeprom) {
- 566:	80 91 22 02 	lds	r24, 0x0222
- 56a:	88 23       	and	r24, r24
- 56c:	31 f4       	brne	.+12     	; 0x57a <__vector_25+0x58>
-			/* reset character count */
-			drvResetEepromDataCount();
- 56e:	0e 94 1c 02 	call	0x438	; 0x438 <drvResetEepromDataCount>
-	        record_to_eeprom = TRUE;
- 572:	81 e0       	ldi	r24, 0x01	; 1
- 574:	80 93 22 02 	sts	0x0222, r24
- 578:	b0 c0       	rjmp	.+352    	; 0x6da <__vector_25+0x1b8>
-        } else {
-		    record_to_eeprom = FALSE;
- 57a:	10 92 22 02 	sts	0x0222, r1
- 57e:	ad c0       	rjmp	.+346    	; 0x6da <__vector_25+0x1b8>
-        }
-    } else if (data_received == PLAYBACK_CHAR)  {
- 580:	89 81       	ldd	r24, Y+1	; 0x01
- 582:	89 31       	cpi	r24, 0x19	; 25
- 584:	d1 f4       	brne	.+52     	; 0x5ba <__vector_25+0x98>
-			for(i = 1;i < next_eeprom_address;i++)
- 586:	81 e0       	ldi	r24, 0x01	; 1
- 588:	0d c0       	rjmp	.+26     	; 0x5a4 <__vector_25+0x82>
-	            drvUSARTPutChar(drvReadEeprom(i));
- 58a:	8a 81       	ldd	r24, Y+2	; 0x02
- 58c:	90 e0       	ldi	r25, 0x00	; 0
- 58e:	0e 94 cb 01 	call	0x396	; 0x396 <drvReadEeprom>
- 592:	98 2f       	mov	r25, r24
+ 514:	89 83       	std	Y+1, r24	; 0x01
+		 */
+		static inline RingBuff_Count_t RingBuffer_GetCount(RingBuff_t* const Buffer)
+		{
+			RingBuff_Count_t Count;
+			
+			ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 516:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
 }
 
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
+static __inline__ uint8_t __iCliRetVal(void)
 {
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 594:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 598:	85 ff       	sbrs	r24, 5
- 59a:	fc cf       	rjmp	.-8      	; 0x594 <__vector_25+0x72>
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 59c:	90 93 c6 00 	sts	0x00C6, r25
-	        record_to_eeprom = TRUE;
-        } else {
-		    record_to_eeprom = FALSE;
-        }
-    } else if (data_received == PLAYBACK_CHAR)  {
-			for(i = 1;i < next_eeprom_address;i++)
- 5a0:	8a 81       	ldd	r24, Y+2	; 0x02
- 5a2:	8f 5f       	subi	r24, 0xFF	; 255
- 5a4:	8a 83       	std	Y+2, r24	; 0x02
- 5a6:	8a 81       	ldd	r24, Y+2	; 0x02
- 5a8:	20 91 27 02 	lds	r18, 0x0227
- 5ac:	30 91 28 02 	lds	r19, 0x0228
- 5b0:	90 e0       	ldi	r25, 0x00	; 0
- 5b2:	82 17       	cp	r24, r18
- 5b4:	93 07       	cpc	r25, r19
- 5b6:	48 f3       	brcs	.-46     	; 0x58a <__vector_25+0x68>
- 5b8:	90 c0       	rjmp	.+288    	; 0x6da <__vector_25+0x1b8>
-	            drvUSARTPutChar(drvReadEeprom(i));
-    } else if (data_received == DUMP_NUMBER_OF_BYTES_CHAR) {
- 5ba:	89 81       	ldd	r24, Y+1	; 0x01
- 5bc:	8e 30       	cpi	r24, 0x0E	; 14
- 5be:	09 f0       	breq	.+2      	; 0x5c2 <__vector_25+0xa0>
- 5c0:	4e c0       	rjmp	.+156    	; 0x65e <__vector_25+0x13c>
- 5c2:	ee e0       	ldi	r30, 0x0E	; 14
- 5c4:	f2 e0       	ldi	r31, 0x02	; 2
- 5c6:	07 c0       	rjmp	.+14     	; 0x5d6 <__vector_25+0xb4>
+    cli();
+ 518:	f8 94       	cli
+			{
+				Count = Buffer->Count;
+ 51a:	90 91 2c 03 	lds	r25, 0x032C
+    (void)__s;
 }
 
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
+static __inline__ void __iRestore(const  uint8_t *__s)
 {
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 5c8:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 5cc:	85 ff       	sbrs	r24, 5
- 5ce:	fc cf       	rjmp	.-8      	; 0x5c8 <__vector_25+0xa6>
-}
+    SREG = *__s;
+ 51e:	8f bf       	out	0x3f, r24	; 63
+	/* put it in the queue */
+    if(!RingBuffer_IsFull(&rbuff))
+ 520:	9f 3f       	cpi	r25, 0xFF	; 255
+ 522:	19 f1       	breq	.+70     	; 0x56a <__vector_25+0x7e>
+	    RingBuffer_Insert(&rbuff,data_received);
+ 524:	89 81       	ldd	r24, Y+1	; 0x01
+		 *  \param[in]     Data    Data element to insert into the buffer
+		 */
+		static inline void RingBuffer_Insert(RingBuff_t* const Buffer,
+		                                     const RingBuff_Data_t Data)
+		{
+			*Buffer->In = Data;
+ 526:	e0 91 28 03 	lds	r30, 0x0328
+ 52a:	f0 91 29 03 	lds	r31, 0x0329
+ 52e:	80 83       	st	Z, r24
+			
+			if (++Buffer->In == &Buffer->Buffer[BUFFER_SIZE])
+ 530:	80 91 28 03 	lds	r24, 0x0328
+ 534:	90 91 29 03 	lds	r25, 0x0329
+ 538:	01 96       	adiw	r24, 0x01	; 1
+ 53a:	90 93 29 03 	sts	0x0329, r25
+ 53e:	80 93 28 03 	sts	0x0328, r24
+ 542:	e0 91 28 03 	lds	r30, 0x0328
+ 546:	f0 91 29 03 	lds	r31, 0x0329
+ 54a:	83 e0       	ldi	r24, 0x03	; 3
+ 54c:	e8 32       	cpi	r30, 0x28	; 40
+ 54e:	f8 07       	cpc	r31, r24
+ 550:	21 f4       	brne	.+8      	; 0x55a <__vector_25+0x6e>
+			  Buffer->In = Buffer->Buffer;
+ 552:	89 e2       	ldi	r24, 0x29	; 41
+ 554:	92 e0       	ldi	r25, 0x02	; 2
+ 556:	91 83       	std	Z+1, r25	; 0x01
+ 558:	80 83       	st	Z, r24
 
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
- 5d0:	31 96       	adiw	r30, 0x01	; 1
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 5d2:	90 93 c6 00 	sts	0x00C6, r25
-	drvUSARTWriteString((UINT8 *)string, sizeof(string));
-}
-
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
-	while(*data != '\0')
- 5d6:	90 81       	ld	r25, Z
- 5d8:	99 23       	and	r25, r25
- 5da:	b1 f7       	brne	.-20     	; 0x5c8 <__vector_25+0xa6>
-	            drvUSARTPutChar(drvReadEeprom(i));
-    } else if (data_received == DUMP_NUMBER_OF_BYTES_CHAR) {
-	            /* initialize array */
-	            drvUSARTWriteString((UINT8 *)BYTES_STORED_STRING,sizeof(BYTES_STORED_STRING));
-				/* initialize string */
-				myascii[0]='\0';
- 5dc:	1d 82       	std	Y+5, r1	; 0x05
-				/* read the write count from eeprom and convert to ascii */
-				number_of_bytes_in_eeprom = drvReadEeprom(EEPROM_DATA_COUNT_ADDR)<<8;
- 5de:	80 e0       	ldi	r24, 0x00	; 0
- 5e0:	90 e0       	ldi	r25, 0x00	; 0
- 5e2:	0e 94 cb 01 	call	0x396	; 0x396 <drvReadEeprom>
- 5e6:	38 2f       	mov	r19, r24
- 5e8:	20 e0       	ldi	r18, 0x00	; 0
- 5ea:	3c 83       	std	Y+4, r19	; 0x04
- 5ec:	2b 83       	std	Y+3, r18	; 0x03
-				number_of_bytes_in_eeprom |= drvReadEeprom(EEPROM_DATA_COUNT_ADDR+1);
- 5ee:	0b 81       	ldd	r16, Y+3	; 0x03
- 5f0:	1c 81       	ldd	r17, Y+4	; 0x04
- 5f2:	81 e0       	ldi	r24, 0x01	; 1
- 5f4:	90 e0       	ldi	r25, 0x00	; 0
- 5f6:	0e 94 cb 01 	call	0x396	; 0x396 <drvReadEeprom>
- 5fa:	90 e0       	ldi	r25, 0x00	; 0
- 5fc:	80 2b       	or	r24, r16
- 5fe:	91 2b       	or	r25, r17
- 600:	9c 83       	std	Y+4, r25	; 0x04
- 602:	8b 83       	std	Y+3, r24	; 0x03
-				if (number_of_bytes_in_eeprom >= 0)	{			
- 604:	8b 81       	ldd	r24, Y+3	; 0x03
- 606:	9c 81       	ldd	r25, Y+4	; 0x04
-	                myitoa((UINT8 *)myascii,sizeof(myascii)-1,number_of_bytes_in_eeprom);
- 608:	4b 81       	ldd	r20, Y+3	; 0x03
- 60a:	5c 81       	ldd	r21, Y+4	; 0x04
- 60c:	8e 01       	movw	r16, r28
- 60e:	0b 5f       	subi	r16, 0xFB	; 251
- 610:	1f 4f       	sbci	r17, 0xFF	; 255
- 612:	c8 01       	movw	r24, r16
- 614:	64 e0       	ldi	r22, 0x04	; 4
- 616:	70 e0       	ldi	r23, 0x00	; 0
- 618:	0e 94 b9 00 	call	0x172	; 0x172 <myitoa>
-				    /* send out the serial port */
-					myascii[4] = '\0';
- 61c:	19 86       	std	Y+9, r1	; 0x09
- 61e:	20 e0       	ldi	r18, 0x00	; 0
- 620:	30 e0       	ldi	r19, 0x00	; 0
-	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+			ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 55a:	9f b7       	in	r25, 0x3f	; 63
+    return 1;
 }
 
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+static __inline__ uint8_t __iCliRetVal(void)
 {
-	while(*data != '\0')
- 622:	a8 01       	movw	r20, r16
- 624:	08 c0       	rjmp	.+16     	; 0x636 <__vector_25+0x114>
+    cli();
+ 55c:	f8 94       	cli
+			{
+				Buffer->Count++;
+ 55e:	80 91 2c 03 	lds	r24, 0x032C
+ 562:	8f 5f       	subi	r24, 0xFF	; 255
+ 564:	80 93 2c 03 	sts	0x032C, r24
+    (void)__s;
 }
 
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
+static __inline__ void __iRestore(const  uint8_t *__s)
 {
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 626:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 62a:	85 ff       	sbrs	r24, 5
- 62c:	fc cf       	rjmp	.-8      	; 0x626 <__vector_25+0x104>
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 62e:	e0 93 c6 00 	sts	0x00C6, r30
- 632:	2f 5f       	subi	r18, 0xFF	; 255
- 634:	3f 4f       	sbci	r19, 0xFF	; 255
-	drvUSARTWriteString((UINT8 *)string, sizeof(string));
-}
-
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
-	while(*data != '\0')
- 636:	fa 01       	movw	r30, r20
- 638:	e2 0f       	add	r30, r18
- 63a:	f3 1f       	adc	r31, r19
- 63c:	e0 81       	ld	r30, Z
- 63e:	ee 23       	and	r30, r30
- 640:	91 f7       	brne	.-28     	; 0x626 <__vector_25+0x104>
- 642:	ed e1       	ldi	r30, 0x1D	; 29
- 644:	f2 e0       	ldi	r31, 0x02	; 2
- 646:	07 c0       	rjmp	.+14     	; 0x656 <__vector_25+0x134>
-}
-
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
-{
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 648:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 64c:	85 ff       	sbrs	r24, 5
- 64e:	fc cf       	rjmp	.-8      	; 0x648 <__vector_25+0x126>
-}
-
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
- 650:	31 96       	adiw	r30, 0x01	; 1
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 652:	90 93 c6 00 	sts	0x00C6, r25
-	drvUSARTWriteString((UINT8 *)string, sizeof(string));
-}
-
-void drvUSARTWriteString(const UINT8 * data,UINT8 length)
-{
-	while(*data != '\0')
- 656:	90 81       	ld	r25, Z
- 658:	99 23       	and	r25, r25
- 65a:	b1 f7       	brne	.-20     	; 0x648 <__vector_25+0x126>
- 65c:	3e c0       	rjmp	.+124    	; 0x6da <__vector_25+0x1b8>
-                    drvUSARTWriteString((UINT8 *)myascii,sizeof(myascii));                   
-                } else {
-				    drvUSARTPutChar('0');
-                } 
-		    	drvUSARTWriteString((UINT8 *)CR_LF_STRING,sizeof(CR_LF_STRING));
-	} else if (record_to_eeprom) {
- 65e:	80 91 22 02 	lds	r24, 0x0222
- 662:	88 23       	and	r24, r24
- 664:	99 f1       	breq	.+102    	; 0x6cc <__vector_25+0x1aa>
-            drvWriteEeprom(next_eeprom_address, data_received);
- 666:	80 91 27 02 	lds	r24, 0x0227
- 66a:	90 91 28 02 	lds	r25, 0x0228
- 66e:	69 81       	ldd	r22, Y+1	; 0x01
- 670:	0e 94 0a 02 	call	0x414	; 0x414 <drvWriteEeprom>
-			drvUpdateEepromDataCount();
- 674:	0e 94 31 02 	call	0x462	; 0x462 <drvUpdateEepromDataCount>
-	        drvUSARTPutChar(data_received);
- 678:	99 81       	ldd	r25, Y+1	; 0x01
-}
-
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
-{
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 67a:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 67e:	85 ff       	sbrs	r24, 5
- 680:	fc cf       	rjmp	.-8      	; 0x67a <__vector_25+0x158>
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 682:	90 93 c6 00 	sts	0x00C6, r25
-		    	drvUSARTWriteString((UINT8 *)CR_LF_STRING,sizeof(CR_LF_STRING));
-	} else if (record_to_eeprom) {
-            drvWriteEeprom(next_eeprom_address, data_received);
-			drvUpdateEepromDataCount();
-	        drvUSARTPutChar(data_received);
-	        if (data_received == CR_CHAR) {
- 686:	89 81       	ldd	r24, Y+1	; 0x01
- 688:	8d 30       	cpi	r24, 0x0D	; 13
- 68a:	89 f4       	brne	.+34     	; 0x6ae <__vector_25+0x18c>
-				drvWriteEeprom(next_eeprom_address, LF_CHAR);
- 68c:	80 91 27 02 	lds	r24, 0x0227
- 690:	90 91 28 02 	lds	r25, 0x0228
- 694:	6a e0       	ldi	r22, 0x0A	; 10
- 696:	0e 94 0a 02 	call	0x414	; 0x414 <drvWriteEeprom>
-			    drvUpdateEepromDataCount();
- 69a:	0e 94 31 02 	call	0x462	; 0x462 <drvUpdateEepromDataCount>
-}
-
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
-{
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 69e:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 6a2:	85 ff       	sbrs	r24, 5
- 6a4:	fc cf       	rjmp	.-8      	; 0x69e <__vector_25+0x17c>
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 6a6:	8a e0       	ldi	r24, 0x0A	; 10
- 6a8:	80 93 c6 00 	sts	0x00C6, r24
- 6ac:	16 c0       	rjmp	.+44     	; 0x6da <__vector_25+0x1b8>
-	        drvUSARTPutChar(data_received);
-	        if (data_received == CR_CHAR) {
-				drvWriteEeprom(next_eeprom_address, LF_CHAR);
-			    drvUpdateEepromDataCount();
-		        drvUSARTPutChar(LF_CHAR);
-            } else if (data_received == BACKSPACE_CHAR) {
- 6ae:	89 81       	ldd	r24, Y+1	; 0x01
- 6b0:	88 30       	cpi	r24, 0x08	; 8
- 6b2:	99 f4       	brne	.+38     	; 0x6da <__vector_25+0x1b8>
-			    drvUpdateEepromDataCount(-1);
- 6b4:	8f ef       	ldi	r24, 0xFF	; 255
- 6b6:	9f ef       	ldi	r25, 0xFF	; 255
- 6b8:	0e 94 31 02 	call	0x462	; 0x462 <drvUpdateEepromDataCount>
-                drvWriteEeprom(next_eeprom_address, data_received);
- 6bc:	80 91 27 02 	lds	r24, 0x0227
- 6c0:	90 91 28 02 	lds	r25, 0x0228
- 6c4:	69 81       	ldd	r22, Y+1	; 0x01
- 6c6:	0e 94 0a 02 	call	0x414	; 0x414 <drvWriteEeprom>
- 6ca:	07 c0       	rjmp	.+14     	; 0x6da <__vector_25+0x1b8>
-	        }
-
-    } else 
-	        drvUSARTPutChar(data_received);
- 6cc:	99 81       	ldd	r25, Y+1	; 0x01
-}
-
-/* wrapper for writing register */
-UINT8 drvReadReg(UINT16 base, UINT16 offset)
-{
-	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
- 6ce:	80 91 c0 00 	lds	r24, 0x00C0
-	while(*data != '\0')
-	    drvUSARTPutChar(*data++);
-}
- 
-void drvUSARTPutChar(UINT8 data) {
-    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
- 6d2:	85 ff       	sbrs	r24, 5
- 6d4:	fc cf       	rjmp	.-8      	; 0x6ce <__vector_25+0x1ac>
-const UINT8 DELAY = 100;
-
-/* wrapper for writing register */
-void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
-{
-	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
- 6d6:	90 93 c6 00 	sts	0x00C6, r25
-    } else 
-	        drvUSARTPutChar(data_received);
-
+    SREG = *__s;
+ 568:	9f bf       	out	0x3f, r25	; 63
 
 
 	sei();
- 6da:	78 94       	sei
+ 56a:	78 94       	sei
 }
- 6dc:	29 96       	adiw	r28, 0x09	; 9
- 6de:	de bf       	out	0x3e, r29	; 62
- 6e0:	cd bf       	out	0x3d, r28	; 61
- 6e2:	cf 91       	pop	r28
- 6e4:	df 91       	pop	r29
- 6e6:	ff 91       	pop	r31
- 6e8:	ef 91       	pop	r30
- 6ea:	bf 91       	pop	r27
- 6ec:	af 91       	pop	r26
- 6ee:	9f 91       	pop	r25
- 6f0:	8f 91       	pop	r24
- 6f2:	7f 91       	pop	r23
- 6f4:	6f 91       	pop	r22
- 6f6:	5f 91       	pop	r21
- 6f8:	4f 91       	pop	r20
- 6fa:	3f 91       	pop	r19
- 6fc:	2f 91       	pop	r18
- 6fe:	1f 91       	pop	r17
- 700:	0f 91       	pop	r16
- 702:	0f 90       	pop	r0
- 704:	0b be       	out	0x3b, r0	; 59
- 706:	0f 90       	pop	r0
- 708:	0f be       	out	0x3f, r0	; 63
- 70a:	0f 90       	pop	r0
- 70c:	1f 90       	pop	r1
- 70e:	18 95       	reti
+ 56c:	0f 90       	pop	r0
+ 56e:	cf 91       	pop	r28
+ 570:	df 91       	pop	r29
+ 572:	ff 91       	pop	r31
+ 574:	ef 91       	pop	r30
+ 576:	9f 91       	pop	r25
+ 578:	8f 91       	pop	r24
+ 57a:	0f 90       	pop	r0
+ 57c:	0b be       	out	0x3b, r0	; 59
+ 57e:	0f 90       	pop	r0
+ 580:	0f be       	out	0x3f, r0	; 63
+ 582:	0f 90       	pop	r0
+ 584:	1f 90       	pop	r1
+ 586:	18 95       	reti
 
-00000710 <timer_interrupt>:
+00000588 <drvUSARTWriteString>:
+    /* send I'm alive message */
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+ 588:	fc 01       	movw	r30, r24
+ 58a:	0d c0       	rjmp	.+26     	; 0x5a6 <drvUSARTWriteString+0x1e>
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER)));
+ 58c:	80 91 c0 00 	lds	r24, 0x00C0
+ 590:	90 91 c1 00 	lds	r25, 0x00C1
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 594:	85 ff       	sbrs	r24, 5
+ 596:	fa cf       	rjmp	.-12     	; 0x58c <drvUSARTWriteString+0x4>
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+ 598:	31 96       	adiw	r30, 0x01	; 1
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 59a:	82 2f       	mov	r24, r18
+ 59c:	90 e0       	ldi	r25, 0x00	; 0
+ 59e:	90 93 c7 00 	sts	0x00C7, r25
+ 5a2:	80 93 c6 00 	sts	0x00C6, r24
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+ 5a6:	20 81       	ld	r18, Z
+ 5a8:	22 23       	and	r18, r18
+ 5aa:	81 f7       	brne	.-32     	; 0x58c <drvUSARTWriteString+0x4>
+	    drvUSARTPutChar(*data++);
+}
+ 5ac:	08 95       	ret
+
+000005ae <drvUSARTPutChar>:
+ 
+void drvUSARTPutChar(UINT8 data) {
+ 5ae:	28 2f       	mov	r18, r24
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER)));
+ 5b0:	80 91 c0 00 	lds	r24, 0x00C0
+ 5b4:	90 91 c1 00 	lds	r25, 0x00C1
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 5b8:	85 ff       	sbrs	r24, 5
+ 5ba:	fa cf       	rjmp	.-12     	; 0x5b0 <drvUSARTPutChar+0x2>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 5bc:	82 2f       	mov	r24, r18
+ 5be:	90 e0       	ldi	r25, 0x00	; 0
+ 5c0:	90 93 c7 00 	sts	0x00C7, r25
+ 5c4:	80 93 c6 00 	sts	0x00C6, r24
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+	        != USART_DATA_REG_EMPTY) { ; }
+	drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,data);
+
+}
+ 5c8:	08 95       	ret
+
+000005ca <init_gpio>:
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 5ca:	8f ef       	ldi	r24, 0xFF	; 255
+ 5cc:	90 e0       	ldi	r25, 0x00	; 0
+ 5ce:	96 b9       	out	0x06, r25	; 6
+ 5d0:	85 b9       	out	0x05, r24	; 5
+void init_gpio(UINT16 port) {
+ /* set portb for output to LEDs */
+ drvWriteReg(DRV_PORTB,DRV_GPIO_PORT_OFFSET , 0xFF);
+ /* set portd for input from switches */
+ drvWriteReg(DRV_PORTD,DRV_GPIO_PORT_OFFSET , 0x00);
+}
+ 5d2:	1c b8       	out	0x0c, r1	; 12
+ 5d4:	1b b8       	out	0x0b, r1	; 11
+ 5d6:	08 95       	ret
+
+000005d8 <toggle_pin>:
+
+
+void toggle_pin(UINT16 port, UINT8 pin) {
+ 5d8:	fc 01       	movw	r30, r24
+
+	/* set port for output */
+	HWREG(port-1) |= 1<<pin; 
+ 5da:	dc 01       	movw	r26, r24
+ 5dc:	11 97       	sbiw	r26, 0x01	; 1
+ 5de:	2d 91       	ld	r18, X+
+ 5e0:	3c 91       	ld	r19, X
+ 5e2:	11 97       	sbiw	r26, 0x01	; 1
+ 5e4:	81 e0       	ldi	r24, 0x01	; 1
+ 5e6:	90 e0       	ldi	r25, 0x00	; 0
+ 5e8:	02 c0       	rjmp	.+4      	; 0x5ee <toggle_pin+0x16>
+ 5ea:	88 0f       	add	r24, r24
+ 5ec:	99 1f       	adc	r25, r25
+ 5ee:	6a 95       	dec	r22
+ 5f0:	e2 f7       	brpl	.-8      	; 0x5ea <toggle_pin+0x12>
+ 5f2:	28 2b       	or	r18, r24
+ 5f4:	39 2b       	or	r19, r25
+ 5f6:	11 96       	adiw	r26, 0x01	; 1
+ 5f8:	3c 93       	st	X, r19
+ 5fa:	2e 93       	st	-X, r18
+
+
+	HWREG(port) ^= 1<<pin;
+ 5fc:	20 81       	ld	r18, Z
+ 5fe:	31 81       	ldd	r19, Z+1	; 0x01
+ 600:	82 27       	eor	r24, r18
+ 602:	93 27       	eor	r25, r19
+ 604:	91 83       	std	Z+1, r25	; 0x01
+ 606:	80 83       	st	Z, r24
+}
+ 608:	08 95       	ret
+
+0000060a <write_pin>:
+
+
+void write_pin(UINT16 port, UINT8 pin, UINT8 value) {
+ 60a:	cf 93       	push	r28
+ 60c:	df 93       	push	r29
+ 60e:	ec 01       	movw	r28, r24
+
+	/* set port for output */
+	HWREG(port-1) |= 1<<pin; 
+ 610:	fc 01       	movw	r30, r24
+ 612:	31 97       	sbiw	r30, 0x01	; 1
+ 614:	80 81       	ld	r24, Z
+ 616:	91 81       	ldd	r25, Z+1	; 0x01
+ 618:	a1 e0       	ldi	r26, 0x01	; 1
+ 61a:	b0 e0       	ldi	r27, 0x00	; 0
+ 61c:	02 c0       	rjmp	.+4      	; 0x622 <write_pin+0x18>
+ 61e:	aa 0f       	add	r26, r26
+ 620:	bb 1f       	adc	r27, r27
+ 622:	6a 95       	dec	r22
+ 624:	e2 f7       	brpl	.-8      	; 0x61e <write_pin+0x14>
+ 626:	8a 2b       	or	r24, r26
+ 628:	9b 2b       	or	r25, r27
+ 62a:	91 83       	std	Z+1, r25	; 0x01
+ 62c:	80 83       	st	Z, r24
+
+    if (value)
+ 62e:	44 23       	and	r20, r20
+ 630:	29 f0       	breq	.+10     	; 0x63c <write_pin+0x32>
+	/* output to port */
+        HWREG(port) |= (1<<pin); 
+ 632:	88 81       	ld	r24, Y
+ 634:	99 81       	ldd	r25, Y+1	; 0x01
+ 636:	8a 2b       	or	r24, r26
+ 638:	9b 2b       	or	r25, r27
+ 63a:	07 c0       	rjmp	.+14     	; 0x64a <write_pin+0x40>
+    else
+	    HWREG(port) &= (UINT8)~(1<<pin);
+ 63c:	28 81       	ld	r18, Y
+ 63e:	39 81       	ldd	r19, Y+1	; 0x01
+ 640:	8a 2f       	mov	r24, r26
+ 642:	80 95       	com	r24
+ 644:	90 e0       	ldi	r25, 0x00	; 0
+ 646:	82 23       	and	r24, r18
+ 648:	93 23       	and	r25, r19
+ 64a:	99 83       	std	Y+1, r25	; 0x01
+ 64c:	88 83       	st	Y, r24
+}
+ 64e:	df 91       	pop	r29
+ 650:	cf 91       	pop	r28
+ 652:	08 95       	ret
+
+00000654 <read_pin>:
+
+
+UINT8 read_pin(UINT16 port, UINT8 pin) {
+ 654:	fc 01       	movw	r30, r24
+
+	/* set port for input */
+	HWREG(port-1) &= (UINT8)~pin; 
+ 656:	dc 01       	movw	r26, r24
+ 658:	11 97       	sbiw	r26, 0x01	; 1
+ 65a:	2d 91       	ld	r18, X+
+ 65c:	3c 91       	ld	r19, X
+ 65e:	11 97       	sbiw	r26, 0x01	; 1
+ 660:	86 2f       	mov	r24, r22
+ 662:	80 95       	com	r24
+ 664:	90 e0       	ldi	r25, 0x00	; 0
+ 666:	82 23       	and	r24, r18
+ 668:	93 23       	and	r25, r19
+ 66a:	11 96       	adiw	r26, 0x01	; 1
+ 66c:	9c 93       	st	X, r25
+ 66e:	8e 93       	st	-X, r24
+
+	return(HWREG(port-2) &= pin);
+ 670:	32 97       	sbiw	r30, 0x02	; 2
+ 672:	80 81       	ld	r24, Z
+ 674:	91 81       	ldd	r25, Z+1	; 0x01
+ 676:	70 e0       	ldi	r23, 0x00	; 0
+ 678:	86 23       	and	r24, r22
+ 67a:	97 23       	and	r25, r23
+ 67c:	91 83       	std	Z+1, r25	; 0x01
+ 67e:	80 83       	st	Z, r24
+ 680:	80 81       	ld	r24, Z
+ 682:	91 81       	ldd	r25, Z+1	; 0x01
+
+}
+ 684:	08 95       	ret
+
+00000686 <drvReadEeprom>:
+    /*EECR |= (1<<EEPE);*/
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_PRG_EN);
+    
+}
+
+UINT8 drvReadEeprom(UINT16 addr) {
+ 686:	ac 01       	movw	r20, r24
+
+    /* Wait for completion of previous write */
+    while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & EEPROM_PRG_EN)
+ 688:	ef b3       	in	r30, 0x1f	; 31
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER)));
+ 68a:	f0 e0       	ldi	r31, 0x00	; 0
+ 68c:	80 81       	ld	r24, Z
+ 68e:	91 81       	ldd	r25, Z+1	; 0x01
+}
+
+UINT8 drvReadEeprom(UINT16 addr) {
+
+    /* Wait for completion of previous write */
+    while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & EEPROM_PRG_EN)
+ 690:	81 fd       	sbrc	r24, 1
+ 692:	fa cf       	rjmp	.-12     	; 0x688 <drvReadEeprom+0x2>
+    ;
+    /* Set up address register */
+    /*EEAR = uiAddress;*/
+	drvWriteUint16Reg(EEPROM_BASE,EEPROM_ADDR_OFFSET,addr);
+ 694:	8f b3       	in	r24, 0x1f	; 31
+ 696:	90 e0       	ldi	r25, 0x00	; 0
+ 698:	62 e0       	ldi	r22, 0x02	; 2
+ 69a:	70 e0       	ldi	r23, 0x00	; 0
+ 69c:	0e 94 1a 02 	call	0x434	; 0x434 <drvWriteUint16Reg>
+
+    /* Start eeprom read by writing EERE */
+    /*EECR |= (1<<EERE);*/
+    /*eeprom_control_reg = drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) | EEPROM_READ_EN;*/
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_READ_EN);
+ 6a0:	ef b3       	in	r30, 0x1f	; 31
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 6a2:	f0 e0       	ldi	r31, 0x00	; 0
+ 6a4:	81 e0       	ldi	r24, 0x01	; 1
+ 6a6:	90 e0       	ldi	r25, 0x00	; 0
+ 6a8:	91 83       	std	Z+1, r25	; 0x01
+ 6aa:	80 83       	st	Z, r24
+    /*EECR |= (1<<EERE);*/
+    /*eeprom_control_reg = drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) | EEPROM_READ_EN;*/
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_READ_EN);
+
+    /* Return data from Data Register */
+    return drvReadReg(EEPROM_BASE,EEPROM_DATA_OFFSET);
+ 6ac:	ef b3       	in	r30, 0x1f	; 31
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER)));
+ 6ae:	f0 e0       	ldi	r31, 0x00	; 0
+ 6b0:	81 81       	ldd	r24, Z+1	; 0x01
+ 6b2:	92 81       	ldd	r25, Z+2	; 0x02
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_READ_EN);
+
+    /* Return data from Data Register */
+    return drvReadReg(EEPROM_BASE,EEPROM_DATA_OFFSET);
+
+}
+ 6b4:	08 95       	ret
+
+000006b6 <init_eeprom>:
+
+/**
+  * Get the number of bytes currently written to eprom and 
+  * set pointer to next address available for writing.
+  */
+void init_eeprom() {
+ 6b6:	0f 93       	push	r16
+ 6b8:	1f 93       	push	r17
+
+    number_of_bytes_used_in_eeprom = (drvReadEeprom(EEPROM_DATA_COUNT_ADDR)<<8);
+ 6ba:	80 e0       	ldi	r24, 0x00	; 0
+ 6bc:	90 e0       	ldi	r25, 0x00	; 0
+ 6be:	0e 94 43 03 	call	0x686	; 0x686 <drvReadEeprom>
+ 6c2:	38 2f       	mov	r19, r24
+ 6c4:	20 e0       	ldi	r18, 0x00	; 0
+ 6c6:	30 93 26 02 	sts	0x0226, r19
+ 6ca:	20 93 25 02 	sts	0x0225, r18
+    number_of_bytes_used_in_eeprom |= drvReadEeprom(EEPROM_DATA_COUNT_ADDR+1);
+ 6ce:	00 91 25 02 	lds	r16, 0x0225
+ 6d2:	10 91 26 02 	lds	r17, 0x0226
+ 6d6:	81 e0       	ldi	r24, 0x01	; 1
+ 6d8:	90 e0       	ldi	r25, 0x00	; 0
+ 6da:	0e 94 43 03 	call	0x686	; 0x686 <drvReadEeprom>
+ 6de:	90 e0       	ldi	r25, 0x00	; 0
+ 6e0:	80 2b       	or	r24, r16
+ 6e2:	91 2b       	or	r25, r17
+ 6e4:	90 93 26 02 	sts	0x0226, r25
+ 6e8:	80 93 25 02 	sts	0x0225, r24
+	if ( number_of_bytes_used_in_eeprom == 0xFF ) 
+ 6ec:	80 91 25 02 	lds	r24, 0x0225
+ 6f0:	90 91 26 02 	lds	r25, 0x0226
+ 6f4:	8f 3f       	cpi	r24, 0xFF	; 255
+ 6f6:	91 05       	cpc	r25, r1
+ 6f8:	21 f4       	brne	.+8      	; 0x702 <init_eeprom+0x4c>
+        number_of_bytes_used_in_eeprom = 0;
+ 6fa:	10 92 26 02 	sts	0x0226, r1
+ 6fe:	10 92 25 02 	sts	0x0225, r1
+	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
+ 702:	80 91 25 02 	lds	r24, 0x0225
+ 706:	90 91 26 02 	lds	r25, 0x0226
+ 70a:	01 96       	adiw	r24, 0x01	; 1
+ 70c:	90 93 28 02 	sts	0x0228, r25
+ 710:	80 93 27 02 	sts	0x0227, r24
+
+}
+ 714:	1f 91       	pop	r17
+ 716:	0f 91       	pop	r16
+ 718:	08 95       	ret
+
+0000071a <drvWriteEeprom>:
+
+
+/* do we have to manage a buffer here in case the eeprom is not ready? */
+void drvWriteEeprom(UINT16 addr, UINT8 data)
+{
+ 71a:	1f 93       	push	r17
+ 71c:	ac 01       	movw	r20, r24
+ 71e:	16 2f       	mov	r17, r22
+    /* Wait for completion of previous write */
+    /*while(EECR & (1<<EEPE))*/
+    while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & EEPROM_PRG_EN)
+ 720:	ef b3       	in	r30, 0x1f	; 31
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER)));
+ 722:	f0 e0       	ldi	r31, 0x00	; 0
+ 724:	80 81       	ld	r24, Z
+ 726:	91 81       	ldd	r25, Z+1	; 0x01
+/* do we have to manage a buffer here in case the eeprom is not ready? */
+void drvWriteEeprom(UINT16 addr, UINT8 data)
+{
+    /* Wait for completion of previous write */
+    /*while(EECR & (1<<EEPE))*/
+    while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & EEPROM_PRG_EN)
+ 728:	81 fd       	sbrc	r24, 1
+ 72a:	fa cf       	rjmp	.-12     	; 0x720 <drvWriteEeprom+0x6>
+    ;
+
+    /* Set up address and Data Registers */
+    /*EEAR = uiAddress;*/
+	drvWriteUint16Reg(EEPROM_BASE,EEPROM_ADDR_OFFSET,addr);
+ 72c:	8f b3       	in	r24, 0x1f	; 31
+ 72e:	90 e0       	ldi	r25, 0x00	; 0
+ 730:	62 e0       	ldi	r22, 0x02	; 2
+ 732:	70 e0       	ldi	r23, 0x00	; 0
+ 734:	0e 94 1a 02 	call	0x434	; 0x434 <drvWriteUint16Reg>
+
+    /*EEDR = ucData;*/
+    drvWriteReg(EEPROM_BASE,EEPROM_DATA_OFFSET,data);
+ 738:	ef b3       	in	r30, 0x1f	; 31
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 73a:	f0 e0       	ldi	r31, 0x00	; 0
+ 73c:	81 2f       	mov	r24, r17
+ 73e:	90 e0       	ldi	r25, 0x00	; 0
+ 740:	92 83       	std	Z+2, r25	; 0x02
+ 742:	81 83       	std	Z+1, r24	; 0x01
+    /*EEDR = ucData;*/
+    drvWriteReg(EEPROM_BASE,EEPROM_DATA_OFFSET,data);
+
+    /* Write logical one to EEMPE */
+    /*EECR |= (1<<EEMPE);*/
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_MSTR_PRG_EN);
+ 744:	ef b3       	in	r30, 0x1f	; 31
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 746:	f0 e0       	ldi	r31, 0x00	; 0
+ 748:	84 e0       	ldi	r24, 0x04	; 4
+ 74a:	90 e0       	ldi	r25, 0x00	; 0
+ 74c:	91 83       	std	Z+1, r25	; 0x01
+ 74e:	80 83       	st	Z, r24
+    /*EECR |= (1<<EEMPE);*/
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_MSTR_PRG_EN);
+
+    /* Start eeprom write by setting EEPE */
+    /*EECR |= (1<<EEPE);*/
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_PRG_EN);
+ 750:	ef b3       	in	r30, 0x1f	; 31
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 752:	f0 e0       	ldi	r31, 0x00	; 0
+ 754:	82 e0       	ldi	r24, 0x02	; 2
+ 756:	90 e0       	ldi	r25, 0x00	; 0
+ 758:	91 83       	std	Z+1, r25	; 0x01
+ 75a:	80 83       	st	Z, r24
+
+    /* Start eeprom write by setting EEPE */
+    /*EECR |= (1<<EEPE);*/
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_PRG_EN);
+    
+}
+ 75c:	1f 91       	pop	r17
+ 75e:	08 95       	ret
+
+00000760 <drvResetEepromDataCount>:
+	next_eeprom_address++;
+}
+
+void drvResetEepromDataCount() {
+
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, 0);
+ 760:	80 e0       	ldi	r24, 0x00	; 0
+ 762:	90 e0       	ldi	r25, 0x00	; 0
+ 764:	60 e0       	ldi	r22, 0x00	; 0
+ 766:	0e 94 8d 03 	call	0x71a	; 0x71a <drvWriteEeprom>
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR+1, 0);
+ 76a:	81 e0       	ldi	r24, 0x01	; 1
+ 76c:	90 e0       	ldi	r25, 0x00	; 0
+ 76e:	60 e0       	ldi	r22, 0x00	; 0
+ 770:	0e 94 8d 03 	call	0x71a	; 0x71a <drvWriteEeprom>
+
+	number_of_bytes_used_in_eeprom = 0;
+ 774:	10 92 26 02 	sts	0x0226, r1
+ 778:	10 92 25 02 	sts	0x0225, r1
+	next_eeprom_address = EEPROM_DATA_START_ADDR;
+ 77c:	82 e0       	ldi	r24, 0x02	; 2
+ 77e:	90 e0       	ldi	r25, 0x00	; 0
+ 780:	90 93 28 02 	sts	0x0228, r25
+ 784:	80 93 27 02 	sts	0x0227, r24
+}
+ 788:	08 95       	ret
+
+0000078a <drvUpdateEepromDataCount>:
+
+}
+
+void drvUpdateEepromDataCount() {
+
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, (next_eeprom_address>>8));
+ 78a:	20 91 27 02 	lds	r18, 0x0227
+ 78e:	30 91 28 02 	lds	r19, 0x0228
+ 792:	80 e0       	ldi	r24, 0x00	; 0
+ 794:	90 e0       	ldi	r25, 0x00	; 0
+ 796:	63 2f       	mov	r22, r19
+ 798:	0e 94 8d 03 	call	0x71a	; 0x71a <drvWriteEeprom>
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR+1, (next_eeprom_address&0xFF));
+ 79c:	60 91 27 02 	lds	r22, 0x0227
+ 7a0:	70 91 28 02 	lds	r23, 0x0228
+ 7a4:	81 e0       	ldi	r24, 0x01	; 1
+ 7a6:	90 e0       	ldi	r25, 0x00	; 0
+ 7a8:	0e 94 8d 03 	call	0x71a	; 0x71a <drvWriteEeprom>
+	next_eeprom_address++;
+ 7ac:	80 91 27 02 	lds	r24, 0x0227
+ 7b0:	90 91 28 02 	lds	r25, 0x0228
+ 7b4:	01 96       	adiw	r24, 0x01	; 1
+ 7b6:	90 93 28 02 	sts	0x0228, r25
+ 7ba:	80 93 27 02 	sts	0x0227, r24
+}
+ 7be:	08 95       	ret
+
+000007c0 <init_usart0>:
+
+	sei();
+}
+
+void init_usart0() 
+{
+ 7c0:	df 93       	push	r29
+ 7c2:	cf 93       	push	r28
+ 7c4:	cd b7       	in	r28, 0x3d	; 61
+ 7c6:	de b7       	in	r29, 0x3e	; 62
+ 7c8:	2f 97       	sbiw	r28, 0x0f	; 15
+ 7ca:	0f b6       	in	r0, 0x3f	; 63
+ 7cc:	f8 94       	cli
+ 7ce:	de bf       	out	0x3e, r29	; 62
+ 7d0:	0f be       	out	0x3f, r0	; 63
+ 7d2:	cd bf       	out	0x3d, r28	; 61
+
+    volatile UINT8 string[] = "Hello World\r\n";
+ 7d4:	de 01       	movw	r26, r28
+ 7d6:	12 96       	adiw	r26, 0x02	; 2
+ 7d8:	e2 e1       	ldi	r30, 0x12	; 18
+ 7da:	f2 e0       	ldi	r31, 0x02	; 2
+ 7dc:	8e e0       	ldi	r24, 0x0E	; 14
+ 7de:	01 90       	ld	r0, Z+
+ 7e0:	0d 92       	st	X+, r0
+ 7e2:	81 50       	subi	r24, 0x01	; 1
+ 7e4:	e1 f7       	brne	.-8      	; 0x7de <init_usart0+0x1e>
+    volatile UINT8 val = 0;
+ 7e6:	19 82       	std	Y+1, r1	; 0x01
+
+	val = USART_RX_EN | USART_TX_EN | USART_RX_COMP_IE;
+ 7e8:	88 e9       	ldi	r24, 0x98	; 152
+ 7ea:	89 83       	std	Y+1, r24	; 0x01
+    drvWriteReg(USART0_BASEADDR,USART_UCSRB_OFFSET,val);
+ 7ec:	89 81       	ldd	r24, Y+1	; 0x01
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 7ee:	90 e0       	ldi	r25, 0x00	; 0
+ 7f0:	90 93 c2 00 	sts	0x00C2, r25
+ 7f4:	80 93 c1 00 	sts	0x00C1, r24
+    volatile UINT8 val = 0;
+
+	val = USART_RX_EN | USART_TX_EN | USART_RX_COMP_IE;
+    drvWriteReg(USART0_BASEADDR,USART_UCSRB_OFFSET,val);
+
+	val = USART_8_DATA_BITS;
+ 7f8:	86 e0       	ldi	r24, 0x06	; 6
+ 7fa:	89 83       	std	Y+1, r24	; 0x01
+    drvWriteReg(USART0_BASEADDR,USART_UCSRC_OFFSET,val);
+ 7fc:	89 81       	ldd	r24, Y+1	; 0x01
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 7fe:	90 e0       	ldi	r25, 0x00	; 0
+ 800:	90 93 c3 00 	sts	0x00C3, r25
+ 804:	80 93 c2 00 	sts	0x00C2, r24
+
+	val = USART_8_DATA_BITS;
+    drvWriteReg(USART0_BASEADDR,USART_UCSRC_OFFSET,val);
+
+    /* calculate baud rate based on cpu frequency */
+	val = ((F_CPU + 9600 * 8L) / (9600 * 16L) - 1);
+ 808:	83 e3       	ldi	r24, 0x33	; 51
+ 80a:	89 83       	std	Y+1, r24	; 0x01
+
+    /* write baud rate register */
+   	drvWriteUint16Reg(USART0_BASEADDR,USART_UBRR_OFFSET,val);
+ 80c:	49 81       	ldd	r20, Y+1	; 0x01
+ 80e:	80 ec       	ldi	r24, 0xC0	; 192
+ 810:	90 e0       	ldi	r25, 0x00	; 0
+ 812:	64 e0       	ldi	r22, 0x04	; 4
+ 814:	70 e0       	ldi	r23, 0x00	; 0
+ 816:	50 e0       	ldi	r21, 0x00	; 0
+ 818:	0e 94 1a 02 	call	0x434	; 0x434 <drvWriteUint16Reg>
+ 81c:	20 e0       	ldi	r18, 0x00	; 0
+ 81e:	30 e0       	ldi	r19, 0x00	; 0
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+ 820:	ae 01       	movw	r20, r28
+ 822:	4e 5f       	subi	r20, 0xFE	; 254
+ 824:	5f 4f       	sbci	r21, 0xFF	; 255
+ 826:	0e c0       	rjmp	.+28     	; 0x844 <init_usart0+0x84>
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER)));
+ 828:	80 91 c0 00 	lds	r24, 0x00C0
+ 82c:	90 91 c1 00 	lds	r25, 0x00C1
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 830:	85 ff       	sbrs	r24, 5
+ 832:	fa cf       	rjmp	.-12     	; 0x828 <init_usart0+0x68>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT16 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 834:	8e 2f       	mov	r24, r30
+ 836:	90 e0       	ldi	r25, 0x00	; 0
+ 838:	90 93 c7 00 	sts	0x00C7, r25
+ 83c:	80 93 c6 00 	sts	0x00C6, r24
+ 840:	2f 5f       	subi	r18, 0xFF	; 255
+ 842:	3f 4f       	sbci	r19, 0xFF	; 255
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+ 844:	fa 01       	movw	r30, r20
+ 846:	e2 0f       	add	r30, r18
+ 848:	f3 1f       	adc	r31, r19
+ 84a:	e0 81       	ld	r30, Z
+ 84c:	ee 23       	and	r30, r30
+ 84e:	61 f7       	brne	.-40     	; 0x828 <init_usart0+0x68>
+    /* write baud rate register */
+   	drvWriteUint16Reg(USART0_BASEADDR,USART_UBRR_OFFSET,val);
+
+    /* send I'm alive message */
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+ 850:	2f 96       	adiw	r28, 0x0f	; 15
+ 852:	0f b6       	in	r0, 0x3f	; 63
+ 854:	f8 94       	cli
+ 856:	de bf       	out	0x3e, r29	; 62
+ 858:	0f be       	out	0x3f, r0	; 63
+ 85a:	cd bf       	out	0x3d, r28	; 61
+ 85c:	cf 91       	pop	r28
+ 85e:	df 91       	pop	r29
+ 860:	08 95       	ret
+
+00000862 <timer_interrupt>:
 void timer_interrupt() {
     static UINT8 pin;
 	static UINT8 on;
 
     /* reset the timer */
     HWREG(TCNT0) = 256-DELAY; 
- 710:	8c e9       	ldi	r24, 0x9C	; 156
- 712:	86 bd       	out	0x26, r24	; 38
+ 862:	e6 b5       	in	r30, 0x26	; 38
+ 864:	f0 e0       	ldi	r31, 0x00	; 0
+ 866:	8c e9       	ldi	r24, 0x9C	; 156
+ 868:	90 e0       	ldi	r25, 0x00	; 0
+ 86a:	91 83       	std	Z+1, r25	; 0x01
+ 86c:	80 83       	st	Z, r24
 	    
 	toggle_pin(DRV_PORTB+DRV_GPIO_PORT_OFFSET,pin);
- 714:	40 91 24 02 	lds	r20, 0x0224
+ 86e:	40 91 24 02 	lds	r20, 0x0224
 
 
 void toggle_pin(UINT16 port, UINT8 pin) {
 
 	/* set port for output */
 	HWREG(port-1) |= 1<<pin; 
- 718:	24 b1       	in	r18, 0x04	; 4
- 71a:	81 e0       	ldi	r24, 0x01	; 1
- 71c:	90 e0       	ldi	r25, 0x00	; 0
- 71e:	04 2e       	mov	r0, r20
- 720:	02 c0       	rjmp	.+4      	; 0x726 <timer_interrupt+0x16>
- 722:	88 0f       	add	r24, r24
- 724:	99 1f       	adc	r25, r25
- 726:	0a 94       	dec	r0
- 728:	e2 f7       	brpl	.-8      	; 0x722 <timer_interrupt+0x12>
- 72a:	28 2b       	or	r18, r24
- 72c:	24 b9       	out	0x04, r18	; 4
+ 872:	24 b1       	in	r18, 0x04	; 4
+ 874:	35 b1       	in	r19, 0x05	; 5
+ 876:	81 e0       	ldi	r24, 0x01	; 1
+ 878:	90 e0       	ldi	r25, 0x00	; 0
+ 87a:	04 2e       	mov	r0, r20
+ 87c:	02 c0       	rjmp	.+4      	; 0x882 <timer_interrupt+0x20>
+ 87e:	88 0f       	add	r24, r24
+ 880:	99 1f       	adc	r25, r25
+ 882:	0a 94       	dec	r0
+ 884:	e2 f7       	brpl	.-8      	; 0x87e <timer_interrupt+0x1c>
+ 886:	28 2b       	or	r18, r24
+ 888:	39 2b       	or	r19, r25
+ 88a:	35 b9       	out	0x05, r19	; 5
+ 88c:	24 b9       	out	0x04, r18	; 4
 
 
 	HWREG(port) ^= 1<<pin;
- 72e:	25 b1       	in	r18, 0x05	; 5
- 730:	82 27       	eor	r24, r18
- 732:	85 b9       	out	0x05, r24	; 5
+ 88e:	25 b1       	in	r18, 0x05	; 5
+ 890:	36 b1       	in	r19, 0x06	; 6
+ 892:	82 27       	eor	r24, r18
+ 894:	93 27       	eor	r25, r19
+ 896:	96 b9       	out	0x06, r25	; 6
+ 898:	85 b9       	out	0x05, r24	; 5
     /* reset the timer */
     HWREG(TCNT0) = 256-DELAY; 
 	    
 	toggle_pin(DRV_PORTB+DRV_GPIO_PORT_OFFSET,pin);
 	/* increment to next pin after toggle on/off once. */
 	if ( pin < 8 ) {
- 734:	48 30       	cpi	r20, 0x08	; 8
- 736:	c0 f4       	brcc	.+48     	; 0x768 <timer_interrupt+0x58>
+ 89a:	48 30       	cpi	r20, 0x08	; 8
+ 89c:	c0 f4       	brcc	.+48     	; 0x8ce <timer_interrupt+0x6c>
 	    if ( on<1 ) {
- 738:	80 91 23 02 	lds	r24, 0x0223
- 73c:	88 23       	and	r24, r24
- 73e:	21 f4       	brne	.+8      	; 0x748 <timer_interrupt+0x38>
+ 89e:	80 91 23 02 	lds	r24, 0x0223
+ 8a2:	88 23       	and	r24, r24
+ 8a4:	21 f4       	brne	.+8      	; 0x8ae <timer_interrupt+0x4c>
 			on++;
- 740:	81 e0       	ldi	r24, 0x01	; 1
- 742:	80 93 23 02 	sts	0x0223, r24
- 746:	08 95       	ret
+ 8a6:	81 e0       	ldi	r24, 0x01	; 1
+ 8a8:	80 93 23 02 	sts	0x0223, r24
+ 8ac:	08 95       	ret
         } else {
    	        pin += 1;
- 748:	4f 5f       	subi	r20, 0xFF	; 255
- 74a:	40 93 24 02 	sts	0x0224, r20
+ 8ae:	4f 5f       	subi	r20, 0xFF	; 255
+ 8b0:	40 93 24 02 	sts	0x0224, r20
 			on = 0;
- 74e:	10 92 23 02 	sts	0x0223, r1
+ 8b4:	10 92 23 02 	sts	0x0223, r1
         /* if the operator is pressing the current button then
 	       reset the count */
             if ( drvTestBit(DRV_PORTD,DRV_GPIO_PIN_OFFSET,pin) )
- 752:	89 e2       	ldi	r24, 0x29	; 41
- 754:	90 e0       	ldi	r25, 0x00	; 0
- 756:	60 e0       	ldi	r22, 0x00	; 0
- 758:	70 e0       	ldi	r23, 0x00	; 0
- 75a:	0e 94 47 01 	call	0x28e	; 0x28e <drvTestBit>
- 75e:	88 23       	and	r24, r24
- 760:	29 f0       	breq	.+10     	; 0x76c <timer_interrupt+0x5c>
+ 8b8:	89 e2       	ldi	r24, 0x29	; 41
+ 8ba:	90 e0       	ldi	r25, 0x00	; 0
+ 8bc:	60 e0       	ldi	r22, 0x00	; 0
+ 8be:	70 e0       	ldi	r23, 0x00	; 0
+ 8c0:	0e 94 32 02 	call	0x464	; 0x464 <drvTestBit>
+ 8c4:	88 23       	and	r24, r24
+ 8c6:	29 f0       	breq	.+10     	; 0x8d2 <timer_interrupt+0x70>
 	            pin = 0;
- 762:	10 92 24 02 	sts	0x0224, r1
- 766:	08 95       	ret
+ 8c8:	10 92 24 02 	sts	0x0224, r1
+ 8cc:	08 95       	ret
         }
     }
     else 
 	    pin = 0;
- 768:	10 92 24 02 	sts	0x0224, r1
- 76c:	08 95       	ret
+ 8ce:	10 92 24 02 	sts	0x0224, r1
+ 8d2:	08 95       	ret
 
-0000076e <__vector_23>:
+000008d4 <__vector_23>:
 }
 
 /* in you port.c code */
 /* timer 0 overflow interrupt service routine */
 void __vector_23 (void) 
 { 
- 76e:	78 94       	sei
- 770:	1f 92       	push	r1
- 772:	0f 92       	push	r0
- 774:	0f b6       	in	r0, 0x3f	; 63
- 776:	0f 92       	push	r0
- 778:	0b b6       	in	r0, 0x3b	; 59
- 77a:	0f 92       	push	r0
- 77c:	11 24       	eor	r1, r1
- 77e:	2f 93       	push	r18
- 780:	3f 93       	push	r19
- 782:	4f 93       	push	r20
- 784:	5f 93       	push	r21
- 786:	6f 93       	push	r22
- 788:	7f 93       	push	r23
- 78a:	8f 93       	push	r24
- 78c:	9f 93       	push	r25
- 78e:	af 93       	push	r26
- 790:	bf 93       	push	r27
- 792:	ef 93       	push	r30
- 794:	ff 93       	push	r31
+ 8d4:	78 94       	sei
+ 8d6:	1f 92       	push	r1
+ 8d8:	0f 92       	push	r0
+ 8da:	0f b6       	in	r0, 0x3f	; 63
+ 8dc:	0f 92       	push	r0
+ 8de:	0b b6       	in	r0, 0x3b	; 59
+ 8e0:	0f 92       	push	r0
+ 8e2:	11 24       	eor	r1, r1
+ 8e4:	2f 93       	push	r18
+ 8e6:	3f 93       	push	r19
+ 8e8:	4f 93       	push	r20
+ 8ea:	5f 93       	push	r21
+ 8ec:	6f 93       	push	r22
+ 8ee:	7f 93       	push	r23
+ 8f0:	8f 93       	push	r24
+ 8f2:	9f 93       	push	r25
+ 8f4:	af 93       	push	r26
+ 8f6:	bf 93       	push	r27
+ 8f8:	ef 93       	push	r30
+ 8fa:	ff 93       	push	r31
     timer_interrupt();
- 796:	0e 94 88 03 	call	0x710	; 0x710 <timer_interrupt>
+ 8fc:	0e 94 31 04 	call	0x862	; 0x862 <timer_interrupt>
 	sei();
- 79a:	78 94       	sei
+ 900:	78 94       	sei
 }
- 79c:	ff 91       	pop	r31
- 79e:	ef 91       	pop	r30
- 7a0:	bf 91       	pop	r27
- 7a2:	af 91       	pop	r26
- 7a4:	9f 91       	pop	r25
- 7a6:	8f 91       	pop	r24
- 7a8:	7f 91       	pop	r23
- 7aa:	6f 91       	pop	r22
- 7ac:	5f 91       	pop	r21
- 7ae:	4f 91       	pop	r20
- 7b0:	3f 91       	pop	r19
- 7b2:	2f 91       	pop	r18
- 7b4:	0f 90       	pop	r0
- 7b6:	0b be       	out	0x3b, r0	; 59
- 7b8:	0f 90       	pop	r0
- 7ba:	0f be       	out	0x3f, r0	; 63
- 7bc:	0f 90       	pop	r0
- 7be:	1f 90       	pop	r1
- 7c0:	18 95       	reti
+ 902:	ff 91       	pop	r31
+ 904:	ef 91       	pop	r30
+ 906:	bf 91       	pop	r27
+ 908:	af 91       	pop	r26
+ 90a:	9f 91       	pop	r25
+ 90c:	8f 91       	pop	r24
+ 90e:	7f 91       	pop	r23
+ 910:	6f 91       	pop	r22
+ 912:	5f 91       	pop	r21
+ 914:	4f 91       	pop	r20
+ 916:	3f 91       	pop	r19
+ 918:	2f 91       	pop	r18
+ 91a:	0f 90       	pop	r0
+ 91c:	0b be       	out	0x3b, r0	; 59
+ 91e:	0f 90       	pop	r0
+ 920:	0f be       	out	0x3f, r0	; 63
+ 922:	0f 90       	pop	r0
+ 924:	1f 90       	pop	r1
+ 926:	18 95       	reti
 
-000007c2 <main>:
+00000928 <main>:
 #include "drvapi.h"
 
 
 
 int main() {
- 7c2:	df 93       	push	r29
- 7c4:	cf 93       	push	r28
- 7c6:	00 d0       	rcall	.+0      	; 0x7c8 <main+0x6>
- 7c8:	0f 92       	push	r0
- 7ca:	0f 92       	push	r0
- 7cc:	cd b7       	in	r28, 0x3d	; 61
- 7ce:	de b7       	in	r29, 0x3e	; 62
+ 928:	df 93       	push	r29
+ 92a:	cf 93       	push	r28
+ 92c:	00 d0       	rcall	.+0      	; 0x92e <main+0x6>
+ 92e:	0f 92       	push	r0
+ 930:	0f 92       	push	r0
+ 932:	cd b7       	in	r28, 0x3d	; 61
+ 934:	de b7       	in	r29, 0x3e	; 62
     UINT8 pinvalue;
 
     DRVCTRL example;
 
     drvinit(example);
- 7d0:	49 81       	ldd	r20, Y+1	; 0x01
- 7d2:	5a 81       	ldd	r21, Y+2	; 0x02
- 7d4:	6b 81       	ldd	r22, Y+3	; 0x03
- 7d6:	7c 81       	ldd	r23, Y+4	; 0x04
- 7d8:	8d 81       	ldd	r24, Y+5	; 0x05
- 7da:	0e 94 95 00 	call	0x12a	; 0x12a <drvinit>
+ 936:	49 81       	ldd	r20, Y+1	; 0x01
+ 938:	5a 81       	ldd	r21, Y+2	; 0x02
+ 93a:	6b 81       	ldd	r22, Y+3	; 0x03
+ 93c:	7c 81       	ldd	r23, Y+4	; 0x04
+ 93e:	8d 81       	ldd	r24, Y+5	; 0x05
+ 940:	0e 94 95 00 	call	0x12a	; 0x12a <drvinit>
 
 	pinvalue = gpio_read_pin(&example,PORTD, 1);
- 7de:	ce 01       	movw	r24, r28
- 7e0:	01 96       	adiw	r24, 0x01	; 1
- 7e2:	6b e2       	ldi	r22, 0x2B	; 43
- 7e4:	41 e0       	ldi	r20, 0x01	; 1
- 7e6:	0e 94 b3 00 	call	0x166	; 0x166 <gpio_read_pin>
+ 944:	6b b1       	in	r22, 0x0b	; 11
+ 946:	ce 01       	movw	r24, r28
+ 948:	01 96       	adiw	r24, 0x01	; 1
+ 94a:	41 e0       	ldi	r20, 0x01	; 1
+ 94c:	0e 94 b3 00 	call	0x166	; 0x166 <gpio_read_pin>
 
 	init_gpio(DRV_PORTB);
- 7ea:	83 e2       	ldi	r24, 0x23	; 35
- 7ec:	0e 94 91 01 	call	0x322	; 0x322 <init_gpio>
+ 950:	83 e2       	ldi	r24, 0x23	; 35
+ 952:	0e 94 e5 02 	call	0x5ca	; 0x5ca <init_gpio>
 	init_gpio(DRV_PORTD);
- 7f0:	89 e2       	ldi	r24, 0x29	; 41
- 7f2:	0e 94 91 01 	call	0x322	; 0x322 <init_gpio>
+ 956:	89 e2       	ldi	r24, 0x29	; 41
+ 958:	0e 94 e5 02 	call	0x5ca	; 0x5ca <init_gpio>
 	   function where I could just pass a pointer to a
 	   function that would be called when the timer
 	   overflowed, like the one below.
     */
     /* schedulePeriodicTask(timePeriod,&task); */
     init_timer();
- 7f6:	0e 94 9a 00 	call	0x134	; 0x134 <init_timer>
+ 95c:	0e 94 9a 00 	call	0x134	; 0x134 <init_timer>
 
     init_usart0();
- 7fa:	0e 94 4c 02 	call	0x498	; 0x498 <init_usart0>
+ 960:	0e 94 e0 03 	call	0x7c0	; 0x7c0 <init_usart0>
 
     init_eeprom();
- 7fe:	0e 94 d8 01 	call	0x3b0	; 0x3b0 <init_eeprom>
- 802:	ff cf       	rjmp	.-2      	; 0x802 <main+0x40>
+ 964:	0e 94 5b 03 	call	0x6b6	; 0x6b6 <init_eeprom>
 
-00000804 <__udivmodhi4>:
- 804:	aa 1b       	sub	r26, r26
- 806:	bb 1b       	sub	r27, r27
- 808:	51 e1       	ldi	r21, 0x11	; 17
- 80a:	07 c0       	rjmp	.+14     	; 0x81a <__udivmodhi4_ep>
+	process();
+ 968:	0e 94 2d 01 	call	0x25a	; 0x25a <process>
+ 96c:	ff cf       	rjmp	.-2      	; 0x96c <main+0x44>
 
-0000080c <__udivmodhi4_loop>:
- 80c:	aa 1f       	adc	r26, r26
- 80e:	bb 1f       	adc	r27, r27
- 810:	a6 17       	cp	r26, r22
- 812:	b7 07       	cpc	r27, r23
- 814:	10 f0       	brcs	.+4      	; 0x81a <__udivmodhi4_ep>
- 816:	a6 1b       	sub	r26, r22
- 818:	b7 0b       	sbc	r27, r23
+0000096e <__udivmodhi4>:
+ 96e:	aa 1b       	sub	r26, r26
+ 970:	bb 1b       	sub	r27, r27
+ 972:	51 e1       	ldi	r21, 0x11	; 17
+ 974:	07 c0       	rjmp	.+14     	; 0x984 <__udivmodhi4_ep>
 
-0000081a <__udivmodhi4_ep>:
- 81a:	88 1f       	adc	r24, r24
- 81c:	99 1f       	adc	r25, r25
- 81e:	5a 95       	dec	r21
- 820:	a9 f7       	brne	.-22     	; 0x80c <__udivmodhi4_loop>
- 822:	80 95       	com	r24
- 824:	90 95       	com	r25
- 826:	bc 01       	movw	r22, r24
- 828:	cd 01       	movw	r24, r26
- 82a:	08 95       	ret
+00000976 <__udivmodhi4_loop>:
+ 976:	aa 1f       	adc	r26, r26
+ 978:	bb 1f       	adc	r27, r27
+ 97a:	a6 17       	cp	r26, r22
+ 97c:	b7 07       	cpc	r27, r23
+ 97e:	10 f0       	brcs	.+4      	; 0x984 <__udivmodhi4_ep>
+ 980:	a6 1b       	sub	r26, r22
+ 982:	b7 0b       	sbc	r27, r23
 
-0000082c <_exit>:
- 82c:	f8 94       	cli
+00000984 <__udivmodhi4_ep>:
+ 984:	88 1f       	adc	r24, r24
+ 986:	99 1f       	adc	r25, r25
+ 988:	5a 95       	dec	r21
+ 98a:	a9 f7       	brne	.-22     	; 0x976 <__udivmodhi4_loop>
+ 98c:	80 95       	com	r24
+ 98e:	90 95       	com	r25
+ 990:	bc 01       	movw	r22, r24
+ 992:	cd 01       	movw	r24, r26
+ 994:	08 95       	ret
 
-0000082e <__stop_program>:
- 82e:	ff cf       	rjmp	.-2      	; 0x82e <__stop_program>
+00000996 <_exit>:
+ 996:	f8 94       	cli
+
+00000998 <__stop_program>:
+ 998:	ff cf       	rjmp	.-2      	; 0x998 <__stop_program>

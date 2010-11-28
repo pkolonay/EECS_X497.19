@@ -4,10 +4,13 @@
 
 #include "..\inc\atmega2560.h"
 #include "drvreg.h"
+#include "..\inc\LightweightRingBuff.h"
 
 
 /* CPU frequency */
+#ifndef F_CPU
 #define F_CPU 8000000 /* 8MHz */
+#endif
 
 /* Control-Z is used to control capture of serial port to EEPROM */
 #define RECORDING_CONTROL_CHAR 0x1A
@@ -37,6 +40,11 @@
 
 #define TRUE  1
 #define FALSE 0
+
+
+volatile RingBuff_t rbuff;
+volatile UINT16 next_eeprom_address;
+volatile UINT16 number_of_bytes_used_in_eeprom;
 
 
 typedef struct 
@@ -178,5 +186,8 @@ void myitoa(UINT8 myascii[],UINT16 length, UINT16 value);
 void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value);
 
 void drvUSARTWriteString(const UINT8 *,UINT8);
+
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value);
+UINT8 drvReadReg(UINT16 base, UINT16 offset);
 
 #endif /* drvcore */

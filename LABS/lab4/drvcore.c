@@ -1,6 +1,7 @@
 #include "..\inc\atmega2560.h"
 #include "drvcore.h"
-#include "..\inc\LightweightRingBuff.h"
+
+
 
 /**
   * Function: myitoa
@@ -59,18 +60,69 @@ void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value) {
 }
 
 
-void processor() {
-
-    RingBuff_t rbuff;
+void process() {
+    static   UINT8 record_to_eeprom;
+	volatile UINT8 i;
+	/* for a 4 digit ascii string to output the number of bytes in the eeprom */
+	volatile UINT8 myascii[5]; 
+	volatile UINT16 number_of_bytes_in_eeprom;
+    volatile RingBuff_Data_t data_received;
+	volatile bool isEmpty;
+	volatile UINT16 j;
     
-	RingBuffer_InitBuffer(rbuff);
+	/* Initialize the ring buffer for serial comm */
+	RingBuffer_InitBuffer(&rbuff);
+
     while(1) {
+	    isEmpty = RingBuffer_IsEmpty(&rbuff);
+	    if(isEmpty == false) {
+		    data_received = RingBuffer_Remove(&rbuff);
+            if (data_received == RECORDING_CONTROL_CHAR) {
+	            /* if currently recording then stop else start recording */
+	            if(!record_to_eeprom) {
+			        /* reset character count */
+			        drvResetEepromDataCount();
+	                record_to_eeprom = TRUE;
+                } else {
+		            record_to_eeprom = FALSE;
+                }
+            } else if (data_received == PLAYBACK_CHAR)  {
+			    for(i = 1;i < next_eeprom_address;i++)
+	                drvUSARTPutChar(drvReadEeprom(i));
+            } else if (data_received == DUMP_NUMBER_OF_BYTES_CHAR) {
+	            /* initialize array */
+	            drvUSARTWriteString((UINT8 *)BYTES_STORED_STRING,sizeof(BYTES_STORED_STRING));
+				/* initialize string */
+				myascii[0]='\0';
+				/* read the write count from eeprom and convert to ascii */
+				number_of_bytes_in_eeprom = drvReadEeprom(EEPROM_DATA_COUNT_ADDR)<<8;
+				number_of_bytes_in_eeprom |= drvReadEeprom(EEPROM_DATA_COUNT_ADDR+1);
+				if (number_of_bytes_in_eeprom >= 0)	{			
+	                myitoa((UINT8 *)myascii,sizeof(myascii)-1,number_of_bytes_in_eeprom);
+				    /* send out the serial port */
+					myascii[4] = '\0';
+                    drvUSARTWriteString((UINT8 *)myascii,sizeof(myascii));                   
+                } else {
+				    drvUSARTPutChar('0');
+                } 
+		    	drvUSARTWriteString((UINT8 *)CR_LF_STRING,sizeof(CR_LF_STRING));
+	        } else if (record_to_eeprom) {
+                drvWriteEeprom(next_eeprom_address, data_received);
+			    drvUpdateEepromDataCount();
+	            drvUSARTPutChar(data_received);
+	            if (data_received == CR_CHAR) {
+				    drvWriteEeprom(next_eeprom_address, LF_CHAR);
+			        drvUpdateEepromDataCount();
+		            drvUSARTPutChar(LF_CHAR);
+                } else if (data_received == BACKSPACE_CHAR) {
+			        drvUpdateEepromDataCount(-1);
+                    drvWriteEeprom(next_eeprom_address, data_received);
+	            }
+            } else 
+	            drvUSARTPutChar(data_received);
 
-	    if(1)
-
-
-	}
-
-
+            for(j=0;j<10000;j++);
+	    }
+    }
 
 }
