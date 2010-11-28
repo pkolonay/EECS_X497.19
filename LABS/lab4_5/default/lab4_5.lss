@@ -1,0 +1,1700 @@
+
+lab4_5.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000014  00800200  000007a4  00000838  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000007a4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000006  00800214  00800214  0000084c  2**0
+                  ALLOC
+  3 .debug_aranges 00000080  00000000  00000000  0000084c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 000002dc  00000000  00000000  000008cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000eed  00000000  00000000  00000ba8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000004a3  00000000  00000000  00001a95  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000085e  00000000  00000000  00001f38  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000260  00000000  00000000  00002798  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000356  00000000  00000000  000029f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000003c6  00000000  00000000  00002d4e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000030  00000000  00000000  00003114  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 72 00 	jmp	0xe4	; 0xe4 <__ctors_end>
+   4:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+   8:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+   c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  10:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  14:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  18:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  1c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  20:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  24:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  28:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  2c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  30:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  34:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  38:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  3c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  40:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  44:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  48:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  4c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  50:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  54:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  58:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  5c:	0c 94 81 01 	jmp	0x302	; 0x302 <__vector_23>
+  60:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  64:	0c 94 b0 02 	jmp	0x560	; 0x560 <__vector_25>
+  68:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  6c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  70:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  74:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  78:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  7c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  80:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  84:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  88:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  8c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  90:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  94:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  98:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  9c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  a0:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  a4:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  a8:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  ac:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  b0:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  b4:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  b8:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  bc:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  c0:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  c4:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  c8:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  cc:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  d0:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  d4:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  d8:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  dc:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+  e0:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
+
+000000e4 <__ctors_end>:
+  e4:	11 24       	eor	r1, r1
+  e6:	1f be       	out	0x3f, r1	; 63
+  e8:	cf ef       	ldi	r28, 0xFF	; 255
+  ea:	d1 e2       	ldi	r29, 0x21	; 33
+  ec:	de bf       	out	0x3e, r29	; 62
+  ee:	cd bf       	out	0x3d, r28	; 61
+  f0:	00 e0       	ldi	r16, 0x00	; 0
+  f2:	0c bf       	out	0x3c, r16	; 60
+
+000000f4 <__do_copy_data>:
+  f4:	12 e0       	ldi	r17, 0x02	; 2
+  f6:	a0 e0       	ldi	r26, 0x00	; 0
+  f8:	b2 e0       	ldi	r27, 0x02	; 2
+  fa:	e4 ea       	ldi	r30, 0xA4	; 164
+  fc:	f7 e0       	ldi	r31, 0x07	; 7
+  fe:	00 e0       	ldi	r16, 0x00	; 0
+ 100:	0b bf       	out	0x3b, r16	; 59
+ 102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
+ 104:	07 90       	elpm	r0, Z+
+ 106:	0d 92       	st	X+, r0
+ 108:	a4 31       	cpi	r26, 0x14	; 20
+ 10a:	b1 07       	cpc	r27, r17
+ 10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
+
+0000010e <__do_clear_bss>:
+ 10e:	12 e0       	ldi	r17, 0x02	; 2
+ 110:	a4 e1       	ldi	r26, 0x14	; 20
+ 112:	b2 e0       	ldi	r27, 0x02	; 2
+ 114:	01 c0       	rjmp	.+2      	; 0x118 <.do_clear_bss_start>
+
+00000116 <.do_clear_bss_loop>:
+ 116:	1d 92       	st	X+, r1
+
+00000118 <.do_clear_bss_start>:
+ 118:	aa 31       	cpi	r26, 0x1A	; 26
+ 11a:	b1 07       	cpc	r27, r17
+ 11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
+ 11e:	0e 94 9b 03 	call	0x736	; 0x736 <main>
+ 122:	0c 94 d0 03 	jmp	0x7a0	; 0x7a0 <_exit>
+
+00000126 <__bad_interrupt>:
+ 126:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000012a <drvinit>:
+/* P.E. Kolonay */
+#include "drvapi.h"
+
+void drvinit() {
+;
+}
+ 12a:	08 95       	ret
+
+0000012c <gpio_init>:
+/* initialize gpio for specific port */
+void gpio_init(PDRVCTRL ctrl, UINT8 portid) {
+    DRVGPIO gpio = ctrl->gpio;
+	gpio.baseaddr = portid;
+
+}
+ 12c:	08 95       	ret
+
+0000012e <gpio_pin_on>:
+void gpio_write_pin(PDRVCTRL gpio, UINT8 portid, UINT8 pinid, UINT8 value) {
+    write_pin(portid,pinid,value);
+}
+void gpio_pin_on()
+{
+}
+ 12e:	08 95       	ret
+
+00000130 <serial_write>:
+
+
+void serial_write() {
+
+
+}
+ 130:	08 95       	ret
+
+00000132 <serial_read>:
+
+
+void serial_read() {
+
+}
+ 132:	08 95       	ret
+
+00000134 <init_timer>:
+
+void init_timer() {
+
+    timer_init(100);
+ 134:	84 e6       	ldi	r24, 0x64	; 100
+ 136:	0e 94 35 01 	call	0x26a	; 0x26a <timer_init>
+
+}
+ 13a:	08 95       	ret
+
+0000013c <board_led_off>:
+    write_pin(PORTB,pinid,LED_ON);
+
+}
+
+void board_led_off(UINT8 pinid)
+{
+ 13c:	68 2f       	mov	r22, r24
+    write_pin(PORTB,pinid,LED_OFF);
+ 13e:	85 e2       	ldi	r24, 0x25	; 37
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	41 e0       	ldi	r20, 0x01	; 1
+ 144:	0e 94 5f 02 	call	0x4be	; 0x4be <write_pin>
+
+}
+ 148:	08 95       	ret
+
+0000014a <board_led_on>:
+{
+}
+
+/* platform */
+void board_led_on(UINT8 pinid)
+{
+ 14a:	68 2f       	mov	r22, r24
+    write_pin(PORTB,pinid,LED_ON);
+ 14c:	85 e2       	ldi	r24, 0x25	; 37
+ 14e:	90 e0       	ldi	r25, 0x00	; 0
+ 150:	40 e0       	ldi	r20, 0x00	; 0
+ 152:	0e 94 5f 02 	call	0x4be	; 0x4be <write_pin>
+
+}
+ 156:	08 95       	ret
+
+00000158 <gpio_write_pin>:
+/* read a pin from port spcified in gpio */
+UINT8 gpio_read_pin(PDRVCTRL gpio, UINT8 portid, UINT8 pinid) {
+    return(read_pin(portid,pinid));
+}
+
+void gpio_write_pin(PDRVCTRL gpio, UINT8 portid, UINT8 pinid, UINT8 value) {
+ 158:	86 2f       	mov	r24, r22
+    write_pin(portid,pinid,value);
+ 15a:	90 e0       	ldi	r25, 0x00	; 0
+ 15c:	64 2f       	mov	r22, r20
+ 15e:	42 2f       	mov	r20, r18
+ 160:	0e 94 5f 02 	call	0x4be	; 0x4be <write_pin>
+}
+ 164:	08 95       	ret
+
+00000166 <gpio_read_pin>:
+	gpio.baseaddr = portid;
+
+}
+
+/* read a pin from port spcified in gpio */
+UINT8 gpio_read_pin(PDRVCTRL gpio, UINT8 portid, UINT8 pinid) {
+ 166:	86 2f       	mov	r24, r22
+    return(read_pin(portid,pinid));
+ 168:	90 e0       	ldi	r25, 0x00	; 0
+ 16a:	64 2f       	mov	r22, r20
+ 16c:	0e 94 78 02 	call	0x4f0	; 0x4f0 <read_pin>
+}
+ 170:	08 95       	ret
+
+00000172 <myitoa>:
+  * Description: Convert 16-bit interger value to ascii string.
+  * Parameters: myascii - array of ascii values.
+  *             length -  length of ascii string.
+  *             value - integer number to be converted
+  */
+void myitoa(UINT8 myascii[],UINT16 length, UINT16 value) {
+ 172:	af 92       	push	r10
+ 174:	bf 92       	push	r11
+ 176:	cf 92       	push	r12
+ 178:	df 92       	push	r13
+ 17a:	ef 92       	push	r14
+ 17c:	ff 92       	push	r15
+ 17e:	0f 93       	push	r16
+ 180:	1f 93       	push	r17
+ 182:	df 93       	push	r29
+ 184:	cf 93       	push	r28
+ 186:	00 d0       	rcall	.+0      	; 0x188 <myitoa+0x16>
+ 188:	00 d0       	rcall	.+0      	; 0x18a <myitoa+0x18>
+ 18a:	cd b7       	in	r28, 0x3d	; 61
+ 18c:	de b7       	in	r29, 0x3e	; 62
+ 18e:	8c 01       	movw	r16, r24
+ 190:	7b 01       	movw	r14, r22
+ 
+	volatile UINT8 i,j;
+	volatile UINT16 divisor,dividend;
+
+	divisor = value;
+ 192:	5c 83       	std	Y+4, r21	; 0x04
+ 194:	4b 83       	std	Y+3, r20	; 0x03
+
+    /* work from highest power down to uints */
+	/* but place characters in array in the opposite order */
+    for(i=0;i<length-1;i++) {
+ 196:	19 82       	std	Y+1, r1	; 0x01
+ 198:	6b 01       	movw	r12, r22
+ 19a:	08 94       	sec
+ 19c:	c1 08       	sbc	r12, r1
+ 19e:	d1 08       	sbc	r13, r1
+    	dividend = 1;
+ 1a0:	71 e0       	ldi	r23, 0x01	; 1
+ 1a2:	a7 2e       	mov	r10, r23
+ 1a4:	b1 2c       	mov	r11, r1
+	    for(j=1;j<=(length-i-1);j++) dividend *= 10;
+ 1a6:	41 e0       	ldi	r20, 0x01	; 1
+ 1a8:	37 c0       	rjmp	.+110    	; 0x218 <myitoa+0xa6>
+	divisor = value;
+
+    /* work from highest power down to uints */
+	/* but place characters in array in the opposite order */
+    for(i=0;i<length-1;i++) {
+    	dividend = 1;
+ 1aa:	be 82       	std	Y+6, r11	; 0x06
+ 1ac:	ad 82       	std	Y+5, r10	; 0x05
+	    for(j=1;j<=(length-i-1);j++) dividend *= 10;
+ 1ae:	4a 83       	std	Y+2, r20	; 0x02
+ 1b0:	11 c0       	rjmp	.+34     	; 0x1d4 <myitoa+0x62>
+ 1b2:	8d 81       	ldd	r24, Y+5	; 0x05
+ 1b4:	9e 81       	ldd	r25, Y+6	; 0x06
+ 1b6:	9c 01       	movw	r18, r24
+ 1b8:	63 e0       	ldi	r22, 0x03	; 3
+ 1ba:	22 0f       	add	r18, r18
+ 1bc:	33 1f       	adc	r19, r19
+ 1be:	6a 95       	dec	r22
+ 1c0:	e1 f7       	brne	.-8      	; 0x1ba <myitoa+0x48>
+ 1c2:	88 0f       	add	r24, r24
+ 1c4:	99 1f       	adc	r25, r25
+ 1c6:	28 0f       	add	r18, r24
+ 1c8:	39 1f       	adc	r19, r25
+ 1ca:	3e 83       	std	Y+6, r19	; 0x06
+ 1cc:	2d 83       	std	Y+5, r18	; 0x05
+ 1ce:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1d0:	8f 5f       	subi	r24, 0xFF	; 255
+ 1d2:	8a 83       	std	Y+2, r24	; 0x02
+ 1d4:	2a 81       	ldd	r18, Y+2	; 0x02
+ 1d6:	89 81       	ldd	r24, Y+1	; 0x01
+ 1d8:	30 e0       	ldi	r19, 0x00	; 0
+ 1da:	90 e0       	ldi	r25, 0x00	; 0
+ 1dc:	80 95       	com	r24
+ 1de:	90 95       	com	r25
+ 1e0:	8e 0d       	add	r24, r14
+ 1e2:	9f 1d       	adc	r25, r15
+ 1e4:	82 17       	cp	r24, r18
+ 1e6:	93 07       	cpc	r25, r19
+ 1e8:	20 f7       	brcc	.-56     	; 0x1b2 <myitoa+0x40>
+	    myascii[i] = (divisor/dividend)+MAP_DIGIT_TO_ASCII;
+ 1ea:	29 81       	ldd	r18, Y+1	; 0x01
+ 1ec:	8b 81       	ldd	r24, Y+3	; 0x03
+ 1ee:	9c 81       	ldd	r25, Y+4	; 0x04
+ 1f0:	6d 81       	ldd	r22, Y+5	; 0x05
+ 1f2:	7e 81       	ldd	r23, Y+6	; 0x06
+ 1f4:	f8 01       	movw	r30, r16
+ 1f6:	e2 0f       	add	r30, r18
+ 1f8:	f1 1d       	adc	r31, r1
+ 1fa:	0e 94 bc 03 	call	0x778	; 0x778 <__udivmodhi4>
+ 1fe:	60 5d       	subi	r22, 0xD0	; 208
+ 200:	60 83       	st	Z, r22
+	    divisor = divisor%dividend;
+ 202:	8b 81       	ldd	r24, Y+3	; 0x03
+ 204:	9c 81       	ldd	r25, Y+4	; 0x04
+ 206:	6d 81       	ldd	r22, Y+5	; 0x05
+ 208:	7e 81       	ldd	r23, Y+6	; 0x06
+ 20a:	0e 94 bc 03 	call	0x778	; 0x778 <__udivmodhi4>
+ 20e:	9c 83       	std	Y+4, r25	; 0x04
+ 210:	8b 83       	std	Y+3, r24	; 0x03
+
+	divisor = value;
+
+    /* work from highest power down to uints */
+	/* but place characters in array in the opposite order */
+    for(i=0;i<length-1;i++) {
+ 212:	89 81       	ldd	r24, Y+1	; 0x01
+ 214:	8f 5f       	subi	r24, 0xFF	; 255
+ 216:	89 83       	std	Y+1, r24	; 0x01
+ 218:	89 81       	ldd	r24, Y+1	; 0x01
+ 21a:	90 e0       	ldi	r25, 0x00	; 0
+ 21c:	8c 15       	cp	r24, r12
+ 21e:	9d 05       	cpc	r25, r13
+ 220:	20 f2       	brcs	.-120    	; 0x1aa <myitoa+0x38>
+    	dividend = 1;
+	    for(j=1;j<=(length-i-1);j++) dividend *= 10;
+	    myascii[i] = (divisor/dividend)+MAP_DIGIT_TO_ASCII;
+	    divisor = divisor%dividend;
+    }
+    myascii[length-1] = divisor+MAP_DIGIT_TO_ASCII;
+ 222:	8b 81       	ldd	r24, Y+3	; 0x03
+ 224:	9c 81       	ldd	r25, Y+4	; 0x04
+ 226:	0e 0d       	add	r16, r14
+ 228:	1f 1d       	adc	r17, r15
+ 22a:	01 50       	subi	r16, 0x01	; 1
+ 22c:	10 40       	sbci	r17, 0x00	; 0
+ 22e:	80 5d       	subi	r24, 0xD0	; 208
+ 230:	f8 01       	movw	r30, r16
+ 232:	80 83       	st	Z, r24
+}
+ 234:	26 96       	adiw	r28, 0x06	; 6
+ 236:	0f b6       	in	r0, 0x3f	; 63
+ 238:	f8 94       	cli
+ 23a:	de bf       	out	0x3e, r29	; 62
+ 23c:	0f be       	out	0x3f, r0	; 63
+ 23e:	cd bf       	out	0x3d, r28	; 61
+ 240:	cf 91       	pop	r28
+ 242:	df 91       	pop	r29
+ 244:	1f 91       	pop	r17
+ 246:	0f 91       	pop	r16
+ 248:	ff 90       	pop	r15
+ 24a:	ef 90       	pop	r14
+ 24c:	df 90       	pop	r13
+ 24e:	cf 90       	pop	r12
+ 250:	bf 90       	pop	r11
+ 252:	af 90       	pop	r10
+ 254:	08 95       	ret
+
+00000256 <drvWriteReg>:
+/* delay in milliseconds */
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+ 256:	fb 01       	movw	r30, r22
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 258:	e8 0f       	add	r30, r24
+ 25a:	f9 1f       	adc	r31, r25
+ 25c:	40 83       	st	Z, r20
+}
+ 25e:	08 95       	ret
+
+00000260 <drvReadReg>:
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+ 260:	fb 01       	movw	r30, r22
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 262:	e8 0f       	add	r30, r24
+ 264:	f9 1f       	adc	r31, r25
+ 266:	80 81       	ld	r24, Z
+}
+ 268:	08 95       	ret
+
+0000026a <timer_init>:
+
+
+void timer_init(UINT8 delay) { 
+
+    /* global interrupt disable */
+    cli();
+ 26a:	f8 94       	cli
+
+    /* set pre-scaler to F_CPU/1024 */
+    HWREG(TCCR0B) |= TC0_CK_1024;
+ 26c:	95 b5       	in	r25, 0x25	; 37
+ 26e:	95 60       	ori	r25, 0x05	; 5
+ 270:	95 bd       	out	0x25, r25	; 37
+    
+    /* Program the timer with the value you want 
+    which is (256-the number of counts) into TCNT0. */ 
+    HWREG(TCNT0) = 256-delay; 
+ 272:	81 95       	neg	r24
+ 274:	86 bd       	out	0x26, r24	; 38
+
+    /* Enable Overflow Interrupt for Counter 0 */
+    HWREG(TIMSK0) = TOIE0; 
+ 276:	81 e0       	ldi	r24, 0x01	; 1
+ 278:	80 93 6e 00 	sts	0x006E, r24
+
+    /* Enable Global Interrupts */ 
+    sei();
+ 27c:	78 94       	sei
+
+}
+ 27e:	08 95       	ret
+
+00000280 <timer_interrupt>:
+
+void timer_interrupt() {
+ 280:	df 93       	push	r29
+ 282:	cf 93       	push	r28
+ 284:	0f 92       	push	r0
+ 286:	cd b7       	in	r28, 0x3d	; 61
+ 288:	de b7       	in	r29, 0x3e	; 62
+    static UINT8 pin;
+	static UINT8 on;
+
+    /* reset the timer */
+    HWREG(TCNT0) = 256-DELAY; 
+ 28a:	8c e9       	ldi	r24, 0x9C	; 156
+ 28c:	86 bd       	out	0x26, r24	; 38
+	    
+	toggle_pin(DRV_PORTB+DRV_GPIO_PORT_OFFSET,pin);
+ 28e:	30 91 16 02 	lds	r19, 0x0216
+}
+
+void toggle_pin(UINT16 port, UINT8 pin) {
+
+	/* set port for output */
+	HWREG(port-1) |= 1<<pin; 
+ 292:	24 b1       	in	r18, 0x04	; 4
+ 294:	41 e0       	ldi	r20, 0x01	; 1
+ 296:	50 e0       	ldi	r21, 0x00	; 0
+ 298:	ca 01       	movw	r24, r20
+ 29a:	03 2e       	mov	r0, r19
+ 29c:	02 c0       	rjmp	.+4      	; 0x2a2 <timer_interrupt+0x22>
+ 29e:	88 0f       	add	r24, r24
+ 2a0:	99 1f       	adc	r25, r25
+ 2a2:	0a 94       	dec	r0
+ 2a4:	e2 f7       	brpl	.-8      	; 0x29e <timer_interrupt+0x1e>
+ 2a6:	28 2b       	or	r18, r24
+ 2a8:	24 b9       	out	0x04, r18	; 4
+
+
+	HWREG(port) ^= 1<<pin;
+ 2aa:	25 b1       	in	r18, 0x05	; 5
+ 2ac:	82 27       	eor	r24, r18
+ 2ae:	85 b9       	out	0x05, r24	; 5
+    /* reset the timer */
+    HWREG(TCNT0) = 256-DELAY; 
+	    
+	toggle_pin(DRV_PORTB+DRV_GPIO_PORT_OFFSET,pin);
+	/* increment to next pin after toggle on/off once. */
+	if ( pin < 8 ) {
+ 2b0:	38 30       	cpi	r19, 0x08	; 8
+ 2b2:	08 f5       	brcc	.+66     	; 0x2f6 <timer_interrupt+0x76>
+	    if ( on<1 ) {
+ 2b4:	80 91 15 02 	lds	r24, 0x0215
+ 2b8:	88 23       	and	r24, r24
+ 2ba:	21 f4       	brne	.+8      	; 0x2c4 <timer_interrupt+0x44>
+			on++;
+ 2bc:	81 e0       	ldi	r24, 0x01	; 1
+ 2be:	80 93 15 02 	sts	0x0215, r24
+ 2c2:	1b c0       	rjmp	.+54     	; 0x2fa <timer_interrupt+0x7a>
+        } else {
+   	        pin += 1;
+ 2c4:	23 2f       	mov	r18, r19
+ 2c6:	2f 5f       	subi	r18, 0xFF	; 255
+ 2c8:	20 93 16 02 	sts	0x0216, r18
+			on = 0;
+ 2cc:	10 92 15 02 	sts	0x0215, r1
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 2d0:	89 b1       	in	r24, 0x09	; 9
+  * Used to test a bit in a in a given byte at a given address.
+  */
+UINT8 drvTestBit(UINT16 addr, UINT16 offset, UINT8 position) {
+    volatile UINT8 value;
+
+    value = (UINT8)~drvReadReg(addr,offset) & (1<<position);
+ 2d2:	02 2e       	mov	r0, r18
+ 2d4:	02 c0       	rjmp	.+4      	; 0x2da <timer_interrupt+0x5a>
+ 2d6:	44 0f       	add	r20, r20
+ 2d8:	55 1f       	adc	r21, r21
+ 2da:	0a 94       	dec	r0
+ 2dc:	e2 f7       	brpl	.-8      	; 0x2d6 <timer_interrupt+0x56>
+ 2de:	80 95       	com	r24
+ 2e0:	84 23       	and	r24, r20
+ 2e2:	89 83       	std	Y+1, r24	; 0x01
+
+    return( value >> position);
+ 2e4:	89 81       	ldd	r24, Y+1	; 0x01
+        } else {
+   	        pin += 1;
+			on = 0;
+        /* if the operator is pressing the current button then
+	       reset the count */
+            if ( drvTestBit(DRV_PORTD,DRV_GPIO_PIN_OFFSET,pin) )
+ 2e6:	90 e0       	ldi	r25, 0x00	; 0
+ 2e8:	02 c0       	rjmp	.+4      	; 0x2ee <timer_interrupt+0x6e>
+ 2ea:	95 95       	asr	r25
+ 2ec:	87 95       	ror	r24
+ 2ee:	2a 95       	dec	r18
+ 2f0:	e2 f7       	brpl	.-8      	; 0x2ea <timer_interrupt+0x6a>
+ 2f2:	88 23       	and	r24, r24
+ 2f4:	11 f0       	breq	.+4      	; 0x2fa <timer_interrupt+0x7a>
+	            pin = 0;
+        }
+    }
+    else 
+	    pin = 0;
+ 2f6:	10 92 16 02 	sts	0x0216, r1
+
+}
+ 2fa:	0f 90       	pop	r0
+ 2fc:	cf 91       	pop	r28
+ 2fe:	df 91       	pop	r29
+ 300:	08 95       	ret
+
+00000302 <__vector_23>:
+
+/* in you port.c code */
+/* timer 0 overflow interrupt service routine */
+void __vector_23 (void) 
+{ 
+ 302:	78 94       	sei
+ 304:	1f 92       	push	r1
+ 306:	0f 92       	push	r0
+ 308:	0f b6       	in	r0, 0x3f	; 63
+ 30a:	0f 92       	push	r0
+ 30c:	0b b6       	in	r0, 0x3b	; 59
+ 30e:	0f 92       	push	r0
+ 310:	11 24       	eor	r1, r1
+ 312:	2f 93       	push	r18
+ 314:	3f 93       	push	r19
+ 316:	4f 93       	push	r20
+ 318:	5f 93       	push	r21
+ 31a:	6f 93       	push	r22
+ 31c:	7f 93       	push	r23
+ 31e:	8f 93       	push	r24
+ 320:	9f 93       	push	r25
+ 322:	af 93       	push	r26
+ 324:	bf 93       	push	r27
+ 326:	ef 93       	push	r30
+ 328:	ff 93       	push	r31
+    timer_interrupt();
+ 32a:	0e 94 40 01 	call	0x280	; 0x280 <timer_interrupt>
+	sei();
+ 32e:	78 94       	sei
+}
+ 330:	ff 91       	pop	r31
+ 332:	ef 91       	pop	r30
+ 334:	bf 91       	pop	r27
+ 336:	af 91       	pop	r26
+ 338:	9f 91       	pop	r25
+ 33a:	8f 91       	pop	r24
+ 33c:	7f 91       	pop	r23
+ 33e:	6f 91       	pop	r22
+ 340:	5f 91       	pop	r21
+ 342:	4f 91       	pop	r20
+ 344:	3f 91       	pop	r19
+ 346:	2f 91       	pop	r18
+ 348:	0f 90       	pop	r0
+ 34a:	0b be       	out	0x3b, r0	; 59
+ 34c:	0f 90       	pop	r0
+ 34e:	0f be       	out	0x3f, r0	; 63
+ 350:	0f 90       	pop	r0
+ 352:	1f 90       	pop	r1
+ 354:	18 95       	reti
+
+00000356 <init_usart0>:
+
+	sei();
+}
+
+void init_usart0() 
+{
+ 356:	df 93       	push	r29
+ 358:	cf 93       	push	r28
+ 35a:	cd b7       	in	r28, 0x3d	; 61
+ 35c:	de b7       	in	r29, 0x3e	; 62
+ 35e:	2f 97       	sbiw	r28, 0x0f	; 15
+ 360:	0f b6       	in	r0, 0x3f	; 63
+ 362:	f8 94       	cli
+ 364:	de bf       	out	0x3e, r29	; 62
+ 366:	0f be       	out	0x3f, r0	; 63
+ 368:	cd bf       	out	0x3d, r28	; 61
+
+    volatile UINT8 string[] = "Hello World\r\n";
+ 36a:	de 01       	movw	r26, r28
+ 36c:	12 96       	adiw	r26, 0x02	; 2
+ 36e:	e0 e0       	ldi	r30, 0x00	; 0
+ 370:	f2 e0       	ldi	r31, 0x02	; 2
+ 372:	8e e0       	ldi	r24, 0x0E	; 14
+ 374:	01 90       	ld	r0, Z+
+ 376:	0d 92       	st	X+, r0
+ 378:	81 50       	subi	r24, 0x01	; 1
+ 37a:	e1 f7       	brne	.-8      	; 0x374 <init_usart0+0x1e>
+    volatile UINT8 val = 0;
+ 37c:	19 82       	std	Y+1, r1	; 0x01
+
+	val = USART_RX_EN | USART_TX_EN | USART_RX_COMP_IE;
+ 37e:	88 e9       	ldi	r24, 0x98	; 152
+ 380:	89 83       	std	Y+1, r24	; 0x01
+    drvWriteReg(USART0_BASEADDR,USART_UCSRB_OFFSET,val);
+ 382:	89 81       	ldd	r24, Y+1	; 0x01
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 384:	80 93 c1 00 	sts	0x00C1, r24
+    volatile UINT8 val = 0;
+
+	val = USART_RX_EN | USART_TX_EN | USART_RX_COMP_IE;
+    drvWriteReg(USART0_BASEADDR,USART_UCSRB_OFFSET,val);
+
+	val = USART_8_DATA_BITS;
+ 388:	86 e0       	ldi	r24, 0x06	; 6
+ 38a:	89 83       	std	Y+1, r24	; 0x01
+    drvWriteReg(USART0_BASEADDR,USART_UCSRC_OFFSET,val);
+ 38c:	89 81       	ldd	r24, Y+1	; 0x01
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 38e:	80 93 c2 00 	sts	0x00C2, r24
+
+	val = USART_8_DATA_BITS;
+    drvWriteReg(USART0_BASEADDR,USART_UCSRC_OFFSET,val);
+
+    /* calculate baud rate based on cpu frequency */
+	val = ((F_CPU + 9600 * 8L) / (9600 * 16L) - 1);
+ 392:	83 e3       	ldi	r24, 0x33	; 51
+ 394:	89 83       	std	Y+1, r24	; 0x01
+
+    /* write baud rate register */
+   	drvWriteUint16Reg(USART0_BASEADDR,USART_UBRR_OFFSET,val);
+ 396:	89 81       	ldd	r24, Y+1	; 0x01
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 398:	10 92 c5 00 	sts	0x00C5, r1
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+ 39c:	80 93 c4 00 	sts	0x00C4, r24
+ 3a0:	20 e0       	ldi	r18, 0x00	; 0
+ 3a2:	30 e0       	ldi	r19, 0x00	; 0
+ 3a4:	ae 01       	movw	r20, r28
+ 3a6:	4e 5f       	subi	r20, 0xFE	; 254
+ 3a8:	5f 4f       	sbci	r21, 0xFF	; 255
+ 3aa:	08 c0       	rjmp	.+16     	; 0x3bc <init_usart0+0x66>
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 3ac:	80 91 c0 00 	lds	r24, 0x00C0
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 3b0:	85 ff       	sbrs	r24, 5
+ 3b2:	fc cf       	rjmp	.-8      	; 0x3ac <init_usart0+0x56>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 3b4:	e0 93 c6 00 	sts	0x00C6, r30
+ 3b8:	2f 5f       	subi	r18, 0xFF	; 255
+ 3ba:	3f 4f       	sbci	r19, 0xFF	; 255
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+ 3bc:	fa 01       	movw	r30, r20
+ 3be:	e2 0f       	add	r30, r18
+ 3c0:	f3 1f       	adc	r31, r19
+ 3c2:	e0 81       	ld	r30, Z
+ 3c4:	ee 23       	and	r30, r30
+ 3c6:	91 f7       	brne	.-28     	; 0x3ac <init_usart0+0x56>
+    /* write baud rate register */
+   	drvWriteUint16Reg(USART0_BASEADDR,USART_UBRR_OFFSET,val);
+
+    /* send I'm alive message */
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+ 3c8:	2f 96       	adiw	r28, 0x0f	; 15
+ 3ca:	0f b6       	in	r0, 0x3f	; 63
+ 3cc:	f8 94       	cli
+ 3ce:	de bf       	out	0x3e, r29	; 62
+ 3d0:	0f be       	out	0x3f, r0	; 63
+ 3d2:	cd bf       	out	0x3d, r28	; 61
+ 3d4:	cf 91       	pop	r28
+ 3d6:	df 91       	pop	r29
+ 3d8:	08 95       	ret
+
+000003da <drvUSARTWriteString>:
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+ 3da:	fc 01       	movw	r30, r24
+ 3dc:	07 c0       	rjmp	.+14     	; 0x3ec <drvUSARTWriteString+0x12>
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 3de:	80 91 c0 00 	lds	r24, 0x00C0
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 3e2:	85 ff       	sbrs	r24, 5
+ 3e4:	fc cf       	rjmp	.-8      	; 0x3de <drvUSARTWriteString+0x4>
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+ 3e6:	31 96       	adiw	r30, 0x01	; 1
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 3e8:	90 93 c6 00 	sts	0x00C6, r25
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+ 3ec:	90 81       	ld	r25, Z
+ 3ee:	99 23       	and	r25, r25
+ 3f0:	b1 f7       	brne	.-20     	; 0x3de <drvUSARTWriteString+0x4>
+	    drvUSARTPutChar(*data++);
+}
+ 3f2:	08 95       	ret
+
+000003f4 <drvUSARTPutChar>:
+ 
+void drvUSARTPutChar(UINT8 data) {
+ 3f4:	98 2f       	mov	r25, r24
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 3f6:	80 91 c0 00 	lds	r24, 0x00C0
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 3fa:	85 ff       	sbrs	r24, 5
+ 3fc:	fc cf       	rjmp	.-8      	; 0x3f6 <drvUSARTPutChar+0x2>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 3fe:	90 93 c6 00 	sts	0x00C6, r25
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+	        != USART_DATA_REG_EMPTY) { ; }
+	drvWriteReg(USART0_BASEADDR,USART_UDR_OFFSET,data);
+
+}
+ 402:	08 95       	ret
+
+00000404 <drvWriteEeprom>:
+/* do we have to manage a buffer here in case the eeprom is not ready? */
+void drvWriteEeprom(UINT16 addr, UINT8 data)
+{
+    /* Wait for completion of previous write */
+    /*while(EECR & (1<<EEPE))*/
+    while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & (EEPROM_PRG_EN))
+ 404:	f9 99       	sbic	0x1f, 1	; 31
+ 406:	fe cf       	rjmp	.-4      	; 0x404 <drvWriteEeprom>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 408:	92 bd       	out	0x22, r25	; 34
+
+    /* Start eeprom write by setting EEPE */
+    /*EECR |= (1<<EEPE);*/
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_PRG_EN);
+    
+}
+ 40a:	81 bd       	out	0x21, r24	; 33
+ 40c:	60 bd       	out	0x20, r22	; 32
+ 40e:	84 e0       	ldi	r24, 0x04	; 4
+ 410:	8f bb       	out	0x1f, r24	; 31
+ 412:	82 e0       	ldi	r24, 0x02	; 2
+ 414:	8f bb       	out	0x1f, r24	; 31
+ 416:	08 95       	ret
+
+00000418 <drvReadEeprom>:
+
+UINT8 drvReadEeprom(UINT16 addr) {
+
+    /* Wait for completion of previous write */
+    while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & (EEPROM_PRG_EN))
+ 418:	f9 99       	sbic	0x1f, 1	; 31
+ 41a:	fe cf       	rjmp	.-4      	; 0x418 <drvReadEeprom>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 41c:	92 bd       	out	0x22, r25	; 34
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 41e:	81 bd       	out	0x21, r24	; 33
+ 420:	81 e0       	ldi	r24, 0x01	; 1
+ 422:	8f bb       	out	0x1f, r24	; 31
+ 424:	80 b5       	in	r24, 0x20	; 32
+    drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_READ_EN);
+
+    /* Return data from Data Register */
+    return drvReadReg(EEPROM_BASE,EEPROM_DATA_OFFSET);
+
+}
+ 426:	08 95       	ret
+
+00000428 <init_eeprom>:
+  * Get the number of bytes currently written to eprom and 
+  * set pointer to next address available for writing.
+  */
+void init_eeprom() {
+
+    number_of_bytes_used_in_eeprom = drvReadEeprom(0);
+ 428:	80 e0       	ldi	r24, 0x00	; 0
+ 42a:	90 e0       	ldi	r25, 0x00	; 0
+ 42c:	0e 94 0c 02 	call	0x418	; 0x418 <drvReadEeprom>
+ 430:	80 93 17 02 	sts	0x0217, r24
+	if ( number_of_bytes_used_in_eeprom == 0xFF ) 
+ 434:	80 91 17 02 	lds	r24, 0x0217
+ 438:	8f 3f       	cpi	r24, 0xFF	; 255
+ 43a:	11 f4       	brne	.+4      	; 0x440 <init_eeprom+0x18>
+        number_of_bytes_used_in_eeprom = 0;
+ 43c:	10 92 17 02 	sts	0x0217, r1
+	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
+ 440:	80 91 17 02 	lds	r24, 0x0217
+ 444:	90 e0       	ldi	r25, 0x00	; 0
+ 446:	01 96       	adiw	r24, 0x01	; 1
+ 448:	90 93 19 02 	sts	0x0219, r25
+ 44c:	80 93 18 02 	sts	0x0218, r24
+
+}
+ 450:	08 95       	ret
+
+00000452 <drvUpdateEepromDataCount>:
+
+}
+
+void drvUpdateEepromDataCount() {
+
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, next_eeprom_address);
+ 452:	60 91 18 02 	lds	r22, 0x0218
+ 456:	70 91 19 02 	lds	r23, 0x0219
+ 45a:	80 e0       	ldi	r24, 0x00	; 0
+ 45c:	90 e0       	ldi	r25, 0x00	; 0
+ 45e:	0e 94 02 02 	call	0x404	; 0x404 <drvWriteEeprom>
+	next_eeprom_address++;
+ 462:	80 91 18 02 	lds	r24, 0x0218
+ 466:	90 91 19 02 	lds	r25, 0x0219
+ 46a:	01 96       	adiw	r24, 0x01	; 1
+ 46c:	90 93 19 02 	sts	0x0219, r25
+ 470:	80 93 18 02 	sts	0x0218, r24
+}
+ 474:	08 95       	ret
+
+00000476 <drvResetEepromDataCount>:
+
+void drvResetEepromDataCount() {
+
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, 0);
+ 476:	80 e0       	ldi	r24, 0x00	; 0
+ 478:	90 e0       	ldi	r25, 0x00	; 0
+ 47a:	60 e0       	ldi	r22, 0x00	; 0
+ 47c:	0e 94 02 02 	call	0x404	; 0x404 <drvWriteEeprom>
+	number_of_bytes_used_in_eeprom = 0;
+ 480:	10 92 17 02 	sts	0x0217, r1
+	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
+ 484:	80 91 17 02 	lds	r24, 0x0217
+ 488:	90 e0       	ldi	r25, 0x00	; 0
+ 48a:	01 96       	adiw	r24, 0x01	; 1
+ 48c:	90 93 19 02 	sts	0x0219, r25
+ 490:	80 93 18 02 	sts	0x0218, r24
+}
+ 494:	08 95       	ret
+
+00000496 <init_gpio>:
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 496:	8f ef       	ldi	r24, 0xFF	; 255
+ 498:	85 b9       	out	0x05, r24	; 5
+
+
+void init_gpio(UINT16 port) {
+ drvWriteReg(DRV_PORTB,DRV_GPIO_PORT_OFFSET , 0xFF);
+ drvWriteReg(DRV_PORTD,DRV_GPIO_PORT_OFFSET , 0x00);
+}
+ 49a:	1b b8       	out	0x0b, r1	; 11
+ 49c:	08 95       	ret
+
+0000049e <toggle_pin>:
+
+void toggle_pin(UINT16 port, UINT8 pin) {
+ 49e:	dc 01       	movw	r26, r24
+
+	/* set port for output */
+	HWREG(port-1) |= 1<<pin; 
+ 4a0:	fc 01       	movw	r30, r24
+ 4a2:	22 91       	ld	r18, -Z
+ 4a4:	81 e0       	ldi	r24, 0x01	; 1
+ 4a6:	90 e0       	ldi	r25, 0x00	; 0
+ 4a8:	02 c0       	rjmp	.+4      	; 0x4ae <toggle_pin+0x10>
+ 4aa:	88 0f       	add	r24, r24
+ 4ac:	99 1f       	adc	r25, r25
+ 4ae:	6a 95       	dec	r22
+ 4b0:	e2 f7       	brpl	.-8      	; 0x4aa <toggle_pin+0xc>
+ 4b2:	28 2b       	or	r18, r24
+ 4b4:	20 83       	st	Z, r18
+
+
+	HWREG(port) ^= 1<<pin;
+ 4b6:	2c 91       	ld	r18, X
+ 4b8:	82 27       	eor	r24, r18
+ 4ba:	8c 93       	st	X, r24
+}
+ 4bc:	08 95       	ret
+
+000004be <write_pin>:
+
+
+void write_pin(UINT16 port, UINT8 pin, UINT8 value) {
+ 4be:	dc 01       	movw	r26, r24
+
+	/* set port for output */
+	HWREG(port-1) |= 1<<pin; 
+ 4c0:	fc 01       	movw	r30, r24
+ 4c2:	82 91       	ld	r24, -Z
+ 4c4:	21 e0       	ldi	r18, 0x01	; 1
+ 4c6:	30 e0       	ldi	r19, 0x00	; 0
+ 4c8:	02 c0       	rjmp	.+4      	; 0x4ce <write_pin+0x10>
+ 4ca:	22 0f       	add	r18, r18
+ 4cc:	33 1f       	adc	r19, r19
+ 4ce:	6a 95       	dec	r22
+ 4d0:	e2 f7       	brpl	.-8      	; 0x4ca <write_pin+0xc>
+ 4d2:	92 2f       	mov	r25, r18
+ 4d4:	82 2b       	or	r24, r18
+ 4d6:	80 83       	st	Z, r24
+
+    if (value)
+ 4d8:	44 23       	and	r20, r20
+ 4da:	21 f0       	breq	.+8      	; 0x4e4 <write_pin+0x26>
+	/* output to port */
+        HWREG(port) |= (1<<pin); 
+ 4dc:	8c 91       	ld	r24, X
+ 4de:	98 2b       	or	r25, r24
+ 4e0:	9c 93       	st	X, r25
+ 4e2:	08 95       	ret
+    else
+	    HWREG(port) &= (UINT8)~(1<<pin);
+ 4e4:	9c 91       	ld	r25, X
+ 4e6:	82 2f       	mov	r24, r18
+ 4e8:	80 95       	com	r24
+ 4ea:	89 23       	and	r24, r25
+ 4ec:	8c 93       	st	X, r24
+ 4ee:	08 95       	ret
+
+000004f0 <read_pin>:
+}
+
+
+UINT8 read_pin(UINT16 port, UINT8 pin) {
+ 4f0:	dc 01       	movw	r26, r24
+
+	/* set port for input */
+	HWREG(port-1) &= (UINT8)~pin; 
+ 4f2:	fc 01       	movw	r30, r24
+ 4f4:	82 91       	ld	r24, -Z
+ 4f6:	96 2f       	mov	r25, r22
+ 4f8:	90 95       	com	r25
+ 4fa:	89 23       	and	r24, r25
+ 4fc:	80 83       	st	Z, r24
+
+	return(HWREG(port-2) &= pin);
+ 4fe:	12 97       	sbiw	r26, 0x02	; 2
+ 500:	8c 91       	ld	r24, X
+ 502:	86 23       	and	r24, r22
+ 504:	8c 93       	st	X, r24
+ 506:	8c 91       	ld	r24, X
+
+}
+ 508:	08 95       	ret
+
+0000050a <drvSetBit>:
+/**
+  * Used to set a bit in a in a given byte at a given address.
+  */
+void drvSetBit(UINT16 addr, UINT8 position)
+{;
+}
+ 50a:	08 95       	ret
+
+0000050c <drvClearBit>:
+
+/**
+  * Used to clear a bit in a in a given byte at a given address.
+  */
+void drvClearBit(UINT16 addr,UINT8 position){;}
+ 50c:	08 95       	ret
+
+0000050e <drvTestBit>:
+
+
+/**
+  * Used to test a bit in a in a given byte at a given address.
+  */
+UINT8 drvTestBit(UINT16 addr, UINT16 offset, UINT8 position) {
+ 50e:	df 93       	push	r29
+ 510:	cf 93       	push	r28
+ 512:	0f 92       	push	r0
+ 514:	cd b7       	in	r28, 0x3d	; 61
+ 516:	de b7       	in	r29, 0x3e	; 62
+ 518:	fb 01       	movw	r30, r22
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 51a:	e8 0f       	add	r30, r24
+ 51c:	f9 1f       	adc	r31, r25
+ 51e:	20 81       	ld	r18, Z
+  * Used to test a bit in a in a given byte at a given address.
+  */
+UINT8 drvTestBit(UINT16 addr, UINT16 offset, UINT8 position) {
+    volatile UINT8 value;
+
+    value = (UINT8)~drvReadReg(addr,offset) & (1<<position);
+ 520:	20 95       	com	r18
+ 522:	81 e0       	ldi	r24, 0x01	; 1
+ 524:	90 e0       	ldi	r25, 0x00	; 0
+ 526:	04 2e       	mov	r0, r20
+ 528:	02 c0       	rjmp	.+4      	; 0x52e <drvTestBit+0x20>
+ 52a:	88 0f       	add	r24, r24
+ 52c:	99 1f       	adc	r25, r25
+ 52e:	0a 94       	dec	r0
+ 530:	e2 f7       	brpl	.-8      	; 0x52a <drvTestBit+0x1c>
+ 532:	28 23       	and	r18, r24
+ 534:	29 83       	std	Y+1, r18	; 0x01
+
+    return( value >> position);
+ 536:	89 81       	ldd	r24, Y+1	; 0x01
+ 538:	90 e0       	ldi	r25, 0x00	; 0
+ 53a:	02 c0       	rjmp	.+4      	; 0x540 <drvTestBit+0x32>
+ 53c:	95 95       	asr	r25
+ 53e:	87 95       	ror	r24
+ 540:	4a 95       	dec	r20
+ 542:	e2 f7       	brpl	.-8      	; 0x53c <drvTestBit+0x2e>
+}
+ 544:	0f 90       	pop	r0
+ 546:	cf 91       	pop	r28
+ 548:	df 91       	pop	r29
+ 54a:	08 95       	ret
+
+0000054c <drvWriteUint16Reg>:
+
+
+void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value) {
+ 54c:	db 01       	movw	r26, r22
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 54e:	fc 01       	movw	r30, r24
+ 550:	31 96       	adiw	r30, 0x01	; 1
+ 552:	e6 0f       	add	r30, r22
+ 554:	f7 1f       	adc	r31, r23
+ 556:	50 83       	st	Z, r21
+
+void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value) {
+    /* write hi then low */
+    drvWriteReg(base,offset+1,value>>8);
+    drvWriteReg(base,offset,(UINT8)(value&0xFF));
+}
+ 558:	a8 0f       	add	r26, r24
+ 55a:	b9 1f       	adc	r27, r25
+ 55c:	4c 93       	st	X, r20
+ 55e:	08 95       	ret
+
+00000560 <__vector_25>:
+ * USART0 RX Complete ISR 
+ * Read the USART data register.
+ * If ctl-Z set record to eeprom flag
+ */
+void __vector_25 (void) 
+{ 
+ 560:	1f 92       	push	r1
+ 562:	0f 92       	push	r0
+ 564:	0f b6       	in	r0, 0x3f	; 63
+ 566:	0f 92       	push	r0
+ 568:	0b b6       	in	r0, 0x3b	; 59
+ 56a:	0f 92       	push	r0
+ 56c:	11 24       	eor	r1, r1
+ 56e:	0f 93       	push	r16
+ 570:	1f 93       	push	r17
+ 572:	2f 93       	push	r18
+ 574:	3f 93       	push	r19
+ 576:	4f 93       	push	r20
+ 578:	5f 93       	push	r21
+ 57a:	6f 93       	push	r22
+ 57c:	7f 93       	push	r23
+ 57e:	8f 93       	push	r24
+ 580:	9f 93       	push	r25
+ 582:	af 93       	push	r26
+ 584:	bf 93       	push	r27
+ 586:	ef 93       	push	r30
+ 588:	ff 93       	push	r31
+ 58a:	df 93       	push	r29
+ 58c:	cf 93       	push	r28
+ 58e:	cd b7       	in	r28, 0x3d	; 61
+ 590:	de b7       	in	r29, 0x3e	; 62
+ 592:	29 97       	sbiw	r28, 0x09	; 9
+ 594:	de bf       	out	0x3e, r29	; 62
+ 596:	cd bf       	out	0x3d, r28	; 61
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 598:	80 91 c6 00 	lds	r24, 0x00C6
+	/* for a 4 digit ascii string to output the number of bytes in the eeprom */
+	volatile UINT8 myascii[5]; 
+	volatile UINT16 number_of_bytes_in_eeprom;
+
+    /* Set the Data Register Empty flag */
+    data_received = drvReadReg(USART0_BASEADDR,USART_UDR_OFFSET);
+ 59c:	89 83       	std	Y+1, r24	; 0x01
+	if (data_received == RECORDING_CONTROL_CHAR) {
+ 59e:	89 81       	ldd	r24, Y+1	; 0x01
+ 5a0:	8a 31       	cpi	r24, 0x1A	; 26
+ 5a2:	69 f4       	brne	.+26     	; 0x5be <__vector_25+0x5e>
+	    /* if currently recording then stop else start recording */
+	    if(!record_to_eeprom) {
+ 5a4:	80 91 14 02 	lds	r24, 0x0214
+ 5a8:	88 23       	and	r24, r24
+ 5aa:	31 f4       	brne	.+12     	; 0x5b8 <__vector_25+0x58>
+			/* reset character count */
+			drvResetEepromDataCount();
+ 5ac:	0e 94 3b 02 	call	0x476	; 0x476 <drvResetEepromDataCount>
+	        record_to_eeprom = TRUE;
+ 5b0:	81 e0       	ldi	r24, 0x01	; 1
+ 5b2:	80 93 14 02 	sts	0x0214, r24
+ 5b6:	a4 c0       	rjmp	.+328    	; 0x700 <__vector_25+0x1a0>
+        } else {
+		    record_to_eeprom = FALSE;
+ 5b8:	10 92 14 02 	sts	0x0214, r1
+ 5bc:	a1 c0       	rjmp	.+322    	; 0x700 <__vector_25+0x1a0>
+        }
+    } else if (data_received == PLAYBACK_CHAR)  {
+ 5be:	89 81       	ldd	r24, Y+1	; 0x01
+ 5c0:	89 31       	cpi	r24, 0x19	; 25
+ 5c2:	d1 f4       	brne	.+52     	; 0x5f8 <__vector_25+0x98>
+			for(i = 1;i < next_eeprom_address;i++)
+ 5c4:	81 e0       	ldi	r24, 0x01	; 1
+ 5c6:	0d c0       	rjmp	.+26     	; 0x5e2 <__vector_25+0x82>
+	            drvUSARTPutChar(drvReadEeprom(i));
+ 5c8:	8a 81       	ldd	r24, Y+2	; 0x02
+ 5ca:	90 e0       	ldi	r25, 0x00	; 0
+ 5cc:	0e 94 0c 02 	call	0x418	; 0x418 <drvReadEeprom>
+ 5d0:	98 2f       	mov	r25, r24
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 5d2:	80 91 c0 00 	lds	r24, 0x00C0
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 5d6:	85 ff       	sbrs	r24, 5
+ 5d8:	fc cf       	rjmp	.-8      	; 0x5d2 <__vector_25+0x72>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 5da:	90 93 c6 00 	sts	0x00C6, r25
+	        record_to_eeprom = TRUE;
+        } else {
+		    record_to_eeprom = FALSE;
+        }
+    } else if (data_received == PLAYBACK_CHAR)  {
+			for(i = 1;i < next_eeprom_address;i++)
+ 5de:	8a 81       	ldd	r24, Y+2	; 0x02
+ 5e0:	8f 5f       	subi	r24, 0xFF	; 255
+ 5e2:	8a 83       	std	Y+2, r24	; 0x02
+ 5e4:	8a 81       	ldd	r24, Y+2	; 0x02
+ 5e6:	20 91 18 02 	lds	r18, 0x0218
+ 5ea:	30 91 19 02 	lds	r19, 0x0219
+ 5ee:	90 e0       	ldi	r25, 0x00	; 0
+ 5f0:	82 17       	cp	r24, r18
+ 5f2:	93 07       	cpc	r25, r19
+ 5f4:	48 f3       	brcs	.-46     	; 0x5c8 <__vector_25+0x68>
+ 5f6:	84 c0       	rjmp	.+264    	; 0x700 <__vector_25+0x1a0>
+	            drvUSARTPutChar(drvReadEeprom(i));
+    } else if (data_received == DUMP_NUMBER_OF_BYTES_CHAR) {
+ 5f8:	89 81       	ldd	r24, Y+1	; 0x01
+ 5fa:	8e 30       	cpi	r24, 0x0E	; 14
+ 5fc:	09 f0       	breq	.+2      	; 0x600 <__vector_25+0xa0>
+ 5fe:	42 c0       	rjmp	.+132    	; 0x684 <__vector_25+0x124>
+	            /* initialize array */
+	            for (i=0;i<sizeof(myascii);i++) myascii[i]='\0';
+ 600:	1a 82       	std	Y+2, r1	; 0x02
+ 602:	8e 01       	movw	r16, r28
+ 604:	0b 5f       	subi	r16, 0xFB	; 251
+ 606:	1f 4f       	sbci	r17, 0xFF	; 255
+ 608:	08 c0       	rjmp	.+16     	; 0x61a <__vector_25+0xba>
+ 60a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 60c:	f8 01       	movw	r30, r16
+ 60e:	e8 0f       	add	r30, r24
+ 610:	f1 1d       	adc	r31, r1
+ 612:	10 82       	st	Z, r1
+ 614:	8a 81       	ldd	r24, Y+2	; 0x02
+ 616:	8f 5f       	subi	r24, 0xFF	; 255
+ 618:	8a 83       	std	Y+2, r24	; 0x02
+ 61a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 61c:	85 30       	cpi	r24, 0x05	; 5
+ 61e:	a8 f3       	brcs	.-22     	; 0x60a <__vector_25+0xaa>
+				/* read the write count from eeprom and convert to ascii */
+				number_of_bytes_in_eeprom = drvReadEeprom(0);
+ 620:	80 e0       	ldi	r24, 0x00	; 0
+ 622:	90 e0       	ldi	r25, 0x00	; 0
+ 624:	0e 94 0c 02 	call	0x418	; 0x418 <drvReadEeprom>
+ 628:	90 e0       	ldi	r25, 0x00	; 0
+ 62a:	9c 83       	std	Y+4, r25	; 0x04
+ 62c:	8b 83       	std	Y+3, r24	; 0x03
+				if (number_of_bytes_in_eeprom >= 0)	{			
+ 62e:	8b 81       	ldd	r24, Y+3	; 0x03
+ 630:	9c 81       	ldd	r25, Y+4	; 0x04
+	                myitoa((UINT8 *)myascii,sizeof(myascii)-1,number_of_bytes_in_eeprom);
+ 632:	4b 81       	ldd	r20, Y+3	; 0x03
+ 634:	5c 81       	ldd	r21, Y+4	; 0x04
+ 636:	c8 01       	movw	r24, r16
+ 638:	64 e0       	ldi	r22, 0x04	; 4
+ 63a:	70 e0       	ldi	r23, 0x00	; 0
+ 63c:	0e 94 b9 00 	call	0x172	; 0x172 <myitoa>
+ 640:	20 e0       	ldi	r18, 0x00	; 0
+ 642:	30 e0       	ldi	r19, 0x00	; 0
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+ 644:	ae 01       	movw	r20, r28
+ 646:	4b 5f       	subi	r20, 0xFB	; 251
+ 648:	5f 4f       	sbci	r21, 0xFF	; 255
+ 64a:	08 c0       	rjmp	.+16     	; 0x65c <__vector_25+0xfc>
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 64c:	80 91 c0 00 	lds	r24, 0x00C0
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 650:	85 ff       	sbrs	r24, 5
+ 652:	fc cf       	rjmp	.-8      	; 0x64c <__vector_25+0xec>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 654:	e0 93 c6 00 	sts	0x00C6, r30
+ 658:	2f 5f       	subi	r18, 0xFF	; 255
+ 65a:	3f 4f       	sbci	r19, 0xFF	; 255
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+ 65c:	fa 01       	movw	r30, r20
+ 65e:	e2 0f       	add	r30, r18
+ 660:	f3 1f       	adc	r31, r19
+ 662:	e0 81       	ld	r30, Z
+ 664:	ee 23       	and	r30, r30
+ 666:	91 f7       	brne	.-28     	; 0x64c <__vector_25+0xec>
+ 668:	ee e0       	ldi	r30, 0x0E	; 14
+ 66a:	f2 e0       	ldi	r31, 0x02	; 2
+ 66c:	07 c0       	rjmp	.+14     	; 0x67c <__vector_25+0x11c>
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 66e:	80 91 c0 00 	lds	r24, 0x00C0
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 672:	85 ff       	sbrs	r24, 5
+ 674:	fc cf       	rjmp	.-8      	; 0x66e <__vector_25+0x10e>
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+ 676:	31 96       	adiw	r30, 0x01	; 1
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 678:	90 93 c6 00 	sts	0x00C6, r25
+	drvUSARTWriteString((UINT8 *)string, sizeof(string));
+}
+
+void drvUSARTWriteString(const UINT8 * data,UINT8 length)
+{
+	while(*data != '\0')
+ 67c:	90 81       	ld	r25, Z
+ 67e:	99 23       	and	r25, r25
+ 680:	b1 f7       	brne	.-20     	; 0x66e <__vector_25+0x10e>
+ 682:	3e c0       	rjmp	.+124    	; 0x700 <__vector_25+0x1a0>
+                    drvUSARTWriteString((UINT8 *)myascii,sizeof(myascii));                   
+                } else {
+				    drvUSARTPutChar('0');
+                } 
+		    	drvUSARTWriteString((UINT8 *)CR_LF_STRING,sizeof(CR_LF_STRING));
+	} else if (record_to_eeprom) {
+ 684:	80 91 14 02 	lds	r24, 0x0214
+ 688:	88 23       	and	r24, r24
+ 68a:	99 f1       	breq	.+102    	; 0x6f2 <__vector_25+0x192>
+            drvWriteEeprom(next_eeprom_address, data_received);
+ 68c:	80 91 18 02 	lds	r24, 0x0218
+ 690:	90 91 19 02 	lds	r25, 0x0219
+ 694:	69 81       	ldd	r22, Y+1	; 0x01
+ 696:	0e 94 02 02 	call	0x404	; 0x404 <drvWriteEeprom>
+			drvUpdateEepromDataCount();
+ 69a:	0e 94 29 02 	call	0x452	; 0x452 <drvUpdateEepromDataCount>
+	        drvUSARTPutChar(data_received);
+ 69e:	99 81       	ldd	r25, Y+1	; 0x01
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 6a0:	80 91 c0 00 	lds	r24, 0x00C0
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 6a4:	85 ff       	sbrs	r24, 5
+ 6a6:	fc cf       	rjmp	.-8      	; 0x6a0 <__vector_25+0x140>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 6a8:	90 93 c6 00 	sts	0x00C6, r25
+		    	drvUSARTWriteString((UINT8 *)CR_LF_STRING,sizeof(CR_LF_STRING));
+	} else if (record_to_eeprom) {
+            drvWriteEeprom(next_eeprom_address, data_received);
+			drvUpdateEepromDataCount();
+	        drvUSARTPutChar(data_received);
+	        if (data_received == CR_CHAR) {
+ 6ac:	89 81       	ldd	r24, Y+1	; 0x01
+ 6ae:	8d 30       	cpi	r24, 0x0D	; 13
+ 6b0:	89 f4       	brne	.+34     	; 0x6d4 <__vector_25+0x174>
+				drvWriteEeprom(next_eeprom_address, LF_CHAR);
+ 6b2:	80 91 18 02 	lds	r24, 0x0218
+ 6b6:	90 91 19 02 	lds	r25, 0x0219
+ 6ba:	6a e0       	ldi	r22, 0x0A	; 10
+ 6bc:	0e 94 02 02 	call	0x404	; 0x404 <drvWriteEeprom>
+			    drvUpdateEepromDataCount();
+ 6c0:	0e 94 29 02 	call	0x452	; 0x452 <drvUpdateEepromDataCount>
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 6c4:	80 91 c0 00 	lds	r24, 0x00C0
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 6c8:	85 ff       	sbrs	r24, 5
+ 6ca:	fc cf       	rjmp	.-8      	; 0x6c4 <__vector_25+0x164>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 6cc:	8a e0       	ldi	r24, 0x0A	; 10
+ 6ce:	80 93 c6 00 	sts	0x00C6, r24
+ 6d2:	16 c0       	rjmp	.+44     	; 0x700 <__vector_25+0x1a0>
+	        drvUSARTPutChar(data_received);
+	        if (data_received == CR_CHAR) {
+				drvWriteEeprom(next_eeprom_address, LF_CHAR);
+			    drvUpdateEepromDataCount();
+		        drvUSARTPutChar(LF_CHAR);
+            } else if (data_received == BACKSPACE_CHAR) {
+ 6d4:	89 81       	ldd	r24, Y+1	; 0x01
+ 6d6:	88 30       	cpi	r24, 0x08	; 8
+ 6d8:	99 f4       	brne	.+38     	; 0x700 <__vector_25+0x1a0>
+			    drvUpdateEepromDataCount(-1);
+ 6da:	8f ef       	ldi	r24, 0xFF	; 255
+ 6dc:	9f ef       	ldi	r25, 0xFF	; 255
+ 6de:	0e 94 29 02 	call	0x452	; 0x452 <drvUpdateEepromDataCount>
+                drvWriteEeprom(next_eeprom_address, data_received);
+ 6e2:	80 91 18 02 	lds	r24, 0x0218
+ 6e6:	90 91 19 02 	lds	r25, 0x0219
+ 6ea:	69 81       	ldd	r22, Y+1	; 0x01
+ 6ec:	0e 94 02 02 	call	0x404	; 0x404 <drvWriteEeprom>
+ 6f0:	07 c0       	rjmp	.+14     	; 0x700 <__vector_25+0x1a0>
+	        }
+
+    } else 
+	        drvUSARTPutChar(data_received);
+ 6f2:	99 81       	ldd	r25, Y+1	; 0x01
+}
+
+/* wrapper for writing register */
+UINT8 drvReadReg(UINT16 base, UINT16 offset)
+{
+	return *((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER)));
+ 6f4:	80 91 c0 00 	lds	r24, 0x00C0
+	while(*data != '\0')
+	    drvUSARTPutChar(*data++);
+}
+ 
+void drvUSARTPutChar(UINT8 data) {
+    while((drvReadReg(USART0_BASEADDR,USART_UCSRA_OFFSET) & USART_DATA_REG_EMPTY) 
+ 6f8:	85 ff       	sbrs	r24, 5
+ 6fa:	fc cf       	rjmp	.-8      	; 0x6f4 <__vector_25+0x194>
+const UINT8 DELAY = 100;
+
+/* wrapper for writing register */
+void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value)
+{
+	*((volatile UINT8 *)(base + (offset*ADDR_MULTIPLIER))) = value;
+ 6fc:	90 93 c6 00 	sts	0x00C6, r25
+    } else 
+	        drvUSARTPutChar(data_received);
+
+
+
+	sei();
+ 700:	78 94       	sei
+}
+ 702:	29 96       	adiw	r28, 0x09	; 9
+ 704:	de bf       	out	0x3e, r29	; 62
+ 706:	cd bf       	out	0x3d, r28	; 61
+ 708:	cf 91       	pop	r28
+ 70a:	df 91       	pop	r29
+ 70c:	ff 91       	pop	r31
+ 70e:	ef 91       	pop	r30
+ 710:	bf 91       	pop	r27
+ 712:	af 91       	pop	r26
+ 714:	9f 91       	pop	r25
+ 716:	8f 91       	pop	r24
+ 718:	7f 91       	pop	r23
+ 71a:	6f 91       	pop	r22
+ 71c:	5f 91       	pop	r21
+ 71e:	4f 91       	pop	r20
+ 720:	3f 91       	pop	r19
+ 722:	2f 91       	pop	r18
+ 724:	1f 91       	pop	r17
+ 726:	0f 91       	pop	r16
+ 728:	0f 90       	pop	r0
+ 72a:	0b be       	out	0x3b, r0	; 59
+ 72c:	0f 90       	pop	r0
+ 72e:	0f be       	out	0x3f, r0	; 63
+ 730:	0f 90       	pop	r0
+ 732:	1f 90       	pop	r1
+ 734:	18 95       	reti
+
+00000736 <main>:
+#include "drvapi.h"
+
+
+
+int main() {
+ 736:	df 93       	push	r29
+ 738:	cf 93       	push	r28
+ 73a:	00 d0       	rcall	.+0      	; 0x73c <main+0x6>
+ 73c:	0f 92       	push	r0
+ 73e:	0f 92       	push	r0
+ 740:	cd b7       	in	r28, 0x3d	; 61
+ 742:	de b7       	in	r29, 0x3e	; 62
+    UINT8 pinvalue;
+
+    DRVCTRL example;
+
+    drvinit(example);
+ 744:	49 81       	ldd	r20, Y+1	; 0x01
+ 746:	5a 81       	ldd	r21, Y+2	; 0x02
+ 748:	6b 81       	ldd	r22, Y+3	; 0x03
+ 74a:	7c 81       	ldd	r23, Y+4	; 0x04
+ 74c:	8d 81       	ldd	r24, Y+5	; 0x05
+ 74e:	0e 94 95 00 	call	0x12a	; 0x12a <drvinit>
+
+	pinvalue = gpio_read_pin(&example,PORTD, 1);
+ 752:	ce 01       	movw	r24, r28
+ 754:	01 96       	adiw	r24, 0x01	; 1
+ 756:	6b e2       	ldi	r22, 0x2B	; 43
+ 758:	41 e0       	ldi	r20, 0x01	; 1
+ 75a:	0e 94 b3 00 	call	0x166	; 0x166 <gpio_read_pin>
+
+	init_gpio(DRV_PORTB);
+ 75e:	83 e2       	ldi	r24, 0x23	; 35
+ 760:	0e 94 4b 02 	call	0x496	; 0x496 <init_gpio>
+	init_gpio(DRV_PORTD);
+ 764:	89 e2       	ldi	r24, 0x29	; 41
+ 766:	0e 94 4b 02 	call	0x496	; 0x496 <init_gpio>
+	   function where I could just pass a pointer to a
+	   function that would be called when the timer
+	   overflowed, like the one below.
+    */
+    /* schedulePeriodicTask(timePeriod,&task); */
+    init_timer();
+ 76a:	0e 94 9a 00 	call	0x134	; 0x134 <init_timer>
+
+    init_usart0();
+ 76e:	0e 94 ab 01 	call	0x356	; 0x356 <init_usart0>
+
+    init_eeprom();
+ 772:	0e 94 14 02 	call	0x428	; 0x428 <init_eeprom>
+ 776:	ff cf       	rjmp	.-2      	; 0x776 <main+0x40>
+
+00000778 <__udivmodhi4>:
+ 778:	aa 1b       	sub	r26, r26
+ 77a:	bb 1b       	sub	r27, r27
+ 77c:	51 e1       	ldi	r21, 0x11	; 17
+ 77e:	07 c0       	rjmp	.+14     	; 0x78e <__udivmodhi4_ep>
+
+00000780 <__udivmodhi4_loop>:
+ 780:	aa 1f       	adc	r26, r26
+ 782:	bb 1f       	adc	r27, r27
+ 784:	a6 17       	cp	r26, r22
+ 786:	b7 07       	cpc	r27, r23
+ 788:	10 f0       	brcs	.+4      	; 0x78e <__udivmodhi4_ep>
+ 78a:	a6 1b       	sub	r26, r22
+ 78c:	b7 0b       	sbc	r27, r23
+
+0000078e <__udivmodhi4_ep>:
+ 78e:	88 1f       	adc	r24, r24
+ 790:	99 1f       	adc	r25, r25
+ 792:	5a 95       	dec	r21
+ 794:	a9 f7       	brne	.-22     	; 0x780 <__udivmodhi4_loop>
+ 796:	80 95       	com	r24
+ 798:	90 95       	com	r25
+ 79a:	bc 01       	movw	r22, r24
+ 79c:	cd 01       	movw	r24, r26
+ 79e:	08 95       	ret
+
+000007a0 <_exit>:
+ 7a0:	f8 94       	cli
+
+000007a2 <__stop_program>:
+ 7a2:	ff cf       	rjmp	.-2      	; 0x7a2 <__stop_program>

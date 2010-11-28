@@ -1,0 +1,489 @@
+Archive member included because of file (symbol)
+
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_udivmodhi4.o)
+                              drvcore.o (__udivmodhi4)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_exit.o)
+                              c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o (exit)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_clear_bss.o)
+                              drvport.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+number_of_bytes_used_in_eeprom
+                    0x1               drvport.o
+next_eeprom_address
+                    0x2               drvport.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00100000         xr
+data             0x00800200         0x0000fe00         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800200
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o
+LOAD drvapi.o
+LOAD drvcore.o
+LOAD drvport.o
+LOAD main.o
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6\libc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0x7a4
+ *(.vectors)
+ .vectors       0x00000000       0xe4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x000000e4                . = ALIGN (0x2)
+                0x000000e4                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x000000e4        0x0 linker stubs
+ *(.trampolines*)
+                0x000000e4                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x000000e4                __ctors_start = .
+ *(.ctors)
+                0x000000e4                __ctors_end = .
+                0x000000e4                __dtors_start = .
+ *(.dtors)
+                0x000000e4                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x000000e4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o
+                0x000000e4                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x000000e4       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x000000f4       0x1a c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o
+                0x000000f4                __do_copy_data
+ .init4         0x0000010e       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_clear_bss.o)
+                0x0000010e                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x0000011e        0x8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o
+ *(.init9)
+ *(.text)
+ .text          0x00000126        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o
+                0x00000126                __vector_38
+                0x00000126                __vector_22
+                0x00000126                __vector_28
+                0x00000126                __vector_1
+                0x00000126                __vector_32
+                0x00000126                __vector_34
+                0x00000126                __vector_24
+                0x00000126                __vector_12
+                0x00000126                __vector_55
+                0x00000126                __vector_46
+                0x00000126                __bad_interrupt
+                0x00000126                __vector_6
+                0x00000126                __vector_31
+                0x00000126                __vector_35
+                0x00000126                __vector_39
+                0x00000126                __vector_3
+                0x00000126                __vector_30
+                0x00000126                __vector_45
+                0x00000126                __vector_11
+                0x00000126                __vector_54
+                0x00000126                __vector_13
+                0x00000126                __vector_17
+                0x00000126                __vector_19
+                0x00000126                __vector_56
+                0x00000126                __vector_7
+                0x00000126                __vector_49
+                0x00000126                __vector_41
+                0x00000126                __vector_43
+                0x00000126                __vector_27
+                0x00000126                __vector_5
+                0x00000126                __vector_33
+                0x00000126                __vector_47
+                0x00000126                __vector_52
+                0x00000126                __vector_37
+                0x00000126                __vector_4
+                0x00000126                __vector_44
+                0x00000126                __vector_51
+                0x00000126                __vector_9
+                0x00000126                __vector_2
+                0x00000126                __vector_21
+                0x00000126                __vector_15
+                0x00000126                __vector_36
+                0x00000126                __vector_29
+                0x00000126                __vector_40
+                0x00000126                __vector_8
+                0x00000126                __vector_26
+                0x00000126                __vector_48
+                0x00000126                __vector_14
+                0x00000126                __vector_53
+                0x00000126                __vector_10
+                0x00000126                __vector_50
+                0x00000126                __vector_16
+                0x00000126                __vector_18
+                0x00000126                __vector_20
+                0x00000126                __vector_42
+ .text          0x0000012a       0x48 drvapi.o
+                0x00000158                gpio_write_pin
+                0x0000012e                gpio_pin_on
+                0x0000013c                board_led_off
+                0x00000134                init_timer
+                0x00000166                gpio_read_pin
+                0x0000012a                drvinit
+                0x00000130                serial_write
+                0x00000132                serial_read
+                0x0000012c                gpio_init
+                0x0000014a                board_led_on
+ .text          0x00000172       0xe4 drvcore.o
+                0x00000172                myitoa
+ .text          0x00000256      0x4e0 drvport.o
+                0x0000054c                drvWriteUint16Reg
+                0x00000428                init_eeprom
+                0x000003da                drvUSARTWriteString
+                0x00000418                drvReadEeprom
+                0x00000404                drvWriteEeprom
+                0x00000302                __vector_23
+                0x00000356                init_usart0
+                0x00000560                __vector_25
+                0x000004f0                read_pin
+                0x0000050c                drvClearBit
+                0x00000256                drvWriteReg
+                0x0000026a                timer_init
+                0x0000050e                drvTestBit
+                0x00000452                drvUpdateEepromDataCount
+                0x00000476                drvResetEepromDataCount
+                0x00000260                drvReadReg
+                0x000004be                write_pin
+                0x00000280                timer_interrupt
+                0x0000049e                toggle_pin
+                0x0000050a                drvSetBit
+                0x000003f4                drvUSARTPutChar
+                0x00000496                init_gpio
+ .text          0x00000736       0x42 main.o
+                0x00000736                main
+ .text          0x00000778        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_udivmodhi4.o)
+ .text          0x00000778        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_exit.o)
+ .text          0x00000778        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_clear_bss.o)
+                0x00000778                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x00000778       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_udivmodhi4.o)
+                0x00000778                __udivmodhi4
+ .text.libgcc   0x000007a0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_exit.o)
+ .text.libgcc   0x000007a0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_clear_bss.o)
+                0x000007a0                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000007a0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_exit.o)
+                0x000007a0                exit
+                0x000007a0                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000007a0        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_exit.o)
+ *(.fini0)
+                0x000007a4                _etext = .
+
+.data           0x00800200       0x14 load address 0x000007a4
+                0x00800200                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800200        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o
+ .data          0x00800200        0x0 drvapi.o
+ .data          0x00800200        0x0 drvcore.o
+ .data          0x00800200       0x13 drvport.o
+                0x00800211                capture_state
+                0x00800212                DELAY
+ .data          0x00800213        0x0 main.o
+ .data          0x00800213        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_udivmodhi4.o)
+ .data          0x00800213        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_exit.o)
+ .data          0x00800213        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800214                . = ALIGN (0x2)
+ *fill*         0x00800213        0x1 00
+                0x00800214                _edata = .
+                0x00800214                PROVIDE (__data_end, .)
+
+.bss            0x00800214        0x6
+                0x00800214                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800214        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr6/crtm2560.o
+ .bss           0x00800214        0x0 drvapi.o
+ .bss           0x00800214        0x0 drvcore.o
+ .bss           0x00800214        0x3 drvport.o
+ .bss           0x00800217        0x0 main.o
+ .bss           0x00800217        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_udivmodhi4.o)
+ .bss           0x00800217        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_exit.o)
+ .bss           0x00800217        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr6\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x00800217        0x3 drvport.o
+                0x00800217                number_of_bytes_used_in_eeprom
+                0x00800218                next_eeprom_address
+                0x0080021a                PROVIDE (__bss_end, .)
+                0x000007a4                __data_load_start = LOADADDR (.data)
+                0x000007b8                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x0080021a        0x0
+                0x0080021a                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x0080021a                PROVIDE (__noinit_end, .)
+                0x0080021a                _end = .
+                0x0080021a                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x80
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 drvapi.o
+ .debug_aranges
+                0x00000020       0x20 drvcore.o
+ .debug_aranges
+                0x00000040       0x20 drvport.o
+ .debug_aranges
+                0x00000060       0x20 main.o
+
+.debug_pubnames
+                0x00000000      0x2dc
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0xb4 drvapi.o
+ .debug_pubnames
+                0x000000b4       0x1d drvcore.o
+ .debug_pubnames
+                0x000000d1      0x1f0 drvport.o
+ .debug_pubnames
+                0x000002c1       0x1b main.o
+
+.debug_info     0x00000000      0xeed
+ *(.debug_info)
+ .debug_info    0x00000000      0x243 drvapi.o
+ .debug_info    0x00000243       0xbe drvcore.o
+ .debug_info    0x00000301      0xb00 drvport.o
+ .debug_info    0x00000e01       0xec main.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x4a3
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0xcc drvapi.o
+ .debug_abbrev  0x000000cc       0x73 drvcore.o
+ .debug_abbrev  0x0000013f      0x2cf drvport.o
+ .debug_abbrev  0x0000040e       0x95 main.o
+
+.debug_line     0x00000000      0x85e
+ *(.debug_line)
+ .debug_line    0x00000000      0x126 drvapi.o
+ .debug_line    0x00000126       0xae drvcore.o
+ .debug_line    0x000001d4      0x5f2 drvport.o
+ .debug_line    0x000007c6       0x98 main.o
+
+.debug_frame    0x00000000      0x260
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xb0 drvapi.o
+ .debug_frame   0x000000b0       0x20 drvcore.o
+ .debug_frame   0x000000d0      0x170 drvport.o
+ .debug_frame   0x00000240       0x20 main.o
+
+.debug_str      0x00000000      0x356
+ *(.debug_str)
+ .debug_str     0x00000000      0x132 drvapi.o
+                                0x13d (size before relaxing)
+ .debug_str     0x00000132       0x34 drvcore.o
+                                 0xae (size before relaxing)
+ .debug_str     0x00000166      0x1d0 drvport.o
+                                0x276 (size before relaxing)
+ .debug_str     0x00000336       0x20 main.o
+                                 0xbe (size before relaxing)
+
+.debug_loc      0x00000000      0x3c6
+ *(.debug_loc)
+ .debug_loc     0x00000000       0xe1 drvapi.o
+ .debug_loc     0x000000e1       0x78 drvcore.o
+ .debug_loc     0x00000159      0x26d drvport.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(lab4_5.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000       0x30
+ .debug_ranges  0x00000000       0x30 drvport.o
