@@ -1,5 +1,12 @@
+/*****************************************************************************/
+/* Filename: drvcore.c                                                       */
+/* Description: Some utility functions used for Lab4/5 of EECS_X497.19.      */
+/* Date: 11-28-2010                                                          */
+/* Author: Paul Kolonay                                                      */ 
+/*****************************************************************************/
 #include "..\inc\atmega2560.h"
 #include "drvcore.h"
+
 
 /**
   * Function: myitoa
@@ -24,4 +31,28 @@ void myitoa(UINT8 myascii[],UINT16 length, UINT16 value) {
 	    divisor = divisor%dividend;
     }
     myascii[length-1] = divisor+MAP_DIGIT_TO_ASCII;
+}
+
+
+/**
+  * Used to test a bit in a in a given byte at a given address.
+  */
+UINT8 drvTestBit(UINT16 addr, UINT16 offset, UINT8 position) {
+    volatile UINT8 value;
+
+    value = (UINT8)~drvReadReg(addr,offset) & (1<<position);
+
+    return( value >> position);
+}
+
+
+/**
+  * Read two consecutive 8 bit locations and concatenate into a UINT16.
+  * The hi byte is read first and then the low as spec'd in the atmega
+  * datasheet. This probably should be an atomic operation.
+  */
+void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value) {
+    /* write hi then low */
+    drvWriteReg(base,offset+1,value>>8);
+    drvWriteReg(base,offset,(UINT8)(value&0xFF));
 }

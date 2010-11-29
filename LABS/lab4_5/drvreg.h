@@ -1,14 +1,13 @@
+/*****************************************************************************/
+/* Filename: drvreg                                                          */
+/* Description: Some extra convenience hardware register related defines for */
+/*              Lab 4/5 of EECS_X497.19.                                     */
+/* Date: 11-28-2010                                                          */
+/* Author: Paul Kolonay                                                      */ 
+/*****************************************************************************/
 #ifndef __DRVREG_H__
 #define __DRVREG_H__
 
-
-
-#define PIN0           0
-
-/**
- * STK600 Board specific 
- */
-#define LED0           0
 
 
 #define DRV_PORTB      0x23
@@ -71,6 +70,7 @@
 #define EEPROM_ADDR_HI_OFFSET     3
 #define EEPROM_ADDR_OFFSET        EEPROM_ADDR_LO_OFFSET
 
+#define EEPROM_CAPACITY           4096
 
 
 

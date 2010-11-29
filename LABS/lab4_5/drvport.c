@@ -1,10 +1,18 @@
+/*****************************************************************************/
+/* Filename: drvport.c                                                       */
+/* Description: Code for  Lab4/5 of ECS_X497.19.                             */
+/* Date: 11-28-2010                                                          */
+/* Author: Paul Kolonay                                                      */ 
+/*****************************************************************************/
 #include "..\inc\atmega2560.h"
 #include "..\inc\hw_timer.h"
 #include "drvcore.h"
 
+/** Next address to which data can be written in the EEPROM. */
 volatile UINT16 next_eeprom_address;
-volatile UINT8  number_of_bytes_used_in_eeprom;
-volatile UINT8  capture_state = 1;
+/** Holds the number of bytes that have been written to the EEPROM. */
+volatile INT16  number_of_bytes_used_in_eeprom;
+
 /* delay in milliseconds */
 const UINT8 DELAY = 100;
 
@@ -21,6 +29,7 @@ UINT8 drvReadReg(UINT16 base, UINT16 offset)
 }
 
 
+/** Initialize TIMER0 to generate an operflow insterrupt */
 void timer_init(UINT8 delay) { 
 
     /* global interrupt disable */
@@ -41,11 +50,15 @@ void timer_init(UINT8 delay) {
 
 }
 
+
+/** Interrupt handler for TIMER0 */
 void timer_interrupt() {
+    /** Current pin that is being turned on/off */
     static UINT8 pin;
+	/** Current state of pin. Used to toggle */
 	static UINT8 on;
 
-    /* reset the timer */
+    /* reset the timer counter*/
     HWREG(TCNT0) = 256-DELAY; 
 	    
 	toggle_pin(DRV_PORTB+DRV_GPIO_PORT_OFFSET,pin);
@@ -83,52 +96,71 @@ void __vector_23 (void)
  */
 void __vector_25 (void) 
 { 
+    /** Keeps track of if the data received should be written to the EEPROM */
     static   UINT8 record_to_eeprom;
+	/** Holds latest data received on the serial port */
     volatile UINT8 data_received;
 	volatile UINT8 i;
-	/* for a 4 digit ascii string to output the number of bytes in the eeprom */
+	/** Used to create string for number of bytes in EEPROM output. For a 4 
+	  *  digit ascii string to output the number of bytes in the eeprom */
 	volatile UINT8 myascii[5]; 
+	/** Holds the latest value read from the EEPROM bytes used location. */
 	volatile UINT16 number_of_bytes_in_eeprom;
 
-    /* Set the Data Register Empty flag */
     data_received = drvReadReg(USART0_BASEADDR,USART_UDR_OFFSET);
 	if (data_received == RECORDING_CONTROL_CHAR) {
-	    /* if currently recording then stop else start recording */
+	    /* if currently recording then stop else, start recording! */
 	    if(!record_to_eeprom) {
-			/* reset character count */
+			/* reset character count and pointers*/
 			drvResetEepromDataCount();
 	        record_to_eeprom = TRUE;
         } else {
 		    record_to_eeprom = FALSE;
         }
     } else if (data_received == PLAYBACK_CHAR)  {
-			for(i = 1;i < next_eeprom_address;i++)
+			for(i = EEPROM_DATA_START_ADDR;i < next_eeprom_address;i++)
 	            drvUSARTPutChar(drvReadEeprom(i));
     } else if (data_received == DUMP_NUMBER_OF_BYTES_CHAR) {
 	            /* initialize array */
-	            for (i=0;i<sizeof(myascii);i++) myascii[i]='\0';
+	            drvUSARTWriteString((UINT8 *)BYTES_STORED_STRING,sizeof(BYTES_STORED_STRING));
+				/* initialize string */
+				myascii[0]='\0';
 				/* read the write count from eeprom and convert to ascii */
-				number_of_bytes_in_eeprom = drvReadEeprom(0);
-				if (number_of_bytes_in_eeprom >= 0)	{			
+				number_of_bytes_in_eeprom = drvRead16Eeprom(EEPROM_DATA_COUNT_ADDR);
+				if (number_of_bytes_in_eeprom != 0xFFFF)	{			
 	                myitoa((UINT8 *)myascii,sizeof(myascii)-1,number_of_bytes_in_eeprom);
 				    /* send out the serial port */
+    			    myascii[4] = '\0';
                     drvUSARTWriteString((UINT8 *)myascii,sizeof(myascii));                   
                 } else {
 				    drvUSARTPutChar('0');
                 } 
-		    	drvUSARTWriteString((UINT8 *)CR_LF_STRING,sizeof(CR_LF_STRING));
+				drvUSARTWriteString((UINT8 *)CR_LF_STRING,sizeof(CR_LF_STRING));
 	} else if (record_to_eeprom) {
-            drvWriteEeprom(next_eeprom_address, data_received);
-			drvUpdateEepromDataCount();
-	        drvUSARTPutChar(data_received);
+	        /* Handle CR and BS chars separately. If unsuccessful in storing to eeprom
+			   then output error message, otherwise store (except for BS) and echo */
 	        if (data_received == CR_CHAR) {
-				drvWriteEeprom(next_eeprom_address, LF_CHAR);
-			    drvUpdateEepromDataCount();
-		        drvUSARTPutChar(LF_CHAR);
+			    if(drvWriteEeprom(next_eeprom_address, data_received)) {
+			    	drvUpdateEepromDataCount(1);
+	                drvUSARTPutChar(data_received);
+					/* Tack on the LF char */
+					if(drvWriteEeprom(next_eeprom_address, LF_CHAR)) {
+			            drvUpdateEepromDataCount(1);
+		                drvUSARTPutChar(LF_CHAR);
+                    } else 
+				        drvUSARTWriteString((UINT8 *)EEPROM_FULL_STRING,sizeof(EEPROM_FULL_STRING));
+                } else 
+				    drvUSARTWriteString((UINT8 *)EEPROM_FULL_STRING,sizeof(EEPROM_FULL_STRING));
             } else if (data_received == BACKSPACE_CHAR) {
+			    /* Just adjust the count. */
 			    drvUpdateEepromDataCount(-1);
-                drvWriteEeprom(next_eeprom_address, data_received);
-	        }
+	        } else {
+			    if(drvWriteEeprom(next_eeprom_address, data_received)) {
+			        drvUpdateEepromDataCount(1);
+	                drvUSARTPutChar(data_received);
+                } else 
+				    drvUSARTWriteString((UINT8 *)EEPROM_FULL_STRING,sizeof(EEPROM_FULL_STRING));
+            }
 
     } else 
 	        drvUSARTPutChar(data_received);
@@ -179,17 +211,24 @@ void drvUSARTPutChar(UINT8 data) {
   */
 void init_eeprom() {
 
-    number_of_bytes_used_in_eeprom = drvReadEeprom(0);
-	if ( number_of_bytes_used_in_eeprom == 0xFF ) 
+    number_of_bytes_used_in_eeprom = drvRead16Eeprom(EEPROM_DATA_COUNT_ADDR);
+
+	if ( number_of_bytes_used_in_eeprom == 0xFFFF ) {
         number_of_bytes_used_in_eeprom = 0;
-	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
+		next_eeprom_address = EEPROM_DATA_START_ADDR;
+    } else 
+	    next_eeprom_address = number_of_bytes_used_in_eeprom;
+
 
 }
 
 
 /* do we have to manage a buffer here in case the eeprom is not ready? */
-void drvWriteEeprom(UINT16 addr, UINT8 data)
+UINT8 drvWriteEeprom(UINT16 addr, UINT8 data)
 {
+    if (addr == EEPROM_CAPACITY) 
+	    return(FALSE);
+
     /* Wait for completion of previous write */
     /*while(EECR & (1<<EEPE))*/
     while(drvReadReg(EEPROM_BASE,EEPROM_CTRL_OFFSET) & (EEPROM_PRG_EN))
@@ -209,6 +248,8 @@ void drvWriteEeprom(UINT16 addr, UINT8 data)
     /* Start eeprom write by setting EEPE */
     /*EECR |= (1<<EEPE);*/
     drvWriteReg(EEPROM_BASE,EEPROM_CTRL_OFFSET,EEPROM_PRG_EN);
+
+	return(TRUE);
     
 }
 
@@ -231,17 +272,34 @@ UINT8 drvReadEeprom(UINT16 addr) {
 
 }
 
-void drvUpdateEepromDataCount() {
+UINT16 drvRead16Eeprom(UINT16 addr) {
 
-    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, next_eeprom_address);
-	next_eeprom_address++;
+    volatile UINT16 data;
+    data = drvReadEeprom(addr)<<8;
+    data |= drvReadEeprom(addr+1);
+
+	return data;
+}
+void drvUpdateEepromDataCount(INT16 increment) {
+
+	number_of_bytes_used_in_eeprom+=increment;
+	if (number_of_bytes_used_in_eeprom < 0 )
+	    number_of_bytes_used_in_eeprom = 0;
+    else if (number_of_bytes_used_in_eeprom >= EEPROM_CAPACITY-EEPROM_DATA_START_ADDR)
+	    number_of_bytes_used_in_eeprom = EEPROM_CAPACITY-EEPROM_DATA_START_ADDR;
+    else 
+	    next_eeprom_address = EEPROM_DATA_START_ADDR+number_of_bytes_used_in_eeprom;
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, (number_of_bytes_used_in_eeprom>>8));
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR+1, (number_of_bytes_used_in_eeprom&0xFF));
 }
 
 void drvResetEepromDataCount() {
 
     drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, 0);
+    drvWriteEeprom(EEPROM_DATA_COUNT_ADDR+1, 0);
+
 	number_of_bytes_used_in_eeprom = 0;
-	next_eeprom_address = number_of_bytes_used_in_eeprom + 1;
+	next_eeprom_address = EEPROM_DATA_START_ADDR;
 }
 
 
@@ -282,34 +340,5 @@ UINT8 read_pin(UINT16 port, UINT8 pin) {
 
 }
 
-/**
-  * Used to set a bit in a in a given byte at a given address.
-  */
-void drvSetBit(UINT16 addr, UINT8 position)
-{;
-}
 
-/**
-  * Used to clear a bit in a in a given byte at a given address.
-  */
-void drvClearBit(UINT16 addr,UINT8 position){;}
-
-
-/**
-  * Used to test a bit in a in a given byte at a given address.
-  */
-UINT8 drvTestBit(UINT16 addr, UINT16 offset, UINT8 position) {
-    volatile UINT8 value;
-
-    value = (UINT8)~drvReadReg(addr,offset) & (1<<position);
-
-    return( value >> position);
-}
-
-
-void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value) {
-    /* write hi then low */
-    drvWriteReg(base,offset+1,value>>8);
-    drvWriteReg(base,offset,(UINT8)(value&0xFF));
-}
 
