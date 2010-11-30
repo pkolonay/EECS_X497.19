@@ -100,12 +100,13 @@ void __vector_25 (void)
     static   UINT8 record_to_eeprom;
 	/** Holds latest data received on the serial port */
     volatile UINT8 data_received;
-	volatile UINT8 i;
+	volatile UINT16 i;
 	/** Used to create string for number of bytes in EEPROM output. For a 4 
 	  *  digit ascii string to output the number of bytes in the eeprom */
 	volatile UINT8 myascii[5]; 
 	/** Holds the latest value read from the EEPROM bytes used location. */
 	volatile UINT16 number_of_bytes_in_eeprom;
+
 
     data_received = drvReadReg(USART0_BASEADDR,USART_UDR_OFFSET);
 	if (data_received == RECORDING_CONTROL_CHAR) {
