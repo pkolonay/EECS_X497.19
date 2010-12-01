@@ -286,8 +286,6 @@ void drvUpdateEepromDataCount(INT16 increment) {
 	number_of_bytes_used_in_eeprom+=increment;
 	if (number_of_bytes_used_in_eeprom < 0 )
 	    number_of_bytes_used_in_eeprom = 0;
-    else if (number_of_bytes_used_in_eeprom >= EEPROM_CAPACITY-EEPROM_DATA_START_ADDR)
-	    number_of_bytes_used_in_eeprom = EEPROM_CAPACITY-EEPROM_DATA_START_ADDR;
     else 
 	    next_eeprom_address = EEPROM_DATA_START_ADDR+number_of_bytes_used_in_eeprom;
     drvWriteEeprom(EEPROM_DATA_COUNT_ADDR, (number_of_bytes_used_in_eeprom>>8));

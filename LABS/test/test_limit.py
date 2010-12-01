@@ -55,20 +55,49 @@ if out != '':
 # Only send a single byte at a time so this ends up being multiples
 # of 0-9 or some other single character range.
 print("Writing data")
+for tens_of_bytes in range(0,409):
+	for count in range(0,10):
+		ser.write(count)
+		dataIn = ''
+		time.sleep(inter_character_delay)
+		while ser.inWaiting() > 0:
+			dataIn += ser.read()
+
+# Get the number of bytes store in the EEPROM
+print("Number of bytes")
+ser.write(number_bytes_char)
+out = ''
+time.sleep(.1)
+while ser.inWaiting() > 0:
+	out += ser.read()
+if out != '':
+	print(">>" + out)
+
+# Exceed the 4096 EEPROM capacity to test that this is not allowed.
 for count in range(0,10):
 	ser.write(count)
-	dataIn = ''
 	time.sleep(inter_character_delay)
 	while ser.inWaiting() > 0:
 		dataIn += ser.read()
 
+# Get the number of bytes store in the EEPROM
+print("Number of bytes")
+ser.write(number_bytes_char)
+out = ''
+time.sleep(.1)
+while ser.inWaiting() > 0:
+	out += ser.read()
+if out != '':
+	print(">>" + out)
+
 
 # Send control-Y to get the contents of the EEPROM.
+ser.flushInput()
 print("Playback")
 ser.write(playback_char)
 out = ''
 # Had to set this high to get all of the data. Not sure why.
-time.sleep(3)
+time.sleep(5)
 while ser.inWaiting() > 0:
 	out += ser.read()
 print("Number of chars received: %d" % len(out))
@@ -83,11 +112,12 @@ while ser.inWaiting() > 0:
 if out != '':
 	print("Error: Received unexpected output")
 
+time.sleep(2)
 # Get the number of bytes store in the EEPROM
 print("Number of bytes")
 ser.write(number_bytes_char)
 out = ''
-time.sleep(.1)
+time.sleep(2)
 while ser.inWaiting() > 0:
 	out += ser.read()
 if out != '':
