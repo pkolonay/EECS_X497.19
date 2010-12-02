@@ -28,6 +28,8 @@ int main() {
 
 	process();
     
+	sei();
+
     while (1) {
 	;
     }
