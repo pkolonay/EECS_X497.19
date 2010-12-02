@@ -71,12 +71,12 @@ void process() {
 	volatile UINT16 j;
     
 	/* Initialize the ring buffer for serial comm */
-	RingBuffer_InitBuffer(&rbuff);
+	RingBuffer_InitBuffer((RingBuff_t *)&rbuff);
 
     while(1) {
-	    isEmpty = RingBuffer_IsEmpty(&rbuff);
+	    isEmpty = RingBuffer_IsEmpty((RingBuff_t *)&rbuff);
 	    if(isEmpty == false) {
-		    data_received = RingBuffer_Remove(&rbuff);
+		    data_received = RingBuffer_Remove((RingBuff_t *)&rbuff);
             if (data_received == RECORDING_CONTROL_CHAR) {
 	            /* if currently recording then stop else start recording */
 	            if(!record_to_eeprom) {
@@ -120,8 +120,6 @@ void process() {
 	            }
             } else 
 	            drvUSARTPutChar(data_received);
-
-            for(j=0;j<10000;j++);
 	    }
     }
 
