@@ -10,6 +10,7 @@
 
 #include "..\inc\atmega2560.h"
 #include "drvreg.h"
+#include "..\inc\LightweightRingBuff.h"
 
 
 #define UINT16 unsigned int
@@ -50,6 +51,10 @@
 
 #define TRUE  1
 #define FALSE 0
+
+volatile RingBuff_t rbuff;
+volatile UINT16 next_eeprom_address;
+volatile UINT16 number_of_bytes_used_in_eeprom;
 
 
 #define ADDR_MULTIPLIER 1

@@ -20,6 +20,8 @@ int main() {
     init_usart0();
 
     init_eeprom();
+
+	process();
     
     while (1) {
 	;

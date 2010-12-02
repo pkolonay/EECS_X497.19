@@ -8,11 +8,6 @@
 #include "..\inc\hw_timer.h"
 #include "drvcore.h"
 
-/** Next address to which data can be written in the EEPROM. */
-volatile UINT16 next_eeprom_address;
-/** Holds the number of bytes that have been written to the EEPROM. */
-volatile INT16  number_of_bytes_used_in_eeprom;
-
 /* delay in milliseconds */
 const UINT8 DELAY = 100;
 
@@ -96,76 +91,15 @@ void __vector_23 (void)
  */
 void __vector_25 (void) 
 { 
-    /** Keeps track of if the data received should be written to the EEPROM */
-    static   UINT8 record_to_eeprom;
 	/** Holds latest data received on the serial port */
     volatile UINT8 data_received;
-	volatile UINT16 i;
-	/** Used to create string for number of bytes in EEPROM output. For a 4 
-	  *  digit ascii string to output the number of bytes in the eeprom */
-	volatile UINT8 myascii[5]; 
-	/** Holds the latest value read from the EEPROM bytes used location. */
-	volatile UINT16 number_of_bytes_in_eeprom;
 
 
     data_received = drvReadReg(USART0_BASEADDR,USART_UDR_OFFSET);
-	if (data_received == RECORDING_CONTROL_CHAR) {
-	    /* if currently recording then stop else, start recording! */
-	    if(!record_to_eeprom) {
-			/* reset character count and pointers*/
-			drvResetEepromDataCount();
-	        record_to_eeprom = TRUE;
-        } else {
-		    record_to_eeprom = FALSE;
-        }
-    } else if (data_received == PLAYBACK_CHAR)  {
-			for(i = EEPROM_DATA_START_ADDR;i < next_eeprom_address;i++)
-	            drvUSARTPutChar(drvReadEeprom(i));
-    } else if (data_received == DUMP_NUMBER_OF_BYTES_CHAR) {
-	            /* initialize array */
-	            drvUSARTWriteString((UINT8 *)BYTES_STORED_STRING,sizeof(BYTES_STORED_STRING));
-				/* initialize string */
-				myascii[0]='\0';
-				/* read the write count from eeprom and convert to ascii */
-				number_of_bytes_in_eeprom = drvRead16Eeprom(EEPROM_DATA_COUNT_ADDR);
-				if (number_of_bytes_in_eeprom != 0xFFFF)	{			
-	                myitoa((UINT8 *)myascii,sizeof(myascii)-1,number_of_bytes_in_eeprom);
-				    /* send out the serial port */
-    			    myascii[4] = '\0';
-                    drvUSARTWriteString((UINT8 *)myascii,sizeof(myascii));                   
-                } else {
-				    drvUSARTPutChar('0');
-                } 
-				drvUSARTWriteString((UINT8 *)CR_LF_STRING,sizeof(CR_LF_STRING));
-	} else if (record_to_eeprom) {
-	        /* Handle CR and BS chars separately. If unsuccessful in storing to eeprom
-			   then output error message, otherwise store (except for BS) and echo */
-	        if (data_received == CR_CHAR) {
-			    if(drvWriteEeprom(next_eeprom_address, data_received)) {
-			    	drvUpdateEepromDataCount(1);
-	                drvUSARTPutChar(data_received);
-					/* Tack on the LF char */
-					if(drvWriteEeprom(next_eeprom_address, LF_CHAR)) {
-			            drvUpdateEepromDataCount(1);
-		                drvUSARTPutChar(LF_CHAR);
-                    } else 
-				        drvUSARTWriteString((UINT8 *)EEPROM_FULL_STRING,sizeof(EEPROM_FULL_STRING));
-                } else 
-				    drvUSARTWriteString((UINT8 *)EEPROM_FULL_STRING,sizeof(EEPROM_FULL_STRING));
-            } else if (data_received == BACKSPACE_CHAR) {
-			    /* Just adjust the count. */
-			    drvUpdateEepromDataCount(-1);
-	        } else {
-			    if(drvWriteEeprom(next_eeprom_address, data_received)) {
-			        drvUpdateEepromDataCount(1);
-	                drvUSARTPutChar(data_received);
-                } else 
-				    drvUSARTWriteString((UINT8 *)EEPROM_FULL_STRING,sizeof(EEPROM_FULL_STRING));
-            }
 
-    } else 
-	        drvUSARTPutChar(data_received);
-
+	/* put it in the queue */
+    if(!RingBuffer_IsFull(&rbuff))
+	    RingBuffer_Insert(&rbuff,data_received);
 
 
 	sei();
