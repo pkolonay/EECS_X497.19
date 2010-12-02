@@ -553,7 +553,7 @@ extern void __vector_27 (void) __attribute__ ((signal));
 #define SP8       (1<<0)    /* R/W */
 
 /* AVR Status Register */
-/*#define SREG        0x5F *//* I        |T        |H        |S        |V        |N        |Z        |C         */
+#define SREG        0x5F     /* I        |T        |H        |S        |V        |N        |Z        |C         */
 #define I         (1<<7)    /* R/W - GIE               */
 #define T         (1<<6)    /* R/W - Bit copy storage  */
 #define H         (1<<5)    /* R/W - Half Carry        */
