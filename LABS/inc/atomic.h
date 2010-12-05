@@ -34,7 +34,7 @@
 #ifndef _UTIL_ATOMIC_H_
 #define _UTIL_ATOMIC_H_ 1
 
-#include <stdint.h>
+#include "..\inc\stdint.h"
 #include "atmega2560.h"
 
 #if !defined(__DOXYGEN__)

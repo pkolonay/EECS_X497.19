@@ -44,10 +44,9 @@
 #define _ULW_RING_BUFF_H_
 
 	/* Includes: */
-		#include "atomic.h"
-	
-		#include <stdint.h>
-		#include <stdbool.h>
+		#include "..\inc\atomic.h"	
+		#include "..\inc\stdint.h"
+		#include "..\inc\stdbool.h"
 
 	/* Defines: */
 		/** Size of each ring buffer, in data elements - must be between 1 and 255. */

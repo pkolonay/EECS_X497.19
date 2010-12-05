@@ -1,8 +1,7 @@
 /*****************************************************************************/
 /* Filename: drvapi.h                                                        */
-/* Description: Driver program to run code written for Lab4/5 of             */
-/*              EECS_X497.19.                                                */
-/* Date: 11-28-2010                                                          */
+/* Description: API declarations for Lab5 of EECS_X497.19.                   */
+/* Date: 12-05-2010                                                          */
 /* Author: Paul Kolonay                                                      */ 
 /*****************************************************************************/
 
@@ -24,21 +23,15 @@
 #endif
 
 void board_led_on(UINT8);
-
 void board_led_off(UINT8);
 
 
 void drvinit();
-
-
 void delay_mSec();
 
-void init_timer();
-
-void init_usart0();
-
-void init_gpio(UINT8);
-
-void init_eeprom();
+void printStr(UINT8 *);
+void init_system();
+void printUseage();
+void start_processing();
 
 #endif

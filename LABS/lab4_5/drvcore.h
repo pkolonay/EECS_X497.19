@@ -1,13 +1,14 @@
 /*****************************************************************************/
 /* Filename: drvcore.h                                                       */
-/* Description: For Lab4/5 of EECS_X497.19.                                  */
-/* Date: 11-28-2010                                                          */
+/* Description: For Lab 5 of EECS_X497.19.                                   */
+/* Date: 12-05-2010                                                          */
 /* Author: Paul Kolonay                                                      */ 
 /*****************************************************************************/
 
 #ifndef __drvcore_H__
 #define __drvcore_H__
 
+#include "..\inc\hw_timer.h"
 #include "..\inc\atmega2560.h"
 #include "drvreg.h"
 #include "..\inc\LightweightRingBuff.h"
@@ -36,13 +37,15 @@
 #define CR_CHAR '\r'
 #define LF_CHAR '\n'
 
+/** String used in program. */
+#define BYTES_STORED_STRING "\n\rBytes stored: "
+#define EEPROM_FULL_STRING "\n\rWARNING: EEPROM is filled to capacity. No more bytes can be stored.\n\r"
+#define DUMPING_EEPROM_STR "\n\rDumping EEPROM Contents:\n\r"
+#define RECORD_ON_STR "\n\rREC: ON\n\r"
+#define RECORD_OFF_STR "\n\rREC: OFF\n\r"
+#define RING_BUFFER_FULL_STRING "\n\r!!!!!!!!! BUFFER OVERFLOW !!!!!!!!!\n\r"
 
-#define BYTES_STORED_STRING "Bytes stored: "
-#define EEPROM_FULL_STRING "WARNING: EEPROM is filled to capacity. No more bytes can be stored.\r\n"
-
-
-
-/* Use the first locatino in eeprom to hold a count of the number
+/* Use the first two locations in eeprom to hold a count of the number
    of locations that have been written.
    */
 #define EEPROM_DATA_COUNT_ADDR 0
@@ -59,16 +62,22 @@ volatile UINT16 number_of_bytes_used_in_eeprom;
 
 #define ADDR_MULTIPLIER 1
 
+/** GPIO functions */
 UINT8 read_pin(UINT16 port, UINT8 pin);
 void write_pin(UINT16 port, UINT8 pin, UINT8 value);
 void toggle_pin(UINT16 port, UINT8 pin);
 
+/** EEPROM functions */
 UINT8 drvWriteEeprom(UINT16 addr, UINT8 data);
 UINT8 drvReadEeprom(UINT16 addr);
+void drvUpdateEepromDataCount(INT16);
+void drvResetEepromDataCount();
+UINT16 drvRead16Eeprom(UINT16 addr);
 
+/** Timer functions */
 void delay_mSec();
-
 void timer_init(UINT8);
+
 
 /**
   * Used to set a bit in a in a given byte at a given address.
@@ -85,20 +94,21 @@ void drvClearBit(UINT16,UINT8);
   */
 UINT8 drvTestBit(UINT16, UINT16, UINT8);
 
+/** USART utility functions */
 void drvUSARTPutChar(UINT8 data);
+void drvUSARTWriteString(const UINT8 *);
 
-void drvUpdateEepromDataCount(INT16);
-void drvResetEepromDataCount();
-UINT16 drvRead16Eeprom(UINT16 addr);
-
-void myitoa(UINT8 myascii[],UINT16 length, UINT16 value);
-
+/** Register read/write functions */
 void drvWriteUint16Reg(const UINT16 base, UINT16 offset, UINT16 value);
-
-void drvUSARTWriteString(const UINT8 *,UINT8);
-
 void drvWriteReg(UINT16 base, UINT16 offset, UINT8 value);
 UINT8 drvReadReg(UINT16 base, UINT16 offset);
 
+void myitoa(UINT8 myascii[],UINT16 length, UINT16 value);
+
+void init_timer();
+void init_usart0();
+void init_gpio();
+void init_eeprom();
+void process();
 
 #endif /* drvcore */
